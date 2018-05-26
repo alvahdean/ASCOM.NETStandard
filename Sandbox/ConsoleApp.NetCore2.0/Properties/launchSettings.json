@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConsoleApp.NetCore2.0": {
+      "commandName": "Project",
+      "executablePath": "C:\\Users\\Dean Fuqua\\Documents\\Development\\ASCOM\\ASCOM.NETStandard\\Sandbox\\ConsoleApp.NetCore2.0\\bin\\Debug\\netcoreapp2.0\\win10-x64\\ConsoleApp.NetCore2.0.exe"
+    }
+  }
+}

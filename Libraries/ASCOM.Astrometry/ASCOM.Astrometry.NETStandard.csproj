@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\ASCOM.NETStandard\ASCOM.NETStandard.csproj" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>ASCOM.Astrometry</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ASCOM.Utilities.NETStandard\ASCOM.Utilities.NETStandard.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="My\**" />
+    <EmbeddedResource Remove="My\**" />
+    <None Remove="My\**" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RuntimeIdentifiers>win10-x64;linux-arm</RuntimeIdentifiers>
+    <Version>0.1.0</Version>
+    <Authors>Dean Fuqua, The ASCOM Initiative</Authors>
+    <Company>Havla Consortium</Company>
+    <Product>ASCOM.NETStandard</Product>
+    <Copyright>Havla Consortium</Copyright>
+    <PackageLicenseUrl>https://github.com/alvahdean/ASCOM.NETStandard/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/alvahdean/ASCOM.NETStandard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/alvahdean/ASCOM.NETStandard</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>ASCOM</PackageTags>
+    <PackageIconUrl>https://github.com/alvahdean/ASCOM.NETStandard/blob/master/shared/icons/ASCOM.ico</PackageIconUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1705;MSB4011;CS0168</NoWarn>
+  </PropertyGroup>
+
+</Project>

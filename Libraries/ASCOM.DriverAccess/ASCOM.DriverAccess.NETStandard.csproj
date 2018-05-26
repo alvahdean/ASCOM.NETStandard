@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  
+  <Import Project="..\ASCOM.NETStandard\ASCOM.NETStandard.csproj" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Port of ASCOM.DriverAccess to NETStandard 2.0</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>ASCOM.DriverAccess</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ASCOM.Contracts.NETStandard\ASCOM.Contracts.NETStandard.csproj" />
+    <ProjectReference Include="..\ASCOM.DeviceInterfaces\ASCOM.DeviceInterface.NETStandard.csproj" />
+    <ProjectReference Include="..\ASCOM.Utilities.NETStandard\ASCOM.Utilities.NETStandard.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyModel">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.dependencymodel\2.0.3\lib\netstandard1.6\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

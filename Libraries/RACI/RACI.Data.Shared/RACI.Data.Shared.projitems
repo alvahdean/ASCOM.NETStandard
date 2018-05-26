@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>662ab7fc-d964-4090-9e8e-7847c92509ec</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>RACI.Data</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IGenericRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IValidatedEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomPlatformNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomDriverNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomDeviceNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomSettingsNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\ProfileNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\ProfileValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\SimpleValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\DataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IRaciModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ValidationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\KeyComparers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\RaciModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\GenericRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\UnitOfWork.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Repository\SystemHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestObjects\Rascom\RascomDevice.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)RestObjects\Rascom\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\..\..\Shared\appsettings.json" />
+  </ItemGroup>
+</Project>

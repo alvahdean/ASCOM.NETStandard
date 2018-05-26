@@ -1,0 +1,447 @@
+﻿Test Name:	AscomValues
+Test Outcome:	Passed
+Result StandardOutput:	
+ASCOM platform SubKeys
+Astrometry/Leap Seconds: 37
+Camera Drivers/ASCOM.ASICamera2.Camera/Blue: 0
+Camera Drivers/ASCOM.ASICamera2.Camera/CamName: ZWO ASI178MM
+Camera Drivers/ASCOM.ASICamera2.Camera/CtrlType: 6
+Camera Drivers/ASCOM.ASICamera2.Camera/Gain: 0
+Camera Drivers/ASCOM.ASICamera2.Camera/Gamma: 0
+Camera Drivers/ASCOM.ASICamera2.Camera/HardBin: 0
+Camera Drivers/ASCOM.ASICamera2.Camera/HighSpeedMode: 0
+Camera Drivers/ASCOM.ASICamera2.Camera/ImageType: 2
+Camera Drivers/ASCOM.ASICamera2.Camera/LensHeatOn: True
+Camera Drivers/ASCOM.ASICamera2.Camera/MonoBin: false
+Camera Drivers/ASCOM.ASICamera2.Camera/Offset: 25
+Camera Drivers/ASCOM.ASICamera2.Camera/OverCLK: 0
+Camera Drivers/ASCOM.ASICamera2.Camera/PreSettingIndex: 0
+Camera Drivers/ASCOM.ASICamera2.Camera/Red: 0
+Camera Drivers/ASCOM.ASICamera2.Camera/SelectedCamID: 0
+Camera Drivers/ASCOM.ASICamera2.Camera/USBTraffic: 50
+Camera Drivers/ASCOM.ASICamera2_2.Camera/Blue: 0
+Camera Drivers/ASCOM.ASICamera2_2.Camera/CamName: ZWO ASI178MM
+Camera Drivers/ASCOM.ASICamera2_2.Camera/CtrlType: 6
+Camera Drivers/ASCOM.ASICamera2_2.Camera/Gain: 0
+Camera Drivers/ASCOM.ASICamera2_2.Camera/Gamma: 0
+Camera Drivers/ASCOM.ASICamera2_2.Camera/HardBin: 0
+Camera Drivers/ASCOM.ASICamera2_2.Camera/HighSpeedMode: 0
+Camera Drivers/ASCOM.ASICamera2_2.Camera/ImageType: 2
+Camera Drivers/ASCOM.ASICamera2_2.Camera/LensHeatOn: True
+Camera Drivers/ASCOM.ASICamera2_2.Camera/MonoBin: false
+Camera Drivers/ASCOM.ASICamera2_2.Camera/Offset: 25
+Camera Drivers/ASCOM.ASICamera2_2.Camera/OverCLK: 0
+Camera Drivers/ASCOM.ASICamera2_2.Camera/PreSettingIndex: 0
+Camera Drivers/ASCOM.ASICamera2_2.Camera/Red: 0
+Camera Drivers/ASCOM.ASICamera2_2.Camera/SelectedCamID: 0
+Camera Drivers/ASCOM.ASICamera2_2.Camera/USBTraffic: 40
+Camera Drivers/ASCOM.OrionG3CameraDriver.Camera/Trace Level: true
+Camera Drivers/ASCOM.Simulator.Camera/ApplyNoise: True
+Camera Drivers/ASCOM.Simulator.Camera/BayerOffsetX: 0
+Camera Drivers/ASCOM.Simulator.Camera/BayerOffsetY: 0
+Camera Drivers/ASCOM.Simulator.Camera/CameraXSize: 3326
+Camera Drivers/ASCOM.Simulator.Camera/CameraYSize: 2504
+Camera Drivers/ASCOM.Simulator.Camera/CanAbortExposure: True
+Camera Drivers/ASCOM.Simulator.Camera/CanAsymmetricBin: True
+Camera Drivers/ASCOM.Simulator.Camera/CanFastReadout: False
+Camera Drivers/ASCOM.Simulator.Camera/CanGetCoolerPower: True
+Camera Drivers/ASCOM.Simulator.Camera/CanPulseGuide: True
+Camera Drivers/ASCOM.Simulator.Camera/CanSetCCDTemperature: True
+Camera Drivers/ASCOM.Simulator.Camera/CanStopExposure: True
+Camera Drivers/ASCOM.Simulator.Camera/ElectronsPerADU: 0.8
+Camera Drivers/ASCOM.Simulator.Camera/ExposureResolution: 0.001
+Camera Drivers/ASCOM.Simulator.Camera/FullWellCapacity: 30000
+Camera Drivers/ASCOM.Simulator.Camera/GainMax: 0
+Camera Drivers/ASCOM.Simulator.Camera/GainMin: 0
+Camera Drivers/ASCOM.Simulator.Camera/HasCooler: True
+Camera Drivers/ASCOM.Simulator.Camera/HasShutter: True
+Camera Drivers/ASCOM.Simulator.Camera/ImageFile: C:\Users\Dean Fuqua\OneDrive\Pictures\Astronomy\Simulator\STT8300M\M92.jpg
+Camera Drivers/ASCOM.Simulator.Camera/InterfaceVersion: 2
+Camera Drivers/ASCOM.Simulator.Camera/MaxADU: 65535
+Camera Drivers/ASCOM.Simulator.Camera/MaxBinX: 3
+Camera Drivers/ASCOM.Simulator.Camera/MaxBinY: 3
+Camera Drivers/ASCOM.Simulator.Camera/MaxExposure: 3600
+Camera Drivers/ASCOM.Simulator.Camera/MinExposure: 0.001
+Camera Drivers/ASCOM.Simulator.Camera/OmitOddBins: False
+Camera Drivers/ASCOM.Simulator.Camera/PixelSizeX: 5.4
+Camera Drivers/ASCOM.Simulator.Camera/PixelSizeY: 5.4
+Camera Drivers/ASCOM.Simulator.Camera/ReadoutModes: Raw Monochrome,Live View,Raw To Hard Drive
+Camera Drivers/ASCOM.Simulator.Camera/SensorName: STT8300M
+Camera Drivers/ASCOM.Simulator.Camera/SensorType: 0
+Camera Drivers/ASCOM.Simulator.Camera/SetCCDTemperature: -10
+Camera Drivers/ASCOM.Simulator.Camera/Trace: False
+Chooser/ASCOM.ASICamera2.Camera Init: True
+Chooser/ASCOM.ASICamera2_2.Camera Init: True
+Chooser/ASCOM.GeminiTelescope.Telescope Init: True
+Chooser/ASCOM.iOptron2013.Telescope Init: True
+Chooser/ASCOM.OrionG3CameraDriver.Camera Init: True
+Chooser/ASCOM.Simulator.Camera Init: True
+Chooser/ASCOM.Simulator.Dome Init: True
+Chooser/ASCOM.Simulator.FilterWheel Init: True
+Chooser/ASCOM.Simulator.Focuser Init: True
+Chooser/ASCOM.Simulator.Rotator Init: True
+Chooser/ASCOM.Simulator.Telescope Init: True
+Dome Drivers/ASCOM.Simulator.Dome/AltRate: 30
+Dome Drivers/ASCOM.Simulator.Dome/AzRate: 15
+Dome Drivers/ASCOM.Simulator.Dome/Capabilities/CanFindHome: True
+Dome Drivers/ASCOM.Simulator.Dome/Capabilities/CanPark: True
+Dome Drivers/ASCOM.Simulator.Dome/Capabilities/CanSetAltitude: True
+Dome Drivers/ASCOM.Simulator.Dome/Capabilities/CanSetAzimuth: True
+Dome Drivers/ASCOM.Simulator.Dome/Capabilities/CanSetPark: True
+Dome Drivers/ASCOM.Simulator.Dome/Capabilities/CanSetShutter: True
+Dome Drivers/ASCOM.Simulator.Dome/Capabilities/CanSyncAzimuth: True
+Dome Drivers/ASCOM.Simulator.Dome/Left: 147
+Dome Drivers/ASCOM.Simulator.Dome/MaxAlt: 90
+Dome Drivers/ASCOM.Simulator.Dome/MinAlt: 0
+Dome Drivers/ASCOM.Simulator.Dome/NonFragileAtHome: False
+Dome Drivers/ASCOM.Simulator.Dome/NonFragileAtPark: False
+Dome Drivers/ASCOM.Simulator.Dome/OCDelay: 3
+Dome Drivers/ASCOM.Simulator.Dome/SetHome: 0
+Dome Drivers/ASCOM.Simulator.Dome/SetPark: 180
+Dome Drivers/ASCOM.Simulator.Dome/SlewingOpenClose: False
+Dome Drivers/ASCOM.Simulator.Dome/StartShutterError: False
+Dome Drivers/ASCOM.Simulator.Dome/State/DomeAlt: 0
+Dome Drivers/ASCOM.Simulator.Dome/State/DomeAz: 180
+Dome Drivers/ASCOM.Simulator.Dome/State/ShutterState: 1
+Dome Drivers/ASCOM.Simulator.Dome/StepSize: 5
+Dome Drivers/ASCOM.Simulator.Dome/Top: 147
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterColours/0: 255
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterColours/1: 32768
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterColours/2: 16711680
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterColours/3: 8421504
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterColours/4: 139
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterColours/5: 8421376
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterColours/6: 15631086
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterColours/7: 0
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterNames/0: None
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterNames/1: Clear
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterNames/2: Red
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterNames/3: Blue
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterNames/4: Green
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterNames/5: Ha
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterNames/6: OIII
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FilterNames/7: SII
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FocusOffsets/0: 3005
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FocusOffsets/1: 5017
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FocusOffsets/2: 7648
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FocusOffsets/3: 6045
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FocusOffsets/4: 3702
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FocusOffsets/5: 1995
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FocusOffsets/6: 8969
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/FocusOffsets/7: 7213
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/ImplementsNames: True
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/ImplementsOffsets: True
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/Position: 0
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/PreemptMoves: True
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/RegVer: 1
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/Slots: 8
+FilterWheel Drivers/ASCOM.Simulator.FilterWheel/Time: 1000
+Focuser Drivers/ASCOM.GeminiTelescope.Focuser/BacklashDirection: 0
+Focuser Drivers/ASCOM.GeminiTelescope.Focuser/BacklashSize: 50
+Focuser Drivers/ASCOM.GeminiTelescope.Focuser/BrakeSize: 0
+Focuser Drivers/ASCOM.GeminiTelescope.Focuser/MaxIncrement: 5000
+Focuser Drivers/ASCOM.GeminiTelescope.Focuser/RegVer: 1
+Focuser Drivers/ASCOM.GeminiTelescope.Focuser/ReverseDirection: False
+Focuser Drivers/ASCOM.GeminiTelescope.Focuser/Speed: 1
+Focuser Drivers/ASCOM.GeminiTelescope.Focuser/StepSize: 100
+Focuser Drivers/ASCOM.Simulator.Focuser/Absolute: True
+Focuser Drivers/ASCOM.Simulator.Focuser/CanHalt: True
+Focuser Drivers/ASCOM.Simulator.Focuser/CanStepSize: True
+Focuser Drivers/ASCOM.Simulator.Focuser/MaxIncrement: 50000
+Focuser Drivers/ASCOM.Simulator.Focuser/MaxStep: 50000
+Focuser Drivers/ASCOM.Simulator.Focuser/Position: 25000
+Focuser Drivers/ASCOM.Simulator.Focuser/StepSize: 20
+Focuser Drivers/ASCOM.Simulator.Focuser/Synchronous: True
+Focuser Drivers/ASCOM.Simulator.Focuser/TempComp: False
+Focuser Drivers/ASCOM.Simulator.Focuser/TempCompAvailable: True
+Focuser Drivers/ASCOM.Simulator.Focuser/Temperature: 5
+Focuser Drivers/ASCOM.Simulator.Focuser/TempMax: 50
+Focuser Drivers/ASCOM.Simulator.Focuser/TempMin: -50
+Focuser Drivers/ASCOM.Simulator.Focuser/TempPeriod: 3
+Focuser Drivers/ASCOM.Simulator.Focuser/TempProbe: True
+Focuser Drivers/ASCOM.Simulator.Focuser/TempSteps: 10
+ForcePlatformVersion/ACLDome(5.0.1)Setup.exe: 5.5
+ForcePlatformVersion/ACLTelescope(5.0.1)Setup.exe: 5.5
+ForcePlatformVersion/AstroPhysics(4.1.25)Setup.exe: 5.5
+ForcePlatformVersion/Celestron(5.0.10)Setup.exe: 5.5
+ForcePlatformVersion/Celestron(5.0.13)Setup.exe: 5.5
+ForcePlatformVersion/Celestron(5.0.14)Setup.exe: 5.5
+ForcePlatformVersion/CyberDrive(5.0.1)Setup.exe: 5.5
+ForcePlatformVersion/GCUSB_nFOCUS Setup.exe: 5.5
+ForcePlatformVersion/GCUSB_nFOCUS Setup_5_03.exe: 5.5
+ForcePlatformVersion/GCUSB_nFOCUS_Setup_505.exe: 5.5
+ForcePlatformVersion/GCUSB_nFOCUS_Setup_505_v5v6.exe: 5.5
+ForcePlatformVersion/GCUSB_nFOCUS_Setup_Two.exe: 5.5
+ForcePlatformVersion/GCUSB_nFOCUS_Setup_Two_5_03.exe: 5.5
+ForcePlatformVersion/GCUSB_nFOCUS_Setup_Two_505.exe: 5.5
+ForcePlatformVersion/GCUSB_nFOCUS_Setup_Two_505_v5v6.exe: 5.5
+ForcePlatformVersion/JMISmartFocus(4.0.1)Setup.exe: 5.5
+ForcePlatformVersion/LakesideAstro Setup.exe: 5.5
+ForcePlatformVersion/LesveDome 5 0 27 Setup.exe: 5.5
+ForcePlatformVersion/LittleFootClassic(1.0.0)Setup.exe: 5.5
+ForcePlatformVersion/LXPTelescope(5.0.1)Setup.exe: 5.5
+ForcePlatformVersion/MeadeClassic(5.0.3)Setup.exe: 5.5
+ForcePlatformVersion/MeadeLX200GPS(5.0.0)Setup.exe: 5.5
+ForcePlatformVersion/Optec IFW(1.1.0.1) Setup.exe: 5.5
+ForcePlatformVersion/OptecPyxis(1.0.4)Setup.exe: 5.5
+ForcePlatformVersion/OptecTCF(4.1.0)Setup.exe: 5.5
+ForcePlatformVersion/PCTCSCombined(5.0.1)Setup.exe: 5.5
+ForcePlatformVersion/QHY8ASCOMSetup.exe: 5.5
+ForcePlatformVersion/QHY9ASCOMSetup.exe: 5.5
+ForcePlatformVersion/RoboFocus(3.0.9)Setup.exe: 5.5
+ForcePlatformVersion/ServoCAT(4.2.2)Setup.exe: 5.5
+ForcePlatformVersion/StarlightXpress Setup: 5.5
+ForcePlatformVersion/TheSkyTelescope(5.0.1)Setup.exe: 5.5
+ForcePlatformVersion/TheSkyTelescope(5.0.2)Setup.exe: 5.5
+ForcePlatformVersion/TheSkyTelescope(5.0.3)Setup.exe: 5.5
+ForcePlatformVersion/VixenSS2k(5.1.4)Setup.exe: 5.5
+ForcePlatformVersion/VixenSS2k(5.1.6b)Setup.exe: 5.5
+ForcePlatformVersion/VixenSS2K(5.1.7b)Setup.exe: 5.5
+ForcePlatformVersionSeparator/ACLDome(5.0.1)Setup.exe: 
+ForcePlatformVersionSeparator/ACLTelescope(5.0.1)Setup.exe: 
+ForcePlatformVersionSeparator/AstroPhysics(4.1.25)Setup.exe: 
+ForcePlatformVersionSeparator/Celestron(5.0.10)Setup.exe: 
+ForcePlatformVersionSeparator/Celestron(5.0.13)Setup.exe: 
+ForcePlatformVersionSeparator/Celestron(5.0.14)Setup.exe: 
+ForcePlatformVersionSeparator/CyberDrive(5.0.1)Setup.exe: 
+ForcePlatformVersionSeparator/GCUSB_nFOCUS Setup.exe: 
+ForcePlatformVersionSeparator/GCUSB_nFOCUS Setup_5_03.exe: 
+ForcePlatformVersionSeparator/GCUSB_nFOCUS_Setup_505.exe: 
+ForcePlatformVersionSeparator/GCUSB_nFOCUS_Setup_505_v5v6.exe: 
+ForcePlatformVersionSeparator/GCUSB_nFOCUS_Setup_Two.exe: 
+ForcePlatformVersionSeparator/GCUSB_nFOCUS_Setup_Two_5_03.exe: 
+ForcePlatformVersionSeparator/GCUSB_nFOCUS_Setup_Two_505.exe: 
+ForcePlatformVersionSeparator/GCUSB_nFOCUS_Setup_Two_505_v5v6.exe: 
+ForcePlatformVersionSeparator/JMISmartFocus(4.0.1)Setup.exe: 
+ForcePlatformVersionSeparator/LakesideAstro Setup.exe: 
+ForcePlatformVersionSeparator/LesveDome 5 0 27 Setup.exe: 
+ForcePlatformVersionSeparator/LittleFootClassic(1.0.0)Setup.exe: 
+ForcePlatformVersionSeparator/LXPTelescope(5.0.1)Setup.exe: 
+ForcePlatformVersionSeparator/MeadeClassic(5.0.3)Setup.exe: 
+ForcePlatformVersionSeparator/MeadeLX200GPS(5.0.0)Setup.exe: 
+ForcePlatformVersionSeparator/Optec IFW(1.1.0.1) Setup.exe: 
+ForcePlatformVersionSeparator/OptecPyxis(1.0.4)Setup.exe: 
+ForcePlatformVersionSeparator/OptecTCF(4.1.0)Setup.exe: 
+ForcePlatformVersionSeparator/PCTCSCombined(5.0.1)Setup.exe: 
+ForcePlatformVersionSeparator/QHY8ASCOMSetup.exe: 
+ForcePlatformVersionSeparator/QHY9ASCOMSetup.exe: 
+ForcePlatformVersionSeparator/RoboFocus(3.0.9)Setup.exe: 
+ForcePlatformVersionSeparator/ServoCAT(4.2.2)Setup.exe: 
+ForcePlatformVersionSeparator/StarlightXpress Setup: 
+ForcePlatformVersionSeparator/TheSkyTelescope(5.0.1)Setup.exe: 
+ForcePlatformVersionSeparator/TheSkyTelescope(5.0.2)Setup.exe: 
+ForcePlatformVersionSeparator/TheSkyTelescope(5.0.3)Setup.exe: 
+ForcePlatformVersionSeparator/TheSkyTelescope(5.2.7)Setup.exe: 
+ForcePlatformVersionSeparator/VixenSS2k(5.1.4)Setup.exe: 
+ForcePlatformVersionSeparator/VixenSS2k(5.1.6b)Setup.exe: 
+ForcePlatformVersionSeparator/VixenSS2K(5.1.7b)Setup.exe: 
+ForceSystemTimer/Astroart.Exe: True
+ForceSystemTimer/WScript.Exe: True
+Platform/Developer Tools Installation Date: 9/16/2017 10:05:33 AM
+Platform/Developer Tools Name: ASCOM Platform 6.3 Developer Components
+Platform/Developer Tools Product Code: {4A195DC6-7DF9-459E-8F93-60B61EB45288}
+Platform/Developer Tools Revision Code: {0EAF9481-5712-4ABA-B98F-EDC278CB5D77}
+Platform/Developer Tools Version: 6.3.0.2831
+Platform/Platform Installation Date: 8/16/2017 6:40:06 PM
+Platform/Platform Name: ASCOM Platform 6.3
+Platform/Platform Product Code: {8961E141-B307-4882-ABAD-77A3E76A40C1}
+Platform/Platform Revision Code: {17B7BEE6-AC5D-4AE7-B5A9-3C8C17549810}
+Platform/Platform Version: 6.3.0.2831
+PlatformVersion: 6.3
+Rotator Drivers/ASCOM.Simulator.Rotator/CanReverse: True
+Rotator Drivers/ASCOM.Simulator.Rotator/Position: 60
+Rotator Drivers/ASCOM.Simulator.Rotator/Reverse: False
+Rotator Drivers/ASCOM.Simulator.Rotator/RotationRate: 3
+SerTraceFile: 
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/AdditionalAlign: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/ApertureDiameter: 0~106
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/AsyncPulseGuide: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/BaudRate: 9600
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/BootMode: 1
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/BypassProxy: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog Arp Peculiar Galaxies: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog Bright Star List: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog CED bright diffuse nebulae: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog Galactic Planetary Objects: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog IC: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog Lynds Bright Nebulae: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog Lynds Dark Nebulae: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog Messier: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog NGC: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog SAO Catalog: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog Sharpless HII Regions: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog VDB reflection nebulae: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Catalog Washington Double Star Catalog: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/ComPort: Ethernet
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Elevation: 20
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/EthernetIP: 10.0.0.15
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/EthernetPassword: 
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/EthernetPort: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/EthernetUser: admin
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/FocalLength: 0~530
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/GeminiDHCPName: gemini
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/GeminiStopMode: 0
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/GpsBaudRate: 4800
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/GpsComPort: COM1
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/GpsUpdateClock: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/GroupCollapse_Custom Mount Settings: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/HorizonAltitude: 20
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/KeepMainFormOnTop: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/LastParkOperation: 
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Latitude: 33.56
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Longitude: -82.7641666666667
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/MainFormPositionX: 1209
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/MainFormPositionY: 421
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/NudgeFromSafety: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/OpticsNames: ~FSQ-106
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/OpticsObstruction: 0~0
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/OpticsUnitOfMeasure: millimeter~millimeters
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/OpticsValueIndex: 1
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/ParkAlt: 35.83
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/ParkAz: 180
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/ParkPosition: 0
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/PassThroughBaudRate: 9600
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/PassThroughComPort: COM10
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/PassThroughPortEnabled: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Precession: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/PrecisionPulseGuide: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Refraction: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/RegVer: 1
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/ReportPierSide: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/ScanCOMPorts: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/SendAdvancedSettings: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Show Handbox: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Show Notifications: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Show Status Panel: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/SlewSettleTime: 2
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/SpeechFilter: 0
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/SpeechVoice: 
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/TraceLevel: 0
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/UDPPort: 11110
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Use Driver Site: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/Use Driver Time: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/UseDHCP: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/UseJoystick: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/UseSpeech: False
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/UseUDP: True
+Telescope Drivers/ASCOM.GeminiTelescope.Telescope/UTCOffset: 5
+Telescope Drivers/ASCOM.iOptron2013.Telescope/ActiveMain: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Alive: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Alt: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/AltLastTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/AtParkLastTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Azi: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/AziLastTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/CommunicationSource: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/COMPort: 
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Connections: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Date: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Dec: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/DecLastTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/DST: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Elevation: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/EndPulseGuidingEW: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/EndPulseGuidingNS: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/External: 1
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Home: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/JD: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Latitude: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/LatLastTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Longitude: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/LonLastTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Model: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/MovingRate: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/NetSource: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Parked: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Pier: -1
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Pos: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/RA: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/RALastTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/SiderealTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Slewing: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/SlewingLastTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/SlewSettleSec: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/TargetDec: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/TargetDecSet: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/TargetRA: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/TargetRASet: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Time: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/TimeZone: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/Tracking: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/TrackingLastTime: 0
+Telescope Drivers/ASCOM.iOptron2013.Telescope/TrackingRate: 0
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/COM Port: COM3
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/COM Speed: 115200
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/DEC Park Position: 0
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/DEC Sidereal Rate Fraction: 0.40
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/IP Address: 192.168.47.1
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/IP Port: 54372
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Minimum Pulse Time: 100
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Mount Rate: Sidereal
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Mount Type: Losmandy G-11
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/RA Park Position: 0
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/RA Sidereal Rate Fraction: 0.40
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Rate Offset arc-sec/sec: 0.023
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/RefractionApplied: False
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Site Ambient Temperature: 59.00000
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Site Elevation meters: 403.0
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Site Latitude: 36.18063
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Site Location: Explore Scientific HQ
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Site Longitude: -94.18838
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Total DEC Counts: 4608000
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Total RA Counts: 4608000
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Trace Level: False
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/WIFI Module ID: Microchip RN-131
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Wireless Enabled: True
+Telescope Drivers/ASCOM.PMC8Dev.Telescope/Wireless Protocol: TCP
+Telescope Drivers/ASCOM.Simulator.Telescope/AlignMode: 1
+Telescope Drivers/ASCOM.Simulator.Telescope/AlwaysOnTop: false
+Telescope Drivers/ASCOM.Simulator.Telescope/Aperture: 0.06
+Telescope Drivers/ASCOM.Simulator.Telescope/ApertureArea: -1
+Telescope Drivers/ASCOM.Simulator.Telescope/AutoTrack: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanAlignMode: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanAltAz: False
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanDateTime: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanDoesRefraction: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanDualAxisPulseGuide: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanEquatorial: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanFindHome: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanLatLongElev: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanOptics: true
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanPark: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanPierSide: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanPulseGuide: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSetEquRates: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSetGuideRates: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSetPark: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSetPierSide: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSetTracking: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSiderealTime: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSlew: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSlewAltAz: False
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSlewAltAzAsync: False
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSlewAsync: true
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSync: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanSyncAltAz: False
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanTrackingRates: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/CanUnpark: True
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/NoSyncPastMeridian: False
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/NumMoveAxis: 2
+Telescope Drivers/ASCOM.Simulator.Telescope/Capabilities/V1: False
+Telescope Drivers/ASCOM.Simulator.Telescope/DateDelta: 0
+Telescope Drivers/ASCOM.Simulator.Telescope/DiscPark: False
+Telescope Drivers/ASCOM.Simulator.Telescope/Elevation: 271
+Telescope Drivers/ASCOM.Simulator.Telescope/EquatorialSystem: 1
+Telescope Drivers/ASCOM.Simulator.Telescope/FocalLength: 0.355
+Telescope Drivers/ASCOM.Simulator.Telescope/Latitude: 33.8928333333333
+Telescope Drivers/ASCOM.Simulator.Telescope/Longitude: -84.4563333333333
+Telescope Drivers/ASCOM.Simulator.Telescope/MaxSlewRate: 20
+Telescope Drivers/ASCOM.Simulator.Telescope/NoCoordAtPark: False
+Telescope Drivers/ASCOM.Simulator.Telescope/OnTop: False
+Telescope Drivers/ASCOM.Simulator.Telescope/ParkAltitude: 38.9213333333333
+Telescope Drivers/ASCOM.Simulator.Telescope/ParkAzimuth: 180
+Telescope Drivers/ASCOM.Simulator.Telescope/Refraction: False
+Telescope Drivers/ASCOM.Simulator.Telescope/RegVer: 1
+Telescope Drivers/ASCOM.Simulator.Telescope/StartAltitude: 38.92139
+Telescope Drivers/ASCOM.Simulator.Telescope/StartAzimuth: 180
+

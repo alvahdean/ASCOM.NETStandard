@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  ascom.ui:
+    image: ascomui
+    build:
+      context: .
+      dockerfile: Samples/Drivers/NETCore/ASCOM.UI/Dockerfile

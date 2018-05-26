@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\ASCOM.NETStandard\ASCOM.NETStandard.csproj" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>New library containing public interfaces for the ASCOM platform</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RootNamespace>ASCOM.Utilities.Interfaces</RootNamespace>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using ASCOM;
+using ASCOM.Utilities;
+using ASCOM.Utilities.Interfaces;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ASCOM.Havla
+{
+    abstract public class StreamConnection : DeviceConnection, IStreamConnection
+    {
+        public StreamConnection() : this(ConnectionType.None) { }
+        public StreamConnection(ConnectionType connType) : this(connType, "{ }") { }
+        public StreamConnection(ConnectionType connType, string jsonSettings)
+            : this(connType, JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonSettings)) { }
+        public StreamConnection(ConnectionType connType, IDictionary<string, string> settings)
+            : base(connType, settings) { }
+
+        public abstract Stream Stream { get; }
+
+        public override void Flush()
+        {
+            if (!IsConnected)
+                throw new NotConnectedException();
+            Stream.Flush();
+        }
+
+        public override int Read(byte[] buffer, int offset, int count)
+        {
+            if (!IsConnected)
+                throw new NotConnectedException();
+            return Stream.Read(buffer, offset, count);
+        }
+
+        public override int ReadByte()
+        {
+            if (!IsConnected)
+                throw new NotConnectedException();
+            return Stream.ReadByte();
+        }
+
+        public override void Write(byte[] buffer, int offset, int count)
+        {
+            if (!IsConnected)
+                throw new NotConnectedException();
+            Stream.Write(buffer, offset, count);
+        }
+
+        public override void WriteByte(byte value)
+        {
+            if (!IsConnected)
+                throw new NotConnectedException();
+            Stream.WriteByte(value);
+        }
+    }
+}
