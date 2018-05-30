@@ -10,96 +10,64 @@ using System;
 
 namespace ASCOM.DriverAccess
 {
-  public class Rotator : AscomDriver, IRotatorV2
-  {
-    private MemberFactory memberFactory;
-
-    public bool CanReverse
+    public class Rotator : AscomDriver<IRotatorV2>, IRotatorV2
     {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanReverse", new Type[0]);
-      }
-    }
 
-    public bool IsMoving
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "IsMoving", new Type[0]);
-      }
-    }
+        protected Rotator() : base() { }
+        public Rotator(string deviceProgId) : base(deviceProgId) { }
+        public bool CanReverse { get => Impl.CanReverse; }
 
-    public float Position
-    {
-      get
-      {
-        return (float) this.memberFactory.CallMember(1, "Position", new Type[0]);
-      }
-    }
+        public bool IsMoving { get => Impl.IsMoving; }
 
-    public bool Reverse
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "Reverse", new Type[0]);
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "Reverse", new Type[0], (object) value);
-      }
-    }
+        public float Position { get => Impl.Position; }
 
-    public float StepSize
-    {
-      get
-      {
-        return (float) this.memberFactory.CallMember(1, "StepSize", new Type[0]);
-      }
-    }
+        public bool Reverse
+        {
+            get => Impl.Reverse;
+            set
+            {
+                if (Reverse != value)
+                {
+                    Impl.Reverse = value;
+                    profile.SetValue(nameof(Reverse), Impl.Reverse.ToString());
+                    RaisePropertyChanged(nameof(Reverse));
+                }
+            }
+        }
 
-    public float TargetPosition
-    {
-      get
-      {
-        return (float) this.memberFactory.CallMember(1, "TargetPosition", new Type[0]);
-      }
-    }
+        public float StepSize { get => Impl.StepSize; }
 
-    public Rotator(string rotatorId)
-      : base(rotatorId)
-    {
-      this.memberFactory = this.MemberFactory;
-    }
+        public float TargetPosition { get => Impl.TargetPosition; }
 
-    public static string Choose(string rotatorId)
-    {
-      using (Chooser chooser = new Chooser())
-      {
-        chooser.DeviceType = "Rotator";
-        return chooser.Choose(rotatorId);
-      }
-    }
 
-    public void Halt()
-    {
-      this.memberFactory.CallMember(3, "Halt", new Type[0]);
-    }
+        public static string Choose(string deviceId)
+        {
+            using (Chooser chooser = new Chooser())
+            {
+                chooser.DeviceType = deviceType;
+                return chooser.Choose(deviceId);
+            }
+        }
 
-    public void Move(float Position)
-    {
-      this.memberFactory.CallMember(3, "Move", new Type[1]
-      {
-        typeof (float)
-      }, (object) Position);
-    }
+        public void Halt()
+        {
+            TL.LogMessage($"Begin Halt", $"Halt()");
+            Impl.Halt();
+            TL.LogMessage($"End Halt", $"Result: void");
+        }
 
-    public void MoveAbsolute(float Position)
-    {
-      this.memberFactory.CallMember(3, "MoveAbsolute", new Type[1]
-      {
-        typeof (float)
-      }, (object) Position);
+        public void Move(float Position)
+        {
+            TL.LogMessage($"Begin Move", $"Move(Position={Position})");
+            Impl.Move(Position);
+            TL.LogMessage($"End Move", $"Result: void");
+        }
+
+        public void MoveAbsolute(float Position)
+        {
+            TL.LogMessage($"Begin MoveAbsolute", $"MoveAbsolute(Position={Position})");
+            Impl.MoveAbsolute(Position);
+            TL.LogMessage($"End MoveAbsolute", $"Result: void");
+        }
     }
-  }
 }

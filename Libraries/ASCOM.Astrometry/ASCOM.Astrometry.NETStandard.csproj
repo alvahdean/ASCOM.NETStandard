@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ASCOM.Utilities.NETStandard\ASCOM.Utilities.NETStandard.csproj" />
+    <ProjectReference Include="..\RACI\RACI.Data.NETStandard\RACI.Data.NETStandard.csproj" />
   </ItemGroup>
 
   <ItemGroup>

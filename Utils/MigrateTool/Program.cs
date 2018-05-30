@@ -145,7 +145,7 @@ namespace RACI.Data
             int idx = result.LastIndexOf('\\');
             return result.Substring(idx + 1);
         }
-        static RaciUser UpdateUser(String sid)
+        static UserSettings UpdateUser(String sid)
         {
             string userName = UserIdToName(sid);
             if (String.IsNullOrWhiteSpace(userName))
@@ -155,7 +155,7 @@ namespace RACI.Data
                 throw new InvalidOperationException($"No ASCOM User settings found for {userName} ({sid}), skipping...");
             Console.WriteLine($"Loading ASCOM User settings for {userName} ({sid})...");
 
-            RaciUser userNode = sysHlp.GetOrCreateUser(userName,sid);
+            UserSettings userNode = sysHlp.GetOrCreateUser(userName,sid);
             try
             {
                 Console.WriteLine($"{userName} ({sid}): Clearing existing settings");
@@ -164,7 +164,7 @@ namespace RACI.Data
                 {
                     userNode.UserId = sid;
                     userNode.HomeDir = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                    uow.NodesOfType<RaciUser>().Update(userNode);
+                    uow.NodesOfType<UserSettings>().Update(userNode);
                     uow.Save();
                 }
 
@@ -232,16 +232,8 @@ namespace RACI.Data
         {
             Console.WriteLine($"Clearing ASCOM objects from the database");
             Console.WriteLine($"LocalOnly: {localOnly}");
-            using (var db = new RaciModel(DeleteBehavior.Cascade,true))
+            using (var db = new RaciModel(null,DeleteBehavior.Cascade,true))
             {
-                Console.WriteLine($"Wiping SimpleValues");
-                foreach (var rec in db.SimpleValues)
-                {
-                    Console.Write(".");
-                    db.SimpleValues.Remove(rec);
-                }
-                Console.WriteLine();
-
                 Console.WriteLine($"Wiping ProfileObjects");
                 foreach (RaciSystem sys in db.Systems)
                 {

@@ -20,7 +20,7 @@ namespace ASCOM.Utilities
     //[StandardModule]
     public class UserCommonCode
     {
-        private RaciUser RaciUser(string sysName = null,string userName=null)
+        private UserSettings RaciUser(string sysName = null,string userName=null)
         {
             SystemHelper sys = new SystemHelper(sysName);
             return sys.GetUser(userName);
@@ -28,7 +28,7 @@ namespace ASCOM.Utilities
         private ProfileNode UserUtilites(string sysName = null,string userName=null)
         {
             SystemHelper sys = new SystemHelper(sysName);
-            RaciUser user=RaciUser(userName, sysName);
+            UserSettings user=RaciUser(userName, sysName);
             return sys.SubNode(user, "Utilities",true);
         }
 

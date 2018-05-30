@@ -66,11 +66,11 @@ namespace ProfileEdit
                     Console.WriteLine($"[RACI Settings] (Id={raci?.ProfileNodeId ?? 0})");
                     if (raci != null)
                     {
-                        Console.WriteLine($"\tUrlRoot: {sys.SetRaci("UrlRoot", RaciModel.Settings.RACI.UrlRoot)}");
-                        Console.WriteLine($"\tProductVersion: {sys.SetRaci("tProductVersion", RaciModel.Settings.RACI.ProductVersion)}");
-                        Console.WriteLine($"\tRestApiVersion: {sys.SetRaci("tRestApiVersion", RaciModel.Settings.RACI.RestApiVersion)}");
-                        Console.WriteLine($"\tEnableInternalLog: {sys.SetRaci("tEnableInternalLog", RaciModel.Settings.RACI.EnableInternalLog)}");
-                        Console.WriteLine($"\tLogfile: {sys.SetRaci("Logfile", RaciModel.Settings.RACI.Logfile)}");
+                        Console.WriteLine($"\tUrlRoot: {sys.SetRaci("UrlRoot", RaciModel.Configuration.RACI.UrlRoot)}");
+                        Console.WriteLine($"\tProductVersion: {sys.SetRaci("tProductVersion", RaciModel.Configuration.RACI.ProductVersion)}");
+                        Console.WriteLine($"\tRestApiVersion: {sys.SetRaci("tRestApiVersion", RaciModel.Configuration.RACI.RestApiVersion)}");
+                        Console.WriteLine($"\tEnableInternalLog: {sys.SetRaci("tEnableInternalLog", RaciModel.Configuration.RACI.EnableInternalLog)}");
+                        Console.WriteLine($"\tLogfile: {sys.SetRaci("Logfile", RaciModel.Configuration.RACI.Logfile)}");
                     }
                     Console.WriteLine();
                     AscomPlatformNode ascom = sys.Ascom;

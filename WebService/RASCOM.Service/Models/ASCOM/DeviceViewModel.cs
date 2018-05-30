@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ASCOM.DeviceInterface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using RACI.Data;
 
 namespace RACI.ASCOM.Service.Models
 {

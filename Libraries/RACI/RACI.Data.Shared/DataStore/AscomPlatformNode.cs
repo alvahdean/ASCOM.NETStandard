@@ -14,6 +14,5 @@ namespace RACI.Data
     {
         public AscomPlatformNode() : this("", "") { }
         public AscomPlatformNode(String name, String description = "") : base(name, description) { }
-    }
-
+    }  
 }

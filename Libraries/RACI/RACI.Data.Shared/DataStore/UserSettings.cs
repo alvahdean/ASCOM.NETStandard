@@ -7,14 +7,17 @@ using System.Runtime.InteropServices;
 using System.Text;
 using ASCOM.Utilities.Interfaces;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace RACI.Data
 {
-    public class RaciUser : ProfileNode<RaciSystem>
+    public class UserSettings : ProfileNode<RaciSystem>
     {
-        public RaciUser() : this("", "") { }
-        public RaciUser(String name, String description = "") : base(name, description) { }
+        public UserSettings() : this("", "") { }
+        public UserSettings(String name, String description = "") : base(name, description) { }
         public String UserId { get; set; }
         public String HomeDir { get; set; }
+        public int IdentityId { get; set; }
+        public ApplicationUser Identity { get; private set; }
     }
 }

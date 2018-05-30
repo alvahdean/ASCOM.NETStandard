@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RACI.ASCOM.Service.Data;
+using Microsoft.Extensions.Logging;
 using RACI.ASCOM.Service.Models;
 using RACI.ASCOM.Service.Services;
 using RACI.Data;
@@ -18,7 +18,7 @@ namespace RACI.ASCOM.Service
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration,IHostingEnvironment env, ILoggerFactory logFactory)
         {
             Configuration = configuration;
         }
@@ -28,17 +28,10 @@ namespace RACI.ASCOM.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            RaciModel model = new RaciModel();
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<RaciModel>();
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddLogging();
+            services.AddAscom();
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddSingleton<IAscomDriverProvider, AscomDriverProvider>();
-            //services.AddAscomDrivers();
             services.AddMvc();
         }
 

@@ -18,7 +18,7 @@ namespace MSTest.ASCOMTests.DriverAccess
         public void GetDriverRoot()
         {
             Console.WriteLine("GetDriverRootDefault");
-            Console.WriteLine($"Loader DriverRoot: = '{AscomDriverLoader.DriverRoot}'");
+            Console.WriteLine($"Loader DriverRoot: = '{DriverLoader.DriverRoot}'");
             Console.WriteLine("Loader initialized");
         }
 
@@ -26,9 +26,9 @@ namespace MSTest.ASCOMTests.DriverAccess
         public void GetDriverAssemblies()
         {
             Console.WriteLine("GetDriverAssemblies");
-            Console.WriteLine($"Loader DriverRoot: = '{AscomDriverLoader.DriverRoot}'");
+            Console.WriteLine($"Loader DriverRoot: = '{DriverLoader.DriverRoot}'");
             Console.WriteLine($"[Loader Driver Assemblies]");
-            foreach (var v in AscomDriverLoader.GetDriverAssemblies())
+            foreach (var v in DriverLoader.GetDriverAssemblies())
             {
                 AssemblyName aName = v.GetName();
                 Console.WriteLine($"\t[{aName.FullName}] ({aName.CodeBase})");
@@ -38,9 +38,9 @@ namespace MSTest.ASCOMTests.DriverAccess
         public void GetDriverTypes()
         {
             Console.WriteLine("GetDriverTypes");
-            Console.WriteLine($"Loader DriverRoot: = '{AscomDriverLoader.DriverRoot}'");
+            Console.WriteLine($"Loader DriverRoot: = '{DriverLoader.DriverRoot}'");
             Console.WriteLine($"[Loader Device Types]");
-            foreach (var v in AscomDriverLoader.DriverTypes)
+            foreach (var v in DriverLoader.DriverTypes)
             {
                 AssemblyName aName = v.Assembly.GetName();
                 Console.WriteLine($"[{v.Name}].[{aName.FullName}]: ({aName.CodeBase})");

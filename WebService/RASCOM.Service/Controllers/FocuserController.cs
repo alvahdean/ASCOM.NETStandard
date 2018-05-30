@@ -15,19 +15,25 @@ using RACI.ASCOM.Service.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using RACI.Data;
 
 namespace RACI.ASCOM.Service.Controllers
 {
     [Authorize]
     [Produces("application/json")]
     [Route("rascom/devices/[controller]", Name = "Focuser")]
-    public class FocuserController : DevicesController<Focuser>
+    public class FocuserController : DevicesController
     {
-        private FocuserViewModel Model { get; set; }
+        private IFocuserV2 createDevice(string devName)
+        {
+            return driverProvider.GetDriver<IFocuserV2>(devName);
+        }
+
         public FocuserController(
             UserManager<ApplicationUser> userManager
-            , ILogger<AccountController> logger)
-            :base(userManager,logger)
+            , ILogger<AccountController> logger
+            , IAscomDriverFactory drvProvider)
+            :base(userManager,logger,drvProvider)
         {
         }
         // Summary: The state of temperature compensation mode (if available), else always False.

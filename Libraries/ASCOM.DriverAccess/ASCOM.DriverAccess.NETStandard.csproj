@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <Import Project="..\ASCOM.NETStandard\ASCOM.NETStandard.csproj" />
 
@@ -10,15 +10,45 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ASCOM.Contracts.NETStandard\ASCOM.Contracts.NETStandard.csproj" />
-    <ProjectReference Include="..\ASCOM.DeviceInterfaces\ASCOM.DeviceInterface.NETStandard.csproj" />
-    <ProjectReference Include="..\ASCOM.Utilities.NETStandard\ASCOM.Utilities.NETStandard.csproj" />
+    <Compile Remove="LegacyDrivers - Not Compiled\AscomDriver.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\Camera.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\Dome.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\FilterWheel.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\Focuser.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\ObservingConditions.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\Rotator.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\SafetyMonitor.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\Switch.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\Telescope.cs" />
+    <Compile Remove="LegacyDrivers - Not Compiled\Video.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Microsoft.Extensions.DependencyModel">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.dependencymodel\2.0.3\lib\netstandard1.6\Microsoft.Extensions.DependencyModel.dll</HintPath>
-    </Reference>
+    <None Include="LegacyDrivers - Not Compiled\AscomDriver.cs" />
+    <None Include="LegacyDrivers - Not Compiled\Camera.cs" />
+    <None Include="LegacyDrivers - Not Compiled\Dome.cs" />
+    <None Include="LegacyDrivers - Not Compiled\FilterWheel.cs" />
+    <None Include="LegacyDrivers - Not Compiled\Focuser.cs" />
+    <None Include="LegacyDrivers - Not Compiled\ObservingConditions.cs" />
+    <None Include="LegacyDrivers - Not Compiled\Rotator.cs" />
+    <None Include="LegacyDrivers - Not Compiled\SafetyMonitor.cs" />
+    <None Include="LegacyDrivers - Not Compiled\Switch.cs" />
+    <None Include="LegacyDrivers - Not Compiled\Telescope.cs" />
+    <None Include="LegacyDrivers - Not Compiled\Video.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ASCOM.Contracts.NETStandard\ASCOM.Contracts.NETStandard.csproj" />
+    <ProjectReference Include="..\ASCOM.DeviceInterfaces\ASCOM.DeviceInterface.NETStandard.csproj" />
+    <ProjectReference Include="..\ASCOM.Exceptions.NETStandard\ASCOM.Exceptions.NETStandard.csproj" />
+    <ProjectReference Include="..\ASCOM.Internal.Extensions.NETStandard\ASCOM.Internal.Extensions.NETStandard.csproj" />
+    <ProjectReference Include="..\ASCOM.Utilities.NETStandard\ASCOM.Utilities.NETStandard.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.0.3" />
+
+  </ItemGroup>
 </Project>

@@ -46,8 +46,8 @@ namespace ASCOM.Utilities
             set
             {
                 TL.LogMessage("DeviceType Set", value.ToString());
-                if (Operators.CompareString(value, "", false) == 0)
-                    throw new ASCOM.Utilities.Exceptions.InvalidValueException("Illegal DeviceType value \"\" (empty string)");
+                if (String.IsNullOrWhiteSpace(value))
+                    throw new Exceptions.InvalidValueException("Illegal DeviceType value \"\" (empty string)");
                 m_sDeviceType = value;
             }
         }

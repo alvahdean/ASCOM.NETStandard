@@ -10,134 +10,67 @@ using System;
 
 namespace ASCOM.DriverAccess
 {
-    public class Focuser : AscomDriver, IFocuserV2
+    public class Focuser : AscomDriver<IFocuserV2>, IFocuserV2
     {
-        private MemberFactory memberFactory;
+        protected Focuser() : base() { }
+        public Focuser(string deviceProgId) : base(deviceProgId) { }
 
-        public bool Absolute
-        {
-            get
-            {
-                return memberFactory.GetPropertyValue<bool>("Absolute");
-                //return Convert.ToBoolean(this.memberFactory.CallMember(1, "Absolute", new Type[0]));
-            }
-        }
+        public bool IsMoving { get => Impl.IsMoving; }
 
-        public bool IsMoving
-        {
-            get
-            {
-                return memberFactory.GetPropertyValue<bool>("IsMoving");
-                //return Convert.ToBoolean(this.memberFactory.CallMember(1, "IsMoving", new Type[0]));
-            }
-        }
+        public int Position { get => Impl.Position; }
+
+        public double StepSize { get => Impl.StepSize; }
+
+        public bool Absolute { get => Impl.Absolute; }
 
         public bool Link
         {
-            get
-            {
-                return memberFactory.GetPropertyValue<bool>("Link");
-                //return Convert.ToBoolean(this.memberFactory.CallMember(1, "Link", new Type[0]));
-            }
+            get => Impl.Link;
             set
             {
-                this.memberFactory.CallMember(2, "Link", new Type[0], (object)value);
+                if (Link != value)
+                {
+                    Impl.Link = value;
+                    profile.SetValue(nameof(Link), Impl.Link.ToString());
+                    RaisePropertyChanged(nameof(Link));
+                }
             }
         }
 
-        public int MaxIncrement
-        {
-            get
-            {
-                return memberFactory.GetPropertyValue<int>("MaxIncrement");
-                //return Convert.ToInt32(this.memberFactory.CallMember(1, "MaxIncrement", new Type[0]));
-            }
-        }
+        public int MaxIncrement { get => Impl.MaxIncrement; }
 
-        public int MaxStep
-        {
-            get
-            {
-                return memberFactory.GetPropertyValue<int>("MaxStep");
-                //return Convert.ToInt32(this.memberFactory.CallMember(1, "MaxStep", new Type[0]));
-            }
-        }
-
-        public int Position
-        {
-            get
-            {
-                return memberFactory.GetPropertyValue<int>("Position");
-                //return Convert.ToInt32(this.memberFactory.CallMember(1, "Position", new Type[0]));
-            }
-        }
-
-        public double StepSize
-        {
-            get
-            {
-                return memberFactory.GetPropertyValue<double>("StepSize");
-                //return Convert.ToDouble(this.memberFactory.CallMember(1, "StepSize", new Type[0]));
-            }
-        }
+        public int MaxStep { get => Impl.MaxStep; }
 
         public bool TempComp
         {
-            get
-            {
-                return memberFactory.GetPropertyValue<bool>("TempComp");
-                //return Convert.ToBoolean(this.memberFactory.CallMember(1, "TempComp", new Type[0]));
-            }
+            get => Impl.TempComp;
             set
             {
-                memberFactory.SetPropertyValue("TempComp", value);
-                //this.memberFactory.CallMember(2, "TempComp", new Type[0], (object) value);
+                if (TempComp != value)
+                {
+                    Impl.TempComp = value;
+                    profile.SetValue(nameof(TempComp), Impl.TempComp.ToString());
+                    RaisePropertyChanged(nameof(TempComp));
+                }
             }
         }
 
-        public bool TempCompAvailable
-        {
-            get
-            {
-                return memberFactory.GetPropertyValue<bool>("TempCompAvailable");
-                //return Convert.ToBoolean(this.memberFactory.CallMember(1, "TempCompAvailable", new Type[0]));
-            }
-        }
+        public bool TempCompAvailable { get => Impl.TempCompAvailable; }
 
-        public double Temperature
-        {
-            get
-            {
-                return memberFactory.GetPropertyValue<double>("Temperature");
-                //return Convert.ToDouble(this.memberFactory.CallMember(1, "Temperature", new Type[0]));
-            }
-        }
-
-        public Focuser(string focuserId)
-          : base(focuserId)
-        {
-            this.memberFactory = this.MemberFactory;
-        }
-
-        public static string Choose(string focuserId)
-        {
-            using (Chooser chooser = new Chooser())
-            {
-                chooser.DeviceType = "Focuser";
-                return chooser.Choose(focuserId);
-            }
-        }
+        public double Temperature { get => Impl.Temperature; }
 
         public void Halt()
         {
-            memberFactory.ExecMethod("Halt", null);
-            //this.memberFactory.CallMember(3, "Halt", new Type[0]);
+            TL.LogMessage($"Begin Halt", $"Halt()");
+            Impl.Halt();
+            TL.LogMessage($"End Halt", $"Result: void");
         }
 
         public void Move(int Position)
         {
-            memberFactory.ExecMethod("Move", Position);
-            //this.memberFactory.CallMember(3, "Move", new Type[1]{typeof (int)}, (object)Position);
+            TL.LogMessage($"Begin Move", $"Move(Position={Position})");
+            Impl.Move(Position);
+            TL.LogMessage($"End Move", $"Result: void");
         }
     }
 }

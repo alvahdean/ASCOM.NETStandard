@@ -8,7 +8,7 @@ using ASCOM.DeviceInterface;
 using ASCOM.Utilities;
 using System;
 
-namespace ASCOM.DriverAccess
+namespace ASCOM.DriverAccess.Legacy
 {
   public class Dome : AscomDriver, IDomeV2
   {
@@ -141,7 +141,7 @@ namespace ASCOM.DriverAccess
     public Dome(string domeId)
       : base(domeId)
     {
-            this.memberFactory = MemberFactory;
+      this.memberFactory = this.MemberFactory;
     }
 
     public static string Choose(string domeId)

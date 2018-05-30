@@ -26,12 +26,13 @@ namespace RACI.ASCOM.Service.Controllers
 
         protected static ControllerHelper hlp;
         protected static PlatformModel platform;
+        protected ILogger logger;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ILogger _logger;
 
         protected RascomController(
-            UserManager<ApplicationUser> userManager
-            , ILogger<AccountController> logger) : base()
+            UserManager<ApplicationUser> userManager, 
+
+            ILogger logger) : base()
         {
             hlp = new ControllerHelper();
             string localHost = RascomInfo.SysName;
@@ -53,7 +54,7 @@ namespace RACI.ASCOM.Service.Controllers
                 DeviceTypes = prfUtil.RegisteredDeviceTypes.ToStrings()
             };
             _userManager = userManager;
-            _logger = logger;
+            this.logger = logger;
         }
     }
 }

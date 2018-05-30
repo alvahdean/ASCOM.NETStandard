@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using RACI.ASCOM.Service.Models;
 using RACI.ASCOM.Service.Models.AccountViewModels;
 using RACI.ASCOM.Service.Services;
+using RACI.Data;
 
 namespace RACI.ASCOM.Service.Controllers
 {

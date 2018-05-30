@@ -9,317 +9,130 @@ using System;
 using System.Linq;
 using System.Collections;
 using ASCOM.DeviceInterface;
+using System.ComponentModel;
 using ASCOM.Utilities.Exceptions;
+using RACI.Data;
 
 namespace ASCOM.DriverAccess
 {
-    public class AscomDriver : IDisposable, IAscomDriver
+    public class AscomDriver : AscomDriver<IAscomDriver>
     {
-        internal TraceLogger TL;
-        private int interfaceVersion;
-        private bool disposedValue;
-        private string deviceType;
+        protected AscomDriver() : base() { }
+        public AscomDriver(string deviceProgId) : base(deviceProgId) { }
 
+    }
+
+    public class AscomDriver<TDriver> : IAscomDriver, INotifyPropertyChanged
+        where TDriver : class, IAscomDriver
+    {
+        protected TDriver Impl { get; private set; }
+        protected static string deviceType { get; private set; }
+        internal IASCOMProfile profile;
         internal MemberFactory MemberFactory { get; private set; }
+        static AscomDriver()
+        {
+            deviceType = DriverLoader.ApiTypeFor(typeof(TDriver))?.Name.ToUpper() ?? "";
+           
+        }
+        protected AscomDriver()
+        {
+            Impl = null;
+            profile = null;
+        }
+        public AscomDriver(string deviceProgId) :this()
+        {
+            
+            TL = new TraceLogger("", "DriverAccess");
+            TL.Enabled = false;
+            TL.Enabled = RegistryCommonCode.GetBool("Trace DriverAccess", false);
+            TL.LogMessage("AscomDriver", "Successfully created TraceLogger");
+            TL.LogMessage("AscomDriver", $"Device type: {deviceType}");
+            TL.LogMessage("AscomDriver", $"Device ProgID: {deviceProgId}");
+         
+            Impl = DriverLoader.GetImplementation<TDriver>(deviceProgId) ?? throw new AscomException($"Unable to obtain driver instance for '{deviceProgId}'");
+            string tName = GetType().Name;
+            if (tName != "AscomDriver")
+            {
+                Profile pu = new Profile() { DeviceType = GetType().Name };
+                profile = pu.GetProfile(deviceProgId) ?? throw new AscomException($"Unable to get profile for driver '{pu.DeviceType}:{deviceProgId}'");
+            }
 
+            //TODO: Remove MemberFactory once all api driver classes are convertered
+            MemberFactory = new MemberFactory(deviceProgId, TL);
+        }
+        
         public bool Connected
         {
-            get
-            {
-                if (this.deviceType == "FOCUSER" & this.interfaceVersion == 1)
-                {
-                    this.TL.LogMessage("Connected Get", "Device is Focuser and Interfaceverison is 1 so issuing Link command");
-                    return (bool)this.MemberFactory.CallMember(1, "Link", new Type[0]);
-                }
-                this.TL.LogMessage("Connected Get", "Issuing Connected command");
-                return (bool)this.MemberFactory.CallMember(1, "Connected", new Type[0]);
-            }
+            get => Impl.Connected;
             set
             {
-                if (this.deviceType == "FOCUSER" & this.interfaceVersion == 1)
+                if (Connected != value)
                 {
-                    this.TL.LogMessage("Connected Set", "Device is Focuser and Interfaceverison is 1 so issuing Link command: " + (object)value);
-                    this.MemberFactory.CallMember(2, "Link", new Type[0], (object)value);
-                }
-                else
-                {
-                    this.TL.LogMessage("Connected Set", "Issuing Connected command: " + (object)value);
-                    this.MemberFactory.CallMember(2, "Connected", new Type[0], (object)value);
+                    Impl.Connected = value;
+                    profile.SetValue(nameof(Connected), Impl.Connected.ToString());
+                    RaisePropertyChanged(nameof(Connected));
                 }
             }
         }
+        public string Description { get => Impl.Description; }
+        public string DriverInfo { get => Impl.DriverInfo; }
+        public string DriverVersion { get => Impl.DriverVersion; }
+        public short InterfaceVersion { get => Impl.InterfaceVersion; }
+        public string Name { get => Impl.Name; }
+        public ArrayList SupportedActions { get => Impl.SupportedActions; }
 
-        public string Description
-        {
-            get
-            {
-                try
-                {
-                    return (string)this.MemberFactory.CallMember(1, "Description", new Type[1]
-                    {
-            typeof (string)
-                    });
-                }
-                catch (Exception ex)
-                {
-                    if (this.interfaceVersion == 1)
-                    {
-                        switch (this.deviceType)
-                        {
-                            case "FILTERWHEEL":
-                            case "FOCUSER":
-                            case "ROTATOR":
-                                this.TL.LogMessage("Description Get", "This is " + this.deviceType + " interface version 1, so returning empty string");
-                                return "";
-                            default:
-                                this.TL.LogMessage("Description Get", "Received exception. Device type is " + this.deviceType + " and interface version is 1 so throwing received exception: " + ex.Message);
-                                throw;
-                        }
-                    }
-                    else
-                    {
-                        this.TL.LogMessage("Description Get", "Received exception. Device type is " + this.deviceType + " and interface version is >1 so throwing received exception: " + ex.Message);
-                        throw;
-                    }
-                }
-            }
-        }
-
-        public string DriverInfo
-        {
-            get
-            {
-                try
-                {
-                    return (string)this.MemberFactory.CallMember(1, "DriverInfo", new Type[1]
-                    {
-            typeof (string)
-                    });
-                }
-                catch (Exception ex)
-                {
-                    if (this.interfaceVersion == 1)
-                    {
-                        switch (this.deviceType)
-                        {
-                            case "CAMERA":
-                            case "FILTERWHEEL":
-                            case "FOCUSER":
-                            case "ROTATOR":
-                                this.TL.LogMessage("DriverInfo Get", "This is " + this.deviceType + " interface version 1, so returning empty string");
-                                return "";
-                            default:
-                                this.TL.LogMessage("DriverInfo Get", "Received exception. Device type is " + this.deviceType + " and interface version is 1 so throwing received exception: " + ex.Message);
-                                throw;
-                        }
-                    }
-                    else
-                    {
-                        this.TL.LogMessage("DriverInfo Get", "Received exception. Device type is " + this.deviceType + " and interface version is >1 so throwing received exception: " + ex.Message);
-                        throw;
-                    }
-                }
-            }
-        }
-
-        public string DriverVersion
-        {
-            get
-            {
-                try
-                {
-                    return (string)this.MemberFactory.CallMember(1, "DriverVersion", new Type[1]
-                    {
-            typeof (string)
-                    });
-                }
-                catch (Exception ex)
-                {
-                    if (this.interfaceVersion == 1)
-                    {
-                        switch (this.deviceType)
-                        {
-                            case "CAMERA":
-                            case "DOME":
-                            case "FILTERWHEEL":
-                            case "FOCUSER":
-                            case "ROTATOR":
-                                this.TL.LogMessage("DriverVersion Get", "This is " + this.deviceType + " interface version 1, so returning empty string");
-                                return "0.0";
-                            default:
-                                this.TL.LogMessage("DriverVersion Get", "Received exception. Device type is " + this.deviceType + " and interface version is 1 so throwing received exception: " + ex.Message);
-                                throw;
-                        }
-                    }
-                    else
-                    {
-                        this.TL.LogMessage("DriverVersion Get", "Received exception. Device type is " + this.deviceType + " and interface version is >1 so throwing received exception: " + ex.Message);
-                        throw;
-                    }
-                }
-            }
-        }
-
-        public short InterfaceVersion
-        {
-            get
-            {
-                try
-                {
-                    return Convert.ToInt16(this.MemberFactory.CallMember(1, "InterfaceVersion", new Type[0]));
-                }
-                catch (PropertyNotImplementedException ex)
-                {
-                    this.TL.LogMessage("InterfaceVersion Get", "Received PropertyNotImplementedException so returning interface version = 1");
-                    return 1;
-                }
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                try
-                {
-                    return (string)this.MemberFactory.CallMember(1, "Name", new Type[1]
-                    {
-            typeof (string)
-                    });
-                }
-                catch (Exception ex)
-                {
-                    if (this.interfaceVersion == 1)
-                    {
-                        switch (this.deviceType)
-                        {
-                            case "CAMERA":
-                            case "FILTERWHEEL":
-                            case "FOCUSER":
-                            case "ROTATOR":
-                                this.TL.LogMessage("Name Get", "This is " + this.deviceType + " interface version 1, so returning empty string");
-                                return "";
-                            default:
-                                this.TL.LogMessage("Name Get", "Received exception. Device type is " + this.deviceType + " and interface version is 1 so throwing received exception: " + ex.Message);
-                                throw;
-                        }
-                    }
-                    else
-                    {
-                        this.TL.LogMessage("Name Get", "Received exception. Device type is " + this.deviceType + " and interface version is >1 so throwing received exception: " + ex.Message);
-                        throw;
-                    }
-                }
-            }
-        }
-
-        public ArrayList SupportedActions
-        {
-            get
-            {
-                try
-                {
-                    return (ArrayList)this.MemberFactory.CallMember(1, "SupportedActions", new Type[0]);
-                }
-                catch (Exception ex)
-                {
-                    if (this.interfaceVersion == 1 | this.deviceType == "TELESCOPE" & this.interfaceVersion == 2)
-                    {
-                        this.TL.LogMessage("SupportedActions Get", "SupportedActions is not implmented in " + this.deviceType + " version " + (object)this.interfaceVersion + " returning an empty ArrayList");
-                        return new ArrayList();
-                    }
-                    this.TL.LogMessage("SupportedActions Get", "Received exception: " + ex.Message);
-                    throw;
-                }
-            }
-        }
-
-        public AscomDriver()
-        {
-
-        }
-
-        public AscomDriver(string deviceProgId) : this()
-        {
-            this.TL = new TraceLogger("", "DriverAccess");
-            this.TL.Enabled = false;
-            //this.TL.Enabled = RegistryCommonCode.GetBool("Trace DriverAccess", false);
-            this.TL.LogMessage("AscomDriver", "Successfully created TraceLogger");
-            this.deviceType = this.GetType().Name.ToUpper();
-            this.TL.LogMessage("AscomDriver", "Device type: " + this.GetType().Name);
-
-            this.TL.LogMessage("AscomDriver", "Device ProgID: " + deviceProgId);
-            this.MemberFactory = new MemberFactory(deviceProgId, this.TL);
-            try
-            {
-                this.interfaceVersion = (int)this.InterfaceVersion;
-            }
-            catch
-            {
-                this.interfaceVersion = 1;
-            }
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize((object)this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposedValue && disposing)
-            {
-                if (this.MemberFactory != null)
-                {
-                    this.MemberFactory.Dispose();
-                    this.MemberFactory = (MemberFactory)null;
-                }
-                if (this.TL != null)
-                    this.TL.Dispose();
-            }
-            this.disposedValue = true;
-        }
-
-        public void SetupDialog()
-        {
-            this.MemberFactory.CallMember(3, "SetupDialog", new Type[0]);
-        }
+        internal TraceLogger TL { get; set; }
 
         public string Action(string ActionName, string ActionParameters)
         {
-            return (string)this.MemberFactory.CallMember(3, "Action", new Type[2]
-            {
-        typeof (string),
-        typeof (string)
-            }, (object)ActionName, (object)ActionParameters);
+            TL.LogMessage($"Begin Action", $"Action(ActionName='{ActionName}',ActionParameters={ActionParameters})");
+            string result = Impl.Action(ActionName, ActionParameters);
+            TL.LogMessage($"End Action", $"Result: {result}");
+            return result;
         }
-
         public void CommandBlind(string Command, bool Raw)
         {
-            this.MemberFactory.CallMember(3, "CommandBlind", new Type[2]
-            {
-        typeof (string),
-        typeof (bool)
-            }, (object)Command, (object)Raw);
+            TL.LogMessage($"Begin CommandBlind", $"CommandBlind(Command='{Command}',Raw={Raw})");
+            Impl.CommandBlind(Command, Raw);
+            TL.LogMessage($"End CommandBlind", $"Result: void");
         }
-
         public bool CommandBool(string Command, bool Raw)
         {
-            return (bool)this.MemberFactory.CallMember(3, "CommandBool", new Type[2]
-            {
-        typeof (string),
-        typeof (bool)
-            }, (object)Command, (object)Raw);
+            TL.LogMessage($"Begin CommandBool", $"CommandBool(Command='{Command}',Raw={Raw})");
+            bool result = Impl.CommandBool(Command, Raw);
+            TL.LogMessage($"End CommandBool", $"Result: {result}");
+            return result;
         }
-
         public string CommandString(string Command, bool Raw)
         {
-            return (string)this.MemberFactory.CallMember(3, "CommandString", new Type[2]
-            {
-        typeof (string),
-        typeof (bool)
-            }, (object)Command, (object)Raw);
+            TL.LogMessage($"Begin CommandString", $"CommandString(Command='{Command}',Raw={Raw})");
+            string result = Impl.CommandString(Command, Raw);
+            TL.LogMessage($"End CommandString", $"Result: {result}");
+            return result;
         }
+        public void SetupDialog()
+        {
+            TL.LogMessage($"Begin SetupDialog", $"SetupDialog()");
+            Impl.SetupDialog();
+            TL.LogMessage($"End SetupDialog", $"Result: void");
+        }
+        public void Dispose()
+        {
+            TL.LogMessage($"Begin Dispose", $"{GetType().FullName}.Dispose()");
+            Impl.Dispose();
+            TL.LogMessage($"End Dispose", $"");
+        }
+
+        #region PropertyChangedEvent notification
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string propName)
+        {
+            TL.LogMessage("PropertyChanged", $"Property value '{propName}' changed");
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+        #endregion
+
     }
+
+
 }

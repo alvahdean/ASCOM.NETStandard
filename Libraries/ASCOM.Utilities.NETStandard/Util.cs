@@ -139,7 +139,7 @@ namespace ASCOM.Utilities
 
         #region Util Extensions
         public RaciSystem LocalSystem => sys.System;
-        public RaciUser CurrentUser => sys.GetUser();
+        public UserSettings CurrentUser => sys.GetUser();
         public String Hostname => LocalSystem.Hostname;
         public String CurrentUserHome => CurrentUser.HomeDir;
         public TraceLogger TL { get; private set; }

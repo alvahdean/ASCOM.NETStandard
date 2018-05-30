@@ -15,6 +15,7 @@ using RACI.ASCOM.Service.Models;
 using ASCOM.Internal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using RACI.Data;
 
 namespace RACI.ASCOM.Service.Controllers
 {

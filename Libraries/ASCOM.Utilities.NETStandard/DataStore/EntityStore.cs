@@ -16,6 +16,7 @@ namespace ASCOM.Utilities
 
     public class EntityStore: IAscomDataStore
     {
+        #region Internal fields
         private static CIKeyComparer nameComparer;
         private TraceLogger TL;
         private Stopwatch sw;
@@ -26,7 +27,9 @@ namespace ASCOM.Utilities
         private RegistryCommonCode userHelper;
         private String rootPath;
         private AscomPlatformNode rootNode;
-        
+        #endregion
+
+        #region Instance management
         //TODO: Remove reg from class, this is for porting help only.
         private static WindowsRegistryAccess reg;
         static EntityStore()
@@ -60,6 +63,7 @@ namespace ASCOM.Utilities
             sysHelper = new SystemHelper();
             this.NewCode(p_IgnoreChecks);
         }
+        #endregion
 
         #region IAccessExtra
         public string SystemName
@@ -160,9 +164,14 @@ namespace ASCOM.Utilities
             throw new System.NotImplementedException();
         }
 
-        public void SetProfile(string DriverId, IASCOMProfile XmlProfile)
+        public void SetProfile(string driverId, IASCOMProfile ascomProfile)
         {
-            throw new System.NotImplementedException();
+            string drvType = GetDriverType(driverId);
+            string devName = GetDeviceName(driverId);
+            ASCOMProfile result = new ASCOMProfile();
+            ProfileNode devNode = sysHelper.AscomDevice(drvType, devName)
+                ?? throw new Exception($"Unable to find ProfileStore data for driverId: '{driverId}', (Type={drvType}, Device={devName}");
+
         }
 
         private String GetDriverTypeOld(string driverId)

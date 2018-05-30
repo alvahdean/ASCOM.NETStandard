@@ -1,56 +1,53 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.IO;
 using Microsoft.Extensions.Configuration;
-using ASCOM;
 using RACI.Settings;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Logging;
 
 namespace RACI.Data
 {
-    public class RaciModel : DbContext, IRaciModel
+    public class RaciModel : IdentityDbContext<ApplicationUser>, IRaciModel
     {
-        public static AppSettings Settings { get; private set; }
-
+        protected AppSettings settings;
         public DeleteBehavior DefaultDeleteBehavior { get; }
         public bool DefaultRequiredRelationship { get; }
-
-        public DbSet<SimpleValue> SimpleValues { get; set; }
+        
         public DbSet<ProfileValue> ProfileValues { get; set; }
         public DbSet<ProfileNode> ProfileNodes { get; set; }
         public DbSet<AscomDeviceNode> DeviceRoots { get; set; }
         public DbSet<AscomDriverNode> DriverTypes { get; set; }
-        public DbSet<RaciUser> Users { get; set; }
-        public DbSet<AscomSettingsNode> AscomSettings { get; set; }
         public DbSet<AscomPlatformNode> AscomPlatforms { get; set; }
-        public DbSet<RaciSettings> SystemSettings { get; set; }
         public DbSet<RaciSystem> Systems { get; set; }
+        public DbSet<RaciSettings> SystemSettings { get; set; }
+        public DbSet<AscomSettingsNode> AscomSettings { get; set; }
+        public DbSet<UserSettings> UserSettings { get; set; }
 
-        static RaciModel()
-        {
-            Settings = new AppSettings();
-        }
 
-        public RaciModel() : this(DeleteBehavior.Cascade, true) { }
- 
-        public RaciModel(DeleteBehavior defaultDeleteBehavior, bool defaultRequiredRelationship)
+        public RaciModel() : this(null,DeleteBehavior.Cascade, true) { }
+        public RaciModel(DbContextOptions<RaciModel> options): base(options) { }
+        public RaciModel(IConfiguration configuration,DeleteBehavior defaultDeleteBehavior, bool defaultRequiredRelationship)
         {
+            settings = new AppSettings();
             DefaultDeleteBehavior = defaultDeleteBehavior;
             DefaultRequiredRelationship = defaultRequiredRelationship;
+
+            Configuration = configuration ?? settings.Configuration;
             if (LogMessages == null)
             {
                 LogMessages = new List<string>();
                 this.GetService<ILoggerFactory>().AddProvider(new RaciModelLogProvider());
             }
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder
                 .Entity<ProfileNode>()
                 .HasMany(e => e.Nodes)
@@ -77,32 +74,21 @@ namespace RACI.Data
             optionsBuilder
                 .ReplaceService<IModelCacheKeyFactory, RaciModelCacheKeyFactory>()
                 .EnableSensitiveDataLogging();
-
-            string connName = Settings.Repository.DefaultConnection
-                ?? Settings.Repository.ConnectionStrings.Keys.FirstOrDefault();
+            base.OnConfiguring(optionsBuilder);
+            string connName = "AscomConnection";
             if (String.IsNullOrWhiteSpace(connName))
-                throw new Exception("No connection found in application settings");
-            if (String.IsNullOrWhiteSpace(Settings.Repository.Provider))
-                Settings.Repository.Provider="sqlite";
+                throw new Exception("No connection found in application settings");            
+            string connString = Configuration.GetConnectionString(connName)
+                ?? Configuration.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlite(connString);
             
-            string connString = Settings.Repository.ConnectionStrings[connName];
-                //Console.WriteLine($"ASCOM Repository: [{Settings.Repository.Provider}.{Settings.Repository.DefaultConnection}]:{connString}");
-                switch (Settings.Repository.Provider.ToUpperInvariant())
-                {
-                    case "SQLITE":
-                        optionsBuilder.UseSqlite(connString);
-                        break;
-                    default:
-                        throw new ASCOM.NotImplementedException($"Unsupported repository type: '{Settings.Repository.Provider}'");
-                }
         }
-
+        protected IConfiguration Configuration { get; private set; }
         public override int SaveChanges()
         {
             LogMessages.Clear();
             return base.SaveChanges();
         }
-
         public class RaciModelCacheKeyFactory : IModelCacheKeyFactory
         {
             public virtual object Create(DbContext context)
@@ -113,9 +99,7 @@ namespace RACI.Data
                 return result;
             }
         }
-
         public static IList<string> LogMessages;
-
         private class RaciModelLogProvider : ILoggerProvider
         {
             public ILogger CreateLogger(string categoryName) => new SampleLogger();

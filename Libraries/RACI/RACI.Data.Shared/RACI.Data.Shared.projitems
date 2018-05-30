@@ -11,17 +11,17 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\IGenericRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\IValidatedEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\ApplicationUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciSettings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomPlatformNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomDriverNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomDeviceNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomSettingsNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\ProfileNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\ProfileValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\UserSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\SimpleValue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataStore\DataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\IRaciModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ValidationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\KeyComparers.cs" />

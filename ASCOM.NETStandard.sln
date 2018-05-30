@@ -109,9 +109,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Drivers", "Drivers", "{A25A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FocuserSimulatorDriver", "..\ascom-sf\Drivers and Simulators\Focus Simulator 2010\FocuserSimulatorDriver\FocuserSimulatorDriver.csproj", "{81091BA8-725D-465D-AC6B-A36912B73AA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASCOM.Simulator.Focuser.NETStandard", "Libraries\Drivers\ASCOM.Simulator.Focuser\ASCOM.Simulator.Focuser.NETStandard.csproj", "{9E2BC849-E36F-44AB-8065-16CF9D7B21AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASCOM.Simulator.Focuser.NETStandard", "Libraries\Drivers\ASCOM.Simulator.Focuser\ASCOM.Simulator.Focuser.NETStandard.csproj", "{9E2BC849-E36F-44AB-8065-16CF9D7B21AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASCOM.Simulator.Rotator.NETStandard", "Libraries\Drivers\ASCOM.Simulator.Rotator.NETStandard\ASCOM.Simulator.Rotator.NETStandard.csproj", "{FB7DAFC4-7A06-44EC-AD11-5366B7BFA02C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASCOM.Simulator.Rotator.NETStandard", "Libraries\Drivers\ASCOM.Simulator.Rotator.NETStandard\ASCOM.Simulator.Rotator.NETStandard.csproj", "{FB7DAFC4-7A06-44EC-AD11-5366B7BFA02C}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

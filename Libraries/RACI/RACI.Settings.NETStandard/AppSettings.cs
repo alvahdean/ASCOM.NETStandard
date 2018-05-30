@@ -9,24 +9,6 @@ using ASCOM.Utilities.Interfaces;
 
 namespace RACI.Settings
 {
-    public class RepositorySettings
-    {
-        private string _provider;
-
-        public String Provider
-        {
-            get
-            {
-                return _provider?.Trim().ToUpperInvariant();
-            }
-            set
-            {
-                _provider = value;
-            }
-        }
-        public String DefaultConnection { get; set; }
-        public Dictionary<string,string> ConnectionStrings { get; set; }
-    }
     public class PathSettings
     {
         private string _log;
@@ -181,7 +163,7 @@ namespace RACI.Settings
             if (!LoadConfig())
                 throw new Exception("Configuration load failed");
         }
-        protected IConfiguration Settings { get; set; }
+        public IConfiguration Configuration { get; protected set; }
         /// <summary>
         /// Loads a set of files into the current AppSettings instance
         /// </summary>
@@ -245,7 +227,8 @@ namespace RACI.Settings
             try {
                 //Console.WriteLine("Loading appsettings.json");
                 IConfiguration fileConfig= LoadFileConfig();
-                Settings = fileConfig;
+                Configuration = fileConfig;
+
                 //Console.WriteLine("Binding AppSettings");
                 fileConfig.Bind(this);
             }
@@ -259,7 +242,7 @@ namespace RACI.Settings
         public String AppName { get; set; } = "RASCOM";
         public bool IsDevelopment { get; set; } = false;
         public String AscomDataStore { get; set; } = "EntityStore";
-        public RepositorySettings Repository {get;set;}
+        public Dictionary<string, string> ConnectionStrings { get; set; }
         public PathSettings PathSettings { get; set; }
         public RACISettings RACI { get; set; }
         public override string ToString()
@@ -281,11 +264,9 @@ namespace RACI.Settings
                 .AppendLine($"RACI:")
                 .AppendLine($"\tLogfile: {RACI.Logfile}")
                 .AppendLine($"Repository:")
-                .AppendLine($"\tProvider: {Repository.Provider}")
-                .AppendLine($"\tDefaultConnection: {Repository.DefaultConnection}")
                 .AppendLine($"\tConnectionStrings: ");
             //foreach (var cs in Repository.ConnectionStrings.AsEnumerable())
-            foreach(var cs in Repository.ConnectionStrings)
+            foreach(var cs in ConnectionStrings)
                 sb.AppendLine($"\t\t{cs.Key}: {cs.Value}");
             return sb.ToString();
         }

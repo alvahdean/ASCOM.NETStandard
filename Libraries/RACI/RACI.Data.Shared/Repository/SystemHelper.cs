@@ -769,25 +769,19 @@ namespace RACI.Data
                     : throw new NotImplementedException($"Current user info is not implemented for remote system entries");
             }
         }
-        public IEnumerable<RaciUser> Users =>
-             UnitWork.NodesOfType<RaciUser>().Get(t => t.ParentProfileNodeId == System.ProfileNodeId);
-        public RaciUser GetUser(string userName)
+        public IEnumerable<UserSettings> Users =>
+             UnitWork.NodesOfType<UserSettings>().Get(t => t.ParentProfileNodeId == System.ProfileNodeId);
+        public UserSettings GetUser(string userName)
         {
             if (String.IsNullOrWhiteSpace(userName))
                 userName = CurrentUserName;
             return Users.FirstOrDefault(t => KeyComparer.Equals(userName, t.Name));
         }
-        public IEnumerable<String> UserSubKeys(string userName)
-        {
-            if (String.IsNullOrWhiteSpace(userName))
-                userName = CurrentUserName;
-            return SubKeys(GetUser(userName)?.ProfileNodeId ?? 0);
-        }
-        public RaciUser GetUser() => GetOrCreateUser(CurrentUserName);
-        public RaciUser GetOrCreateUser(String userName, string userId = "")
+        public UserSettings GetUser() => GetOrCreateUser(CurrentUserName);
+        public UserSettings GetOrCreateUser(String userName, string userId = "")
         {
             userId = userId?.Trim() ?? "";
-            RaciUser result = ChildNode<RaciUser>(System.ProfileNodeId, userName, true);
+            UserSettings result = ChildNode<UserSettings>(System.ProfileNodeId, userName, true);
             if (userId != "" && result.Description != userId)
             {
                 RaciUnitOfWork uow = new RaciUnitOfWork();
@@ -796,6 +790,12 @@ namespace RACI.Data
                 uow.Save();
             }
             return result;
+        }
+        public IEnumerable<String> UserSubKeys(string userName)
+        {
+            if (String.IsNullOrWhiteSpace(userName))
+                userName = CurrentUserName;
+            return SubKeys(GetUser(userName)?.ProfileNodeId ?? 0);
         }
 
         public AscomPlatformNode Ascom => SubNode<AscomPlatformNode>(System, "ASCOM", true);

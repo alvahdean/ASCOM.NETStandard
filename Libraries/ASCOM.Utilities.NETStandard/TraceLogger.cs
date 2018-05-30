@@ -28,7 +28,7 @@ namespace ASCOM.Utilities
         private string g_LogDir;
         private string g_LogExt;
         private SystemHelper sys;
-        private RaciUser user;
+        private UserSettings user;
         public static TextWriter DebugWriter { get; set; } = Console.Out;
         private StreamWriter g_LogFile;
         private bool g_LineStarted;

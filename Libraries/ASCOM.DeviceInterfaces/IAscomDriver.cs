@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace ASCOM.DeviceInterface
 { 
-    public interface IAscomDriver
+    public interface IAscomDriver: IDisposable
     {
         bool Connected { get; set; }
         string Description { get; }
@@ -16,7 +17,6 @@ namespace ASCOM.DeviceInterface
         void CommandBlind(string Command, bool Raw);
         bool CommandBool(string Command, bool Raw);
         string CommandString(string Command, bool Raw);
-        void Dispose();
         void SetupDialog();
     }
 }
