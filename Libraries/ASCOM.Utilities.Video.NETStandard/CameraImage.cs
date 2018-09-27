@@ -12,10 +12,10 @@ using System.Runtime.InteropServices;
 namespace ASCOM.Utilities.Video
 {
   //[Guid("41244296-BED8-4AC9-AA24-D4E90C6C95FA")]
-  [ProgId("ASCOM.Utilities.CameraImage")]
-  [ComSourceInterfaces(typeof (ICameraImage))]
+  //[ProgId("ASCOM.Utilities.CameraImage")]
+  //[ComSourceInterfaces(typeof (ICameraImage))]
   //[ComVisible(true)]
-  [ClassInterface(ClassInterfaceType.None)]
+  //[ClassInterface(ClassInterfaceType.None)]
   public class CameraImage : ICameraImage
   {
     private object imageArray;

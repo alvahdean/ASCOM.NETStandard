@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using ASCOM.Utilities.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace RACI.Data

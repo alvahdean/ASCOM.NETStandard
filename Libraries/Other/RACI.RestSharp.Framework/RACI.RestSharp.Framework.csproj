@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87EA2EBF-5976-46E7-8AE9-181A2683B164}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RACI.RestSharp.Framework</RootNamespace>
+    <AssemblyName>RACI.RestSharp.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>rascom.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Authenticators\HttpBasicAuthenticator.cs" />
+    <Compile Include="Authenticators\IAuthenticator.cs" />
+    <Compile Include="Authenticators\JwtAuthenticator.cs" />
+    <Compile Include="Authenticators\NtlmAuthenticator.cs" />
+    <Compile Include="Authenticators\OAuth1Authenticator.cs" />
+    <Compile Include="Authenticators\OAuth2Authenticator.cs" />
+    <Compile Include="Authenticators\OAuth\Extensions\CollectionExtensions.cs" />
+    <Compile Include="Authenticators\OAuth\Extensions\OAuthExtensions.cs" />
+    <Compile Include="Authenticators\OAuth\Extensions\StringExtensions.cs" />
+    <Compile Include="Authenticators\OAuth\Extensions\TimeExtensions.cs" />
+    <Compile Include="Authenticators\OAuth\HttpPostParameter.cs" />
+    <Compile Include="Authenticators\OAuth\HttpPostParameterType.cs" />
+    <Compile Include="Authenticators\OAuth\OAuthParameterHandling.cs" />
+    <Compile Include="Authenticators\OAuth\OAuthSignatureMethod.cs" />
+    <Compile Include="Authenticators\OAuth\OAuthSignatureTreatment.cs" />
+    <Compile Include="Authenticators\OAuth\OAuthTools.cs" />
+    <Compile Include="Authenticators\OAuth\OAuthType.cs" />
+    <Compile Include="Authenticators\OAuth\OAuthWebQueryInfo.cs" />
+    <Compile Include="Authenticators\OAuth\OAuthWorkflow.cs" />
+    <Compile Include="Authenticators\OAuth\WebPair.cs" />
+    <Compile Include="Authenticators\OAuth\WebPairCollection.cs" />
+    <Compile Include="Authenticators\OAuth\WebParameter.cs" />
+    <Compile Include="Authenticators\OAuth\WebParameterCollection.cs" />
+    <Compile Include="Authenticators\SimpleAuthenticator.cs" />
+    <Compile Include="Deserializers\DeserializeAsAttribute.cs" />
+    <Compile Include="Deserializers\DotNetXmlDeserializer.cs" />
+    <Compile Include="Deserializers\IDeserializer.cs" />
+    <Compile Include="Deserializers\JsonDeserializer.cs" />
+    <Compile Include="Deserializers\XmlAttributeDeserializer.cs" />
+    <Compile Include="Deserializers\XmlDeserializer.cs" />
+    <Compile Include="Enum.cs" />
+    <Compile Include="Extensions\MiscExtensions.cs" />
+    <Compile Include="Extensions\ReflectionExtensions.cs" />
+    <Compile Include="Extensions\ResponseExtensions.cs" />
+    <Compile Include="Extensions\ResponseStatusExtensions.cs" />
+    <Compile Include="Extensions\RSACryptoServiceProviderExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs" />
+    <Compile Include="FileParameter.cs" />
+    <Compile Include="Http.Async.cs" />
+    <Compile Include="Http.cs" />
+    <Compile Include="Http.Sync.cs" />
+    <Compile Include="HttpCookie.cs" />
+    <Compile Include="HttpFile.cs" />
+    <Compile Include="HttpHeader.cs" />
+    <Compile Include="HttpParameter.cs" />
+    <Compile Include="HttpResponse.cs" />
+    <Compile Include="IHttp.cs" />
+    <Compile Include="IHttpResponse.cs" />
+    <Compile Include="IRestClient.cs" />
+    <Compile Include="IRestRequest.cs" />
+    <Compile Include="IRestResponse.cs" />
+    <Compile Include="Parameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestClient.Async.cs" />
+    <Compile Include="RestClient.cs" />
+    <Compile Include="RestClient.Sync.cs" />
+    <Compile Include="RestClientExtensions.cs" />
+    <Compile Include="RestRequest.cs" />
+    <Compile Include="RestRequestAsyncHandle.cs" />
+    <Compile Include="RestResponse.cs" />
+    <Compile Include="RestResponseCookie.cs" />
+    <Compile Include="Serializers\DotNetXmlSerializer.cs" />
+    <Compile Include="Serializers\ISerializer.cs" />
+    <Compile Include="Serializers\JsonSerializer.cs" />
+    <Compile Include="Serializers\SerializeAsAttribute.cs" />
+    <Compile Include="Serializers\XmlSerializer.cs" />
+    <Compile Include="SimpleJson.cs" />
+    <Compile Include="Validation\Require.cs" />
+    <Compile Include="Validation\Validate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="rascom.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

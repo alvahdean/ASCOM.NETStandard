@@ -10,7 +10,8 @@ using System.Runtime.InteropServices;
 
 namespace ASCOM.Utilities.Video
 {
-  internal class AviTools
+    //TODO: Why is this internal? The simultator seems to reference it...
+  public class AviTools
   {
     private NativeHelpers nativeHelpers;
 

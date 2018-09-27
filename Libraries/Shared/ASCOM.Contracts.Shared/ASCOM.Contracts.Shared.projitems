@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8b6134af-f64a-4a6b-9d74-e21f7a471d0c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ASCOM.Contracts.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\SerialHandshake.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\SerialParity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\SerialSpeed.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\SerialStopBits.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Units.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAscomDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAscomDriver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAscomException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IASCOMProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IChooser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IChooserExtra.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFileStoreProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IKeyValuePair.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IProfileExtra.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISerial.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITimerEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITraceLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITraceLoggerExtra.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IUtilExtra.cs" />
+  </ItemGroup>
+</Project>

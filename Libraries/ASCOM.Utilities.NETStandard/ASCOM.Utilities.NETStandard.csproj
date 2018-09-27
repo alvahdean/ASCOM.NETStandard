@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="..\Shared\ASCOM.Utilities.Shared\ASCOM.Utilities.Shared.projitems" Label="Shared" />
   <Import Project="..\ASCOM.NETStandard\ASCOM.NETStandard.csproj" />
 
   <PropertyGroup>
@@ -7,50 +7,25 @@
     <Description>Port of ASCOM.Utilities to NETStandard 2.0</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>ASCOM.Utilities</RootNamespace>
+    <AssemblyVersion>6.3.0.9999</AssemblyVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Deprecated - Not Compiled\PEReader.cs" />
-    <Compile Remove="Deprecated - Not Compiled\Timer.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="..\..\Shared\Icons\ASCOM.ico" Link="ResourceFiles\ASCOM.ico" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <DefineConstants>TRACE;DEBUG;ENABLE_TL_DEBUG;NETSTANDARD2_0</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;ENABLE_TL_DEBUG;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
 
   <!-- Conditionally obtain references for the .NET Core 2.0 target -->
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.EventSource" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.TraceSource" Version="2.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include=".NetCore Porting\ASCOM\Utilities\ChooserForm.cs" />
-    <Compile Include=".NetCore Porting\ASCOM\Utilities\PerformanceCounter.cs" />
-    <Compile Include=".NetCore Porting\System\Diagnostics\EventLog.cs" />
-    <Compile Include=".NetCore Porting\System\Diagnostics\OverflowAction.cs" />
-    <Compile Include=".NetCore Porting\System\Windows\Forms\Timer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Deprecated - Not Compiled\PEReader.cs" />
-    <None Include="Deprecated - Not Compiled\Timer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.2" />
@@ -73,11 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ASCOM.Contracts.NETStandard\ASCOM.Contracts.NETStandard.csproj" />
+    <ProjectReference Include="..\ASCOM.DeviceInterfaces\ASCOM.DeviceInterface.NETStandard.csproj" />
     <ProjectReference Include="..\ASCOM.Exceptions.NETStandard\ASCOM.Exceptions.NETStandard.csproj" />
     <ProjectReference Include="..\ASCOM.Internal.Extensions.NETStandard\ASCOM.Internal.Extensions.NETStandard.csproj" />
     <ProjectReference Include="..\RACI\RACI.Comm.NETStandard\RACI.Comm.NETStandard.csproj" />
     <ProjectReference Include="..\RACI\RACI.Data.NETStandard\RACI.Data.NETStandard.csproj" />
-    <ProjectReference Include="..\RACI\RACI.Settings.NETStandard\RACI.Settings.NETStandard.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 

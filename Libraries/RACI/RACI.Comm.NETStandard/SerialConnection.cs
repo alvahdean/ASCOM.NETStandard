@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.IO;
 using RJCP.IO.Ports;
 using ASCOM;
@@ -39,10 +37,8 @@ namespace ASCOM.Havla
             return SerialPortStream.GetPortNames().Any(t => t.Equals(port, StringComparison.InvariantCultureIgnoreCase));
         }
 
-        public SerialConnection() : this("{ }") { }
-        public SerialConnection(string jsonSettings) 
-            : this(JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonSettings)) { }
-        public SerialConnection(IDictionary<string, string> settings) : base(ConnectionType.Serial, settings)
+        public SerialConnection() : this(null) { }
+        public SerialConnection(IConfiguration settings) : base(ConnectionType.Serial, settings)
         {
             conn = null;
         }
@@ -50,77 +46,77 @@ namespace ASCOM.Havla
         public override Stream Stream => IsConnected ? conn : null;
         public SerialHandshake Handshake
         {
-            get => ConvertEnum<SerialHandshake>(Settings["Handshake"]??SerialHandshake.None.ToString());
+            get => ConvertEnum<SerialHandshake>(Configuration["Handshake"]??SerialHandshake.None.ToString());
             set
             {
                 if (Handshake != value)
                 {
                     if (IsConnected)
                         throw new AscomException($"Cannot change {nameof(Handshake)} to '{value}' while connected");
-                    Settings["Handshake"] = value.ToString();
+                    Configuration["Handshake"] = value.ToString();
                     Logger?.LogMessage("SerialConnection", $"Set Handshake = {Handshake}");
                 }
             }
         }
         public SerialParity Parity
         {
-            get => ConvertEnum<SerialParity>(Settings["Parity"]??SerialParity.None.ToString());
+            get => ConvertEnum<SerialParity>(Configuration["Parity"]??SerialParity.None.ToString());
             set
             {
                 if (Parity != value)
                 {
                     if (IsConnected)
                         throw new AscomException($"Cannot change {nameof(Parity)} to '{value}' while connected");
-                    Settings["Parity"] = value.ToString();
+                    Configuration["Parity"] = value.ToString();
                     Logger?.LogMessage("SerialConnection", $"Set Parity = {Parity}");
                 }
             }
         }
         public SerialSpeed Speed
         {
-            get => ConvertEnum<SerialSpeed>(Settings["Speed"]??"9600");
+            get => ConvertEnum<SerialSpeed>(Configuration["Speed"]??"9600");
             set
             {
                 if (Speed != value)
                 {
                     if (IsConnected)
                         throw new AscomException($"Cannot change {nameof(Speed)} to '{value}' while connected");
-                    Settings["Speed"] = value.ToString();
+                    Configuration["Speed"] = value.ToString();
                     Logger?.LogMessage("SerialConnection", $"Set Speed = {Speed}({(int)Speed})");
                 }
             }
         }
         public SerialStopBits StopBits
         {
-            get => ConvertEnum<SerialStopBits>(Settings["StopBits"] ?? SerialStopBits.One.ToString());
+            get => ConvertEnum<SerialStopBits>(Configuration["StopBits"] ?? SerialStopBits.One.ToString());
             set
             {
                 if (StopBits != value)
                 {
                     if (IsConnected)
                         throw new AscomException($"Cannot change {nameof(StopBits)} to '{value}' while connected");
-                    Settings["StopBits"] = value.ToString();
+                    Configuration["StopBits"] = value.ToString();
                     Logger?.LogMessage("SerialConnection", $"Set StopBits = {StopBits}");
                 }
             }
         }
         public int DataBits
         {
-            get => Int32.Parse(Settings["DataBits"] ?? "8");
+            get => Int32.Parse(Configuration["DataBits"] ?? "8");
             set
             {
                 if (DataBits != value)
                 {
                     if (IsConnected)
                         throw new AscomException($"Cannot change {nameof(DataBits)} to '{value}' while connected");
-                    Settings["DataBits"] = value.ToString();
+                    Configuration["DataBits"] = value.ToString();
                     Logger?.LogMessage("SerialConnection", $"Set DataBits = {DataBits}");
                 }
             }
         }
         public string PortName
         {
-            get => Settings["PortName"];
+            get => Configuration["PortName"];
             set
             {
                 value = value.Trim();
@@ -132,7 +128,7 @@ namespace ASCOM.Havla
                 {
                     if (IsConnected)
                         throw new AscomException($"Cannot change {nameof(PortName)} to '{value}' while connected");
-                    Settings["PortName"] = value;
+                    Configuration["PortName"] = value;
                     Logger?.LogMessage("SerialConnection", $"Set PortName = {PortName}");
                 }
             }

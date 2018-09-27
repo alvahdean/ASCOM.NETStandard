@@ -10,31 +10,11 @@ using System;
 
 namespace ASCOM.DriverAccess
 {
-  public class SafetyMonitor : AscomDriver, ISafetyMonitor
+  public class SafetyMonitor : AscomDriver<ISafetyMonitor>, ISafetyMonitor
   {
-    private readonly MemberFactory _memberFactory;
+        public SafetyMonitor(string safetyMonitorId) : base(safetyMonitorId) { }
 
-    public bool IsSafe
-    {
-      get
-      {
-        return (bool) this._memberFactory.CallMember(1, "IsSafe", new Type[0]);
-      }
-    }
+        public bool IsSafe { get => Impl.IsSafe; }
 
-    public SafetyMonitor(string safetyMonitorId)
-      : base(safetyMonitorId)
-    {
-      this._memberFactory = this.MemberFactory;
     }
-
-    public static string Choose(string safetyMonitorId)
-    {
-      using (Chooser chooser = new Chooser())
-      {
-        chooser.DeviceType = "SafetyMonitor";
-        return chooser.Choose(safetyMonitorId);
-      }
-    }
-  }
 }

@@ -8,8 +8,6 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ASCOM.Havla
 {
@@ -17,9 +15,8 @@ namespace ASCOM.Havla
     public class UdpConnection : IpConnection
     {
         private UdpClient conn;
-        public UdpConnection() : this("{ }") { }
-        public UdpConnection(string jsonSettings) : this(JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonSettings)) { }
-        public UdpConnection(IDictionary<string, string> settings) : base(ConnectionType.Tcp, settings)
+        public UdpConnection() : this(null) { }
+        public UdpConnection(IConfiguration settings) : base(ConnectionType.Tcp, settings)
         {
             conn = null;
             throw new NotImplementedException("UdpConnection not implemented");

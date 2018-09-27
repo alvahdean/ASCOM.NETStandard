@@ -17,13 +17,6 @@ namespace ASCOM.DriverAccess
     {
         public static void AddAscom(this IServiceCollection services)
         {
-            services.AddScoped<TraceLogger>();
-            services.AddDbContext<RaciModel>(ServiceLifetime.Scoped);
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<RaciModel>()
-                .AddDefaultTokenProviders();
-            services.AddSingleton<DriverApiService>();
-            services.AddSingleton<DriverImplementationService>();
         }
     }
 }

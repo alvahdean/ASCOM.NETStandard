@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DD7246D7-E1D9-4F2D-A2B2-F10592115B84}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>xAscom.App.ControlPanel</RootNamespace>
+    <AssemblyName>xAscom.App.ControlPanel</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ASCOM.DeviceInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
+    <Reference Include="ASCOM.DriverAccess, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DomePanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DomePanel.Designer.cs">
+      <DependentUpon>DomePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DriverUIState.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DomePanel.resx">
+      <DependentUpon>DomePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\DomeState.datasource" />
+    <None Include="Properties\DataSources\frmDomeControl.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.AscomDeviceNode.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.AscomDriverNode.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.AscomPlatformNode.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.AscomSettingsNode.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.CIKeyComparer.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.CSKeyComparer.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.DomeMeta.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.DomeProperties.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.DomeState.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.DriverMeta.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.DriverProperties.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.DriverState.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.EnumExt.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.FilterWheelProperties.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.FilterWheelState.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.FocuserMeta.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.FocuserProperties.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.FocuserState.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.IGenericRepository.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.ILogPublisher.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.IProfileNode.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.IProfileValue.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.IRaciModel.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.IRaciUser.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.IRascomResult.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.PathUtil.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.ProfileKeyComparer.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.ProfileNode.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.ProfileNodeExt.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.ProfileValue.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciComparer.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciEndpoint.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciEndpointDriver.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciEndpointDriverExt.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciEndpointExt.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciModel+RaciModelCacheKeyFactory.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciModel.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciSettings.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciSystem.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciUnitOfWork.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RaciUser.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.RestObjects.RascomResult.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.SimpleValue.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.SubscriberLogEntry.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.SubscriptionLogProvider.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.SubscriptionLogProviderExt.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.SystemHelper.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.UserSettings.datasource" />
+    <None Include="Properties\DataSources\RACI.Data.ValidationException.datasource" />
+    <None Include="Properties\DataSources\RACI.Settings.AppSettings.datasource" />
+    <None Include="Properties\DataSources\RACI.Settings.PathSettings.datasource" />
+    <None Include="Properties\DataSources\RACI.Settings.RACISettings.datasource" />
+    <None Include="Properties\DataSources\RACI.Utils.RaciUtil+BitComparison.datasource" />
+    <None Include="Properties\DataSources\RACI.Utils.RaciUtil.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\RACI\RACI.Client.Framework\RACI.Client.Framework.csproj">
+      <Project>{52cb8df0-4aee-4696-8cf0-ba59a346b00f}</Project>
+      <Name>RACI.Client.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\RACI\RACI.Data.Framework\RACI.Data.Framework.csproj">
+      <Project>{d15d0125-1bb7-4c77-b96c-625c31b21663}</Project>
+      <Name>RACI.Data.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetDir)\*.*" "C:\Program Files\RACI\Apps\xAscom Control Panel"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

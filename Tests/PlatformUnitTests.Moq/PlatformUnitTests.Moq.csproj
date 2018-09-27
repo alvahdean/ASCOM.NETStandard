@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="UI - Not implemented\AnnunciatorPanelSpecs.cs" />
+    <Compile Remove="UI - Not implemented\AnnunciatorSpecs.cs" />
+    <Compile Remove="UI - Not implemented\CadenceManagerSpecs.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="UI - Not implemented\AnnunciatorPanelSpecs.cs" />
+    <None Include="UI - Not implemented\AnnunciatorSpecs.cs" />
+    <None Include="UI - Not implemented\CadenceManagerSpecs.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Machine.Specifications" Version="0.12.0" />
+    <PackageReference Include="Moq" Version="4.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\ASCOM.Attributes\ASCOM.Attributes.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.Internal.Extensions.NETStandard\ASCOM.Internal.Extensions.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.Utilities.NETStandard\ASCOM.Utilities.NETStandard.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using ASCOM;
 using ASCOM.Utilities;
 using ASCOM.Utilities.Interfaces;
@@ -16,10 +15,8 @@ namespace ASCOM.Havla
     abstract public class StreamConnection : DeviceConnection, IStreamConnection
     {
         public StreamConnection() : this(ConnectionType.None) { }
-        public StreamConnection(ConnectionType connType) : this(connType, "{ }") { }
-        public StreamConnection(ConnectionType connType, string jsonSettings)
-            : this(connType, JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonSettings)) { }
-        public StreamConnection(ConnectionType connType, IDictionary<string, string> settings)
+        public StreamConnection(ConnectionType connType) : this(connType, null) { }
+        public StreamConnection(ConnectionType connType, IConfiguration settings)
             : base(connType, settings) { }
 
         public abstract Stream Stream { get; }

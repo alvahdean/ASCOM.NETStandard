@@ -10,54 +10,29 @@ using System;
 
 namespace ASCOM.DriverAccess
 {
-  public class FilterWheel : AscomDriver, IFilterWheelV2
-  {
-    private MemberFactory memberFactory;
-
-    public int[] FocusOffsets
+    public class FilterWheel : AscomDriver<IFilterWheelV2>, IFilterWheelV2
     {
-      get
-      {
-        return (int[]) this.memberFactory.CallMember(1, "FocusOffsets", new Type[0]);
-      }
-    }
 
-    public string[] Names
-    {
-      get
-      {
-        return (string[]) this.memberFactory.CallMember(1, "Names", new Type[0]);
-      }
-    }
+        //public FilterWheel() : base() { }
+        public FilterWheel(string filterWheelId) : base(filterWheelId) { }
 
-    public short Position
-    {
-      get
-      {
-        return Convert.ToInt16(this.memberFactory.CallMember(1, "Position", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "Position", new Type[1]
+        public int[] FocusOffsets { get => Impl.FocusOffsets; }
+
+        public string[] Names { get => Impl.Names; }
+
+        public short Position
         {
-          typeof (short)
-        }, (object) value);
-      }
-    }
+            get => Impl.Position;
+            set
+            {
+                if (Position != value)
+                {
+                    Impl.Position = value;
+                    profile.SetValue(nameof(Position), Impl.Position.ToString());
+                    RaisePropertyChanged(nameof(Position));
+                }
+            }
+        }
 
-    public FilterWheel(string filterWheelId)
-      : base(filterWheelId)
-    {
-      this.memberFactory = this.MemberFactory;
     }
-
-    public static string Choose(string filterWheelId)
-    {
-      using (Chooser chooser = new Chooser())
-      {
-        chooser.DeviceType = "FilterWheel";
-        return chooser.Choose(filterWheelId);
-      }
-    }
-  }
 }

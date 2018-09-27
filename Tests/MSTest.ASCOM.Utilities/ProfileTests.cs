@@ -42,13 +42,46 @@ namespace MSTest.ASCOMTests.Profiles
                 debug.WriteLine($"[{drv} Devices]");
                 
                 var devList = _prf.RegisteredDevices(drv).ToList<IKeyValuePair>();
-                if (drv == "Telescope")
-                    Assert.IsTrue(devList.Any(t => t.Key == "ASCOM.Simulator.Telescope"), "Telescope Simulator check");
+                if (drv == "Focuser")
+                    Assert.IsTrue(devList.Any(t => t.Key == $"ASCOM.Simulator.{drv}"), "Simulator check");
                 foreach(var dev in devList)
                     debug.WriteLine($"\t{dev.Key}: {dev.Value}");
                 debug.WriteLine();
             }
         }
+
+        [TestMethod]
+        public void IsRegistered()
+        {
+            debug.WriteLine("IsRegistered:");
+
+            _prf.DeviceType = "Focuser";
+            Assert.IsFalse(_prf.IsRegistered("ASCOM.XXXX.Focuser"), "Device doesn't exists check");
+            Assert.IsTrue(_prf.IsRegistered("ASCOM.Simulator.Focuser"), "Focuser exists check");
+        }
+
+        [TestMethod]
+        public void RegisterDriver()
+        {
+            debug.WriteLine("RegisterDriver:");
+            string drvType = "Focuser";
+            string drvName = $"ASCOM.UnitTestReg.{drvType}";
+            string drvDesc = $"UnitTestReg {drvType} Driver";
+            _prf.DeviceType = drvType;
+            if (_prf.IsRegistered(drvName))
+                _prf.Unregister(drvName);
+
+            Assert.IsFalse(_prf.IsRegistered(drvName), "Device is not registered check");
+            _prf.Register(drvName,"");
+            Assert.IsTrue(_prf.IsRegistered(drvName), "Device is registered check");
+            
+            Assert.IsTrue(String.IsNullOrWhiteSpace(_prf.GetValue(drvName, "")), "Device description is initially empty");
+            _prf.Register(drvName, drvDesc);
+            Assert.IsTrue(_prf.GetValue(drvName, "")==drvDesc, "Device description is initially empty");
+            _prf.Unregister(drvName);
+            Assert.IsFalse(_prf.IsRegistered(drvName), "Device is unregistered");
+        }
+
         [TestMethod]
         public void AscomProfileTest()
         {

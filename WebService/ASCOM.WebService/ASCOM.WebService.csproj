@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>aspnet-ASCOM.WebService-637C5251-6C9B-472A-814A-763F08638291</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data-orig\**" />
+    <Compile Remove="Data\**" />
+    <Content Remove="Data-orig\**" />
+    <Content Remove="Data\**" />
+    <EmbeddedResource Remove="Data-orig\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Data-orig\**" />
+    <None Remove="Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\ApplicationUser.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.2" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\ASCOM.Astrometry\ASCOM.Astrometry.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.Attributes\ASCOM.Attributes.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.Contracts.NETStandard\ASCOM.Contracts.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.DeviceInterfaces\ASCOM.DeviceInterface.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.DriverAccess\ASCOM.DriverAccess.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.Exceptions.NETStandard\ASCOM.Exceptions.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.Internal.Extensions.NETStandard\ASCOM.Internal.Extensions.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.SettingsProvider.NETStandard\ASCOM.SettingsProvider.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\ASCOM.Utilities.NETStandard\ASCOM.Utilities.NETStandard.csproj" />
+    <ProjectReference Include="..\..\Libraries\RACI\RACI.Data.NETStandard\RACI.Data.NETStandard.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+
 using ASCOM;
 using ASCOM.Utilities;
 using ASCOM.Utilities.Interfaces;
@@ -16,27 +16,22 @@ namespace ASCOM.Havla
     abstract public class DeviceConnection : IDeviceConnection
     {
         public DeviceConnection() : this(ConnectionType.None) { }
-        public DeviceConnection(ConnectionType connType)
+        //TODO: Fix Nuget to provide IConfigurationBuilder.AddConfiguration
+        public DeviceConnection(ConnectionType connType,IConfiguration config=null)
         {
             ConnectionType = connType;
-            Settings = new ConfigurationBuilder()
-                .AddInMemoryCollection()
-                .Build();
-        }
-        public DeviceConnection(ConnectionType connType, string jsonSettings)
-            : this(connType, JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonSettings)) { }
-        public DeviceConnection(ConnectionType connType, IDictionary<string, string> settings)
-            : this(connType)
-        {
-            if (settings != null)
+            IConfigurationBuilder builder = new ConfigurationBuilder().AddInMemoryCollection();
+            Configuration=builder.Build();
+            if (config != null)
             {
-                foreach (string key in settings.Keys)
-                    Settings[key] = settings[key];
+                foreach (var item in config.AsEnumerable())
+                    Configuration[item.Key] = item.Value;
             }
+
         }
 
         public ConnectionType ConnectionType { get; private set; }
-        public IConfiguration Settings { get; private set; }
+        public IConfiguration Configuration { get; private set; }
         public ITraceLogger Logger { get; set; }
         public bool Connect()
         {

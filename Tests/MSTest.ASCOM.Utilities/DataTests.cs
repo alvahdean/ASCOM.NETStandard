@@ -28,7 +28,7 @@ namespace MSTest.ASCOMTests.Data
         {
             SystemHelper sys = new SystemHelper();
             Console.WriteLine($"ASCOM platform SubKeys");
-            ProfileNode ascom = sys.Ascom;
+            AscomPlatformNode ascom = sys.Ascom;
             Console.WriteLine($"ASCOM System Node: {sys.System}");
             Console.WriteLine($"ASCOM Root Node: {ascom.ProfileNodeId}");
             IOrderedEnumerable<string> vals = sys.SubKeys(ascom.ProfileNodeId, true);
@@ -45,15 +45,13 @@ namespace MSTest.ASCOMTests.Data
         {
             SystemHelper sys = new SystemHelper();
             Console.WriteLine($"ASCOM platform SubKeys");
-            ProfileNode ascom = sys.Ascom;
-            IOrderedEnumerable<ProfileValue> items = sys
+            AscomPlatformNode ascom = sys.Ascom;
+            IOrderedEnumerable<IProfileValue> items = sys
                 .EnumKeyValues(ascom.ProfileNodeId, true)
                 .OrderBy(t => t.ParentProfileNodeId)
                 .ThenBy(t => t.Key);
             foreach (var item in items)
-            {
                 Console.WriteLine($"[{item.Key}]\t{item.Value}");
-            }
         }
 
         [TestMethod]
@@ -61,7 +59,7 @@ namespace MSTest.ASCOMTests.Data
         {
             SystemHelper sys = new SystemHelper();
             Console.WriteLine($"ASCOM platform SubKeys");
-            ProfileNode ascom = sys.Ascom;
+            AscomPlatformNode ascom = sys.Ascom;
             var items = sys.SubValues(ascom.ProfileNodeId, true);
             foreach (var item in items)
             {
@@ -76,8 +74,8 @@ namespace MSTest.ASCOMTests.Data
             string valKey = "ASCOM.Simulator.Dome Init";
             Console.WriteLine($"Getting Value for {nodeName}/{valKey}");
             SystemHelper sys = new SystemHelper();
-            ProfileNode ascom = sys.Ascom;
-            ProfileNode chooser = sys.SubNode(ascom.ProfileNodeId, nodeName, true);
+            AscomPlatformNode ascom = sys.Ascom;
+            IProfileNode chooser = sys.SubNode(ascom.ProfileNodeId, nodeName, true);
 
             string valString = sys.ValueOrDefault(chooser.ProfileNodeId, valKey, null);
             Console.WriteLine($"String Value: {valString}");

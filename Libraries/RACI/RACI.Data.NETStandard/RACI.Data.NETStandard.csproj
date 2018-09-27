@@ -6,27 +6,29 @@
     <RootNamespace>RACI.Data</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;IPROFILE_DEV</DefineConstants>
+  </PropertyGroup>
+
   <Import Project="..\RACI.Data.Shared\RACI.Data.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.2" />
-
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.0.3" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\ASCOM.Contracts.NETStandard\ASCOM.Contracts.NETStandard.csproj" />
-    <ProjectReference Include="..\..\ASCOM.Exceptions.NETStandard\ASCOM.Exceptions.NETStandard.csproj" />
-    <ProjectReference Include="..\RACI.Settings.NETStandard\RACI.Settings.NETStandard.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
   </ItemGroup>
 
 </Project>

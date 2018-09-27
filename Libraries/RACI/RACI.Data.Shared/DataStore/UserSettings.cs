@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using ASCOM.Utilities.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
@@ -17,7 +16,7 @@ namespace RACI.Data
         public UserSettings(String name, String description = "") : base(name, description) { }
         public String UserId { get; set; }
         public String HomeDir { get; set; }
-        public int IdentityId { get; set; }
-        public ApplicationUser Identity { get; private set; }
+        public string IdentityId { get; set; }
+        public RaciUser Identity { get; set; } //private set???
     }
 }

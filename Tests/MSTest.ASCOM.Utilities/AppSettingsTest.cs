@@ -20,11 +20,10 @@ namespace MSTest.ASCOMTests.AppConfig
             AppSettings settings = new AppSettings();
             Assert.IsFalse(String.IsNullOrWhiteSpace(settings.AppName), "AppName not specified");
             Assert.IsFalse(String.IsNullOrWhiteSpace(settings.AscomDataStore), "ASCOM DataStore not specified");
-
+            
             Assert.IsNotNull(settings, "Settings object is null");
             Assert.IsNotNull(settings.RACI, "RACI Section cannot be found");
             Assert.IsNotNull(settings.PathSettings, "Path Section cannot be found");
-            Assert.IsNotNull(settings.Repository, "Repository section not found");
             Console.WriteLine("AppSettings object dump:");
             Console.WriteLine(settings.ToString());
         }

@@ -1,0 +1,66 @@
+﻿@model RACI.Data.DomeState
+
+@{
+    ViewData["Title"] = "DomeStateView";
+}
+
+<h2>DomeStateView</h2>
+
+<div>
+    <h4>DomeState</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Altitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Altitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AtHome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AtHome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AtPark)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AtPark)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Azimuth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Azimuth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShutterStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShutterStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Slaved)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Slaved)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Slewing)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Slewing)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Connected)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Connected)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

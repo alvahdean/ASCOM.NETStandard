@@ -10,201 +10,113 @@ using System;
 
 namespace ASCOM.DriverAccess
 {
-  public class Dome : AscomDriver, IDomeV2
-  {
-    private MemberFactory memberFactory;
-
-    public double Altitude
+    public class Dome : AscomDriver<IDomeV2>, IDomeV2
     {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "Altitude", new Type[0]));
-      }
-    }
+        public Dome(string domeId) : base(domeId) { }
 
-    public bool AtHome
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "AtHome", new Type[0]));
-      }
-    }
+        public double Altitude { get => Impl.Altitude; }
 
-    public bool AtPark
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "AtPark", new Type[0]));
-      }
-    }
+        public bool AtHome { get => Impl.AtHome; }
 
-    public double Azimuth
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "Azimuth", new Type[0]));
-      }
-    }
+        public bool AtPark { get => Impl.AtPark; }
 
-    public bool CanFindHome
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "CanFindHome", new Type[0]));
-      }
-    }
+        public double Azimuth { get => Impl.Azimuth; }
 
-    public bool CanPark
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "CanPark", new Type[0]));
-      }
-    }
+        public bool CanFindHome { get => Impl.CanFindHome; }
 
-    public bool CanSetAltitude
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "CanSetAltitude", new Type[0]));
-      }
-    }
+        public bool CanPark { get => Impl.CanPark; }
 
-    public bool CanSetAzimuth
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "CanSetAzimuth", new Type[0]));
-      }
-    }
+        public bool CanSetAltitude { get => Impl.CanSetAltitude; }
 
-    public bool CanSetPark
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "CanSetPark", new Type[0]));
-      }
-    }
+        public bool CanSetAzimuth { get => Impl.CanSetAzimuth; }
 
-    public bool CanSetShutter
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "CanSetShutter", new Type[0]));
-      }
-    }
+        public bool CanSetPark { get => Impl.CanSetPark; }
 
-    public bool CanSlave
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "CanSlave", new Type[0]));
-      }
-    }
+        public bool CanSetShutter { get => Impl.CanSetShutter; }
 
-    public bool CanSyncAzimuth
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "CanSyncAzimuth", new Type[0]));
-      }
-    }
+        public bool CanSlave { get => Impl.CanSlave; }
 
-    public ShutterState ShutterStatus
-    {
-      get
-      {
-        return (ShutterState) this.memberFactory.CallMember(1, "ShutterStatus", new Type[0]);
-      }
-    }
+        public bool CanSyncAzimuth { get => Impl.CanSyncAzimuth; }
 
-    public bool Slaved
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "Slaved", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "Slaved", new Type[0], (object) value);
-      }
-    }
+        public ShutterState ShutterStatus { get => Impl.ShutterStatus; }
 
-    public bool Slewing
-    {
-      get
-      {
-        return Convert.ToBoolean(this.memberFactory.CallMember(1, "Slewing", new Type[0]));
-      }
-    }
+        public bool Slaved
+        {
+            get => Impl.Slaved;
+            set
+            {
+                if (Slaved != value)
+                {
+                    Impl.Slaved = value;
+                    profile.SetValue(nameof(Slaved), Impl.Slaved.ToString());
+                    RaisePropertyChanged(nameof(Slaved));
+                }
+            }
+        }
 
-    public Dome(string domeId)
-      : base(domeId)
-    {
-            this.memberFactory = MemberFactory;
-    }
+        public bool Slewing { get => Impl.Slewing; }
 
-    public static string Choose(string domeId)
-    {
-      using (Chooser chooser = new Chooser())
-      {
-        chooser.DeviceType = "Dome";
-        return chooser.Choose(domeId);
-      }
-    }
+        public void AbortSlew()
+        {
+            TL.LogMessage($"Begin AbortSlew()", $"");
+            Impl.AbortSlew();
+            TL.LogMessage($"End AbortSlew", $"");
+        }
 
-    public void AbortSlew()
-    {
-      this.memberFactory.CallMember(3, "AbortSlew", new Type[0]);
-    }
+        public void CloseShutter()
+        {
+            TL.LogMessage($"Begin CloseShutter()", $"");
+            Impl.CloseShutter();
+            TL.LogMessage($"End CloseShutter", $"");
+        }
 
-    public void CloseShutter()
-    {
-      this.memberFactory.CallMember(3, "CloseShutter", new Type[0]);
-    }
+        public void FindHome()
+        {
+            TL.LogMessage($"Begin FindHome()", $"");
+            Impl.FindHome();
+            TL.LogMessage($"End Move", $"");
+        }
 
-    public void FindHome()
-    {
-      this.memberFactory.CallMember(3, "FindHome", new Type[0]);
-    }
+        public void OpenShutter()
+        {
+            TL.LogMessage($"Begin OpenShutter()", $"");
+            Impl.OpenShutter();
+            TL.LogMessage($"End Move", $"");
+        }
 
-    public void OpenShutter()
-    {
-      this.memberFactory.CallMember(3, "OpenShutter", new Type[0]);
-    }
+        public void Park()
+        {
+            TL.LogMessage($"Begin Park()", $"");
+            Impl.Park();
+            TL.LogMessage($"End Park", "");
+        }
 
-    public void Park()
-    {
-      this.memberFactory.CallMember(3, "Park", new Type[0]);
-    }
+        public void SetPark()
+        {
+            TL.LogMessage($"Begin SetPark()", "");
+            Impl.SetPark();
+            TL.LogMessage($"End SetPark", "");
+        }
 
-    public void SetPark()
-    {
-      this.memberFactory.CallMember(3, "SetPark", new Type[0]);
-    }
+        public void SlewToAltitude(double altitude)
+        {
+            TL.LogMessage($"Begin SlewToAltitude(altitude={altitude})", $"");
+            Impl.SlewToAltitude(altitude);
+            TL.LogMessage($"End SlewToAltitude", "");
+        }
 
-    public void SlewToAltitude(double Altitude)
-    {
-      this.memberFactory.CallMember(3, "SlewToAltitude", new Type[1]
-      {
-        typeof (double)
-      }, (object) Altitude);
-    }
+        public void SlewToAzimuth(double azimuth)
+        {
+            TL.LogMessage($"Begin SlewToAzimuth(azimuth={azimuth})", $"");
+            Impl.SlewToAzimuth(azimuth);
+            TL.LogMessage($"End SlewToAzimuth", "");
+        }
 
-    public void SlewToAzimuth(double Azimuth)
-    {
-      this.memberFactory.CallMember(3, "SlewToAzimuth", new Type[1]
-      {
-        typeof (double)
-      }, (object) Azimuth);
+        public void SyncToAzimuth(double azimuth)
+        {
+            TL.LogMessage($"Begin SyncToAzimuth(azimuth={azimuth})", $"");
+            Impl.SyncToAzimuth(azimuth);
+            TL.LogMessage($"End SyncToAzimuth", "");
+        }
     }
-
-    public void SyncToAzimuth(double Azimuth)
-    {
-      this.memberFactory.CallMember(3, "SyncToAzimuth", new Type[1]
-      {
-        typeof (double)
-      }, (object) Azimuth);
-    }
-  }
 }

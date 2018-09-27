@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Globalization;
 
-namespace ASCOM.Simulator
+namespace xASCOM.Simulator
 {
 
     public class Rotator : IRotatorV2
@@ -13,7 +13,7 @@ namespace ASCOM.Simulator
         /// ASCOM DeviceID (COM ProgID) for this driver.
         /// The DeviceID is used by ASCOM applications to load the driver at runtime.
         /// </summary>
-        internal static string driverID = "ASCOM.Sumulator.Rotator";
+        internal static string driverID = "ASCOM.Simulator.Rotator";
         // TODO Change the descriptive string for your driver then remove this line
         /// <summary>
         /// Driver description that displays in the ASCOM Chooser.
@@ -458,8 +458,12 @@ namespace ASCOM.Simulator
             using (Profile driverProfile = new Profile())
             {
                 driverProfile.DeviceType = "Rotator";
-                tl.Enabled = Convert.ToBoolean(driverProfile.GetValue(driverID, traceStateProfileName, string.Empty, traceStateDefault));
-                comPort = driverProfile.GetValue(driverID, comPortProfileName, string.Empty, comPortDefault);
+                try
+                {
+                    tl.Enabled = Convert.ToBoolean(driverProfile.GetValue(driverID, traceStateProfileName, string.Empty, traceStateDefault));
+                    comPort = driverProfile.GetValue(driverID, comPortProfileName, string.Empty, comPortDefault);
+                }
+                catch { }
             }
         }
 

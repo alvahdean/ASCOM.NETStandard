@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RuntimeIdentifiers>win10-x64;linux-arm</RuntimeIdentifiers>
-    <Version>0.1.0</Version>
+    <Version>6.3.0.9999</Version>
     <Authors>Dean Fuqua, The ASCOM Initiative</Authors>
     <Company>Havla Consortium</Company>
     <Product>ASCOM.NETStandard</Product>
@@ -14,6 +14,8 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>ASCOM</PackageTags>
     <PackageIconUrl>https://github.com/alvahdean/ASCOM.NETStandard/blob/master/shared/icons/ASCOM.ico</PackageIconUrl>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>rascom.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

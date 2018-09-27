@@ -12,7 +12,7 @@ namespace ASCOM.Havla
         ConnectionType ConnectionType { get; }
         bool IsConfigured { get; }
         bool IsConnected { get; set; }
-        IConfiguration Settings { get; }
+        IConfiguration Configuration { get; }
         bool Connect();
         bool Disconnect();
 

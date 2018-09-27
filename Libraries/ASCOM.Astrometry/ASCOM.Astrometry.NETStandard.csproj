@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\ASCOM.NETStandard\ASCOM.NETStandard.csproj" />
 
@@ -8,14 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ASCOM.Exceptions.NETStandard\ASCOM.Exceptions.NETStandard.csproj" />
     <ProjectReference Include="..\ASCOM.Utilities.NETStandard\ASCOM.Utilities.NETStandard.csproj" />
-    <ProjectReference Include="..\RACI\RACI.Data.NETStandard\RACI.Data.NETStandard.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="My\**" />
-    <EmbeddedResource Remove="My\**" />
-    <None Remove="My\**" />
+    <Folder Include="Exceptions - Moved to ASCOM.Exceptions\" />
   </ItemGroup>
+
+
 
 </Project>

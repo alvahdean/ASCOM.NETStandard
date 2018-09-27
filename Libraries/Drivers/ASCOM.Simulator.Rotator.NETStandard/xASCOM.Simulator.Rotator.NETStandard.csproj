@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>xASCOM.Simulator</RootNamespace>
+    <AssemblyVersion>6.3.0.9999</AssemblyVersion>
+    <FileVersion>6.3.0.9999</FileVersion>
+    <Version>6.3</Version>
+    <PackageId>xASCOM.Simulator.Rotator.NETStandard</PackageId>
+    <Authors>Dean Fuqua, ASCOM Initiative</Authors>
+    <Product>ASCOM.NETStandard</Product>
+    <Description>xASCOM Rotator Simulator for .NETStandard</Description>
+    <Copyright>Dean Fuqua</Copyright>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\ASCOM.DeviceInterfaces\ASCOM.DeviceInterface.NETStandard.csproj" />
+    <ProjectReference Include="..\..\ASCOM.Exceptions.NETStandard\ASCOM.Exceptions.NETStandard.csproj" />
+    <ProjectReference Include="..\..\ASCOM.Utilities.NETStandard\ASCOM.Utilities.NETStandard.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy &quot;$(TargetDir)\*ASCOM.Simulator.*&quot; &quot;C:\Program Files\RACI\Drivers&quot;" />
+  </Target>
+
+</Project>

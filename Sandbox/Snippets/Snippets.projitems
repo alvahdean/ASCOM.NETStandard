@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>f40c98ac-6dc5-47c1-b1a6-732635201e61</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Snippets</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)RestClientSource\RestClient.Async.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestClientSource\RestClient.Main.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestClientSource\RestClient.Sync.cs" />
+  </ItemGroup>
+</Project>

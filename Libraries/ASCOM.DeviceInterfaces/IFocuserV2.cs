@@ -36,6 +36,6 @@ namespace ASCOM.DeviceInterface
 
         void Halt();
 
-        void Move(int Position);
+        void Move(int position);
     }
 }

@@ -10,160 +10,71 @@ using System;
 
 namespace ASCOM.DriverAccess
 {
-  public class ObservingConditions : AscomDriver, IObservingConditions
-  {
-    private readonly MemberFactory _memberFactory;
-
-    public double AveragePeriod
+    public class ObservingConditions : AscomDriver<IObservingConditions>, IObservingConditions
     {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "AveragePeriod", new Type[0]);
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "AveragePeriod", new Type[0], (object) value);
-      }
-    }
+        public double AveragePeriod
+        {
+            get => Impl.AveragePeriod;
+            set
+            {
+                if (AveragePeriod != value)
+                {
+                    Impl.AveragePeriod = value;
+                    profile.SetValue(nameof(AveragePeriod), Impl.AveragePeriod.ToString());
+                    RaisePropertyChanged(nameof(AveragePeriod));
+                }
+            }
+        }
 
-    public double CloudCover
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "CloudCover", new Type[0]);
-      }
-    }
+        public double CloudCover { get => Impl.CloudCover; }
 
-    public double DewPoint
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "DewPoint", new Type[0]);
-      }
-    }
+        public double DewPoint { get => Impl.DewPoint; }
 
-    public double Humidity
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "Humidity", new Type[0]);
-      }
-    }
+        public double Humidity { get => Impl.Humidity; }
 
-    public double Pressure
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "Pressure", new Type[0]);
-      }
-    }
+        public double Pressure { get => Impl.Pressure; }
 
-    public double RainRate
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "RainRate", new Type[0]);
-      }
-    }
+        public double RainRate { get => Impl.RainRate; }
 
-    public double SkyBrightness
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "SkyBrightness", new Type[0]);
-      }
-    }
+        public double SkyBrightness { get => Impl.SkyBrightness; }
 
-    public double SkyQuality
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "SkyQuality", new Type[0]);
-      }
-    }
+        public double SkyQuality { get => Impl.SkyQuality; }
 
-    public double StarFWHM
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "StarFWHM", new Type[0]);
-      }
-    }
+        public double StarFWHM { get => Impl.StarFWHM; }
 
-    public double SkyTemperature
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "SkyTemperature", new Type[0]);
-      }
-    }
+        public double SkyTemperature { get => Impl.SkyTemperature; }
 
-    public double Temperature
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "Temperature", new Type[0]);
-      }
-    }
+        public double Temperature { get => Impl.Temperature; }
 
-    public double WindDirection
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "WindDirection", new Type[0]);
-      }
-    }
+        public double WindDirection { get => Impl.WindDirection; }
 
-    public double WindGust
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "WindGust", new Type[0]);
-      }
-    }
+        public double WindGust { get => Impl.WindGust; }
 
-    public double WindSpeed
-    {
-      get
-      {
-        return (double) this._memberFactory.CallMember(1, "WindSpeed", new Type[0]);
-      }
-    }
+        public double WindSpeed { get => Impl.WindSpeed; }
 
-    public ObservingConditions(string observingConditionsId)
-      : base(observingConditionsId)
-    {
-      this._memberFactory = this.MemberFactory;
-    }
+        public ObservingConditions(string observingConditionsId) : base(observingConditionsId) { }
 
-    public static string Choose(string observingConditionsId)
-    {
-      using (Chooser chooser = new Chooser())
-      {
-        chooser.DeviceType = "ObservingConditions";
-        return chooser.Choose(observingConditionsId);
-      }
-    }
+        public double TimeSinceLastUpdate(string propertyName)
+        {
+            TL.LogMessage($"Begin TimeSinceLastUpdate({nameof(propertyName)}={propertyName})", $"");
+            var result = Impl.TimeSinceLastUpdate(propertyName);
+            TL.LogMessage($"End TimeSinceLastUpdate", $"Result: {result}");
+            return result;
+        }
 
-    public double TimeSinceLastUpdate(string PropertyName)
-    {
-      return (double) this._memberFactory.CallMember(3, "TimeSinceLastUpdate", new Type[1]
-      {
-        typeof (string)
-      }, (object) PropertyName);
-    }
+        public string SensorDescription(string propertyName)
+        {
+            TL.LogMessage($"Begin SensorDescription(azimuth={propertyName})", $"");
+            var result = Impl.SensorDescription(propertyName);
+            TL.LogMessage($"End SensorDescription", $"Result: { result}");
+            return result;
+        }
 
-    public string SensorDescription(string PropertyName)
-    {
-      return (string) this._memberFactory.CallMember(3, "SensorDescription", new Type[1]
-      {
-        typeof (string)
-      }, (object) PropertyName);
+        public void Refresh()
+        {
+            TL.LogMessage($"Begin Refresh()", $"");
+            Impl.Refresh();
+            TL.LogMessage($"End Refresh", "");
+        }
     }
-
-    public void Refresh()
-    {
-      this._memberFactory.CallMember(3, "Refresh", new Type[0]);
-    }
-  }
 }

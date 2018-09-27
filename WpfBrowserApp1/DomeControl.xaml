@@ -1,0 +1,187 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="xAscom.App.ControlPanel.frmDomeControl"
+	Title="Dome Controller"
+    Width="400" Height="650">
+    <Grid Name="Main" Margin="0,0,0,0">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="220" />
+            <RowDefinition Height="370" />
+        </Grid.RowDefinitions>
+        <Label 
+            x:Name="txtDeviceConnection" 
+            Grid.Row="0"
+            Margin="2" 
+            HorizontalContentAlignment="Center" 
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Top"
+            FontWeight="Bold" 
+            Height="25">
+            [Device] @ [Endpoint]
+        </Label>
+        <GroupBox 
+            Name="grpControl" 
+            Grid.Row="1" 
+            Margin="2">
+                <GroupBox.Header>
+                    <TextBlock Text="Control" FontWeight="Bold"/>
+                </GroupBox.Header>
+                <StackPanel Name="panelControl" Orientation="Vertical" 
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal" 
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Stretch">
+                        <Button x:Name="btnPark" Content="Park" Margin="10" Width="100" Height="25"/>
+                        <Button x:Name="btnFindHome" Content="Find Home"  Margin="10" Width="100" Height="25"/>
+                        <Button x:Name="btnSetPark" Content="Set Park"  Margin="10" Width="100" Height="25"/>
+                    </StackPanel>
+                    <StackPanel Name="stackSlewAltAz" Orientation="Horizontal" 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Stretch">
+                        <Button x:Name="btnSlewAltAz" Content="Slew Alt/Az" Margin="2" Width="100" Height="25"/>
+                        <Label x:Name="lblSlewAlt" Content="Alt"  Margin="2"  Height="25"/>
+                        <TextBox x:Name="txtSlewAlt" Text="10.0"  Margin="2" Width="50" Height="25"/>
+                        <Label x:Name="lblSlewAz" Content="Az"   Margin="2"  Height="25"/>
+                        <TextBox x:Name="txtSlewAz" Text="20.0"   Margin="2" Width="50" Height="25"/>
+                    </StackPanel>
+                    <StackPanel Name="stackSyncAz" Orientation="Horizontal" 
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Stretch">
+                        <Button x:Name="btnSyncAz" Content="SyncAz"  Margin="2" Width="100" Height="25"/>
+                        <Label x:Name="lblSyncAzAlt" Content="Az:" Margin="2" Height="25"/>
+                        <TextBox x:Name="txtSyncAzAlt" Text="30.0" Margin="2" Width="50" Height="25"/>
+                    </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                            <Label x:Name="lblActionName" Content="Action" Margin="2" Height="25" Width="50"/>
+                            <ComboBox Width="150" Margin="2"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                            <Label x:Name="lblActionArg" Content="Arguments" Margin="2" Height="25" />
+                            <TextBox x:Name="txtActionArgs" Text="arg1, arg2, arg3"  Margin="2" Height="25" Width="200"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button x:Name="btnExecute" Content="Execute" VerticalAlignment="Top"  Margin="2" Width="100" Height="25"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <TabControl 
+                x:Name="tabDeviceView" 
+                Grid.Row="2"
+                TabStripPlacement= "Top" 
+                Margin="2" 
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch">
+            <TabItem x:Name="tabState" Header="State" Background="LightBlue"
+                         HorizontalContentAlignment="Stretch"
+                         VerticalContentAlignment="Top"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical" 
+                                Margin="2"
+                                Background="LightSteelBlue"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_Connection" Content="Connection"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_ConnectionValue" Content="Not Connected" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_CurrAlt" Content="Current Alt"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_CurrAlt_Value" Content="15.0" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_CurrAz" Content="Current Az"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_CurrAz_Value" Content="90.0" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_Motion" Content="Motion State"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_Motion_Value" Content="90.0" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_Shutter" Content="Shutter State"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_Shutter_Value" Content="90.0" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_Slaved" Content="Slaved State"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_Slaved_Value" Content="90.0" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_AtHome" Content="At Home"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_AtHome_Value" Content="90.0" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_Parked" Content="Parked"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_Parked_Value" Content="90.0" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_ControlUser" Content="Control User"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_ControlUser_Value" Content="90.0" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_LastAction" Content="Last Action"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_LastAction_Value" Content="90.0" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label x:Name="lblState_LastActionDate" Content="Last Action Date"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="DarkGray"/>
+                        <Label x:Name="lblState_LastActionDate_Value" Content="1969-Apr-12 08:55:29" IsEnabled="False"
+                                           Margin="2,2" MinWidth="100" MinHeight="25" VerticalAlignment="Stretch" HorizontalAlignment="Left" Background="LightGray"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="tabRender" Header="Render" Background="Coral"
+                         HorizontalContentAlignment="Stretch"
+                         VerticalContentAlignment="Stretch"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch">
+                <StackPanel Orientation="Vertical" 
+                                Margin="2"
+                                Background="LightSteelBlue"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top">
+                    <Image Name="RenderImage" HorizontalAlignment="Center"  VerticalAlignment="Center" 
+                               MinWidth="300"
+                               MinHeight="300"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="tabCapabilties" Header="Capabilities" Background="LightGreen">
+                <StackPanel Orientation="Vertical" 
+                                Margin="2"
+                                MinHeight="350"
+                                Background="LightSteelBlue"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Top">
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

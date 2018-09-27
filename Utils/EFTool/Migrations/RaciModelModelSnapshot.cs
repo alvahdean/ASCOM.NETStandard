@@ -127,54 +127,60 @@ namespace EFTool.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RACI.Data.ApplicationUser", b =>
+            modelBuilder.Entity("RACI.Data.DomeState", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AccessFailedCount");
+                    b.Property<double>("Altitude");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                    b.Property<bool>("AtHome");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
+                    b.Property<bool>("AtPark");
 
-                    b.Property<bool>("EmailConfirmed");
+                    b.Property<double>("Azimuth");
 
-                    b.Property<bool>("LockoutEnabled");
+                    b.Property<bool>("Connected");
 
-                    b.Property<DateTimeOffset?>("LockoutEnd");
+                    b.Property<string>("ShutterStatus");
 
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
+                    b.Property<bool>("Slaved");
 
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
+                    b.Property<bool>("Slewing");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                    b.ToTable("DomeStates");
+                });
 
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex");
+            modelBuilder.Entity("RACI.Data.FilterWheelState", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.ToTable("AspNetUsers");
+                    b.Property<bool>("Connected");
+
+                    b.Property<short>("Position");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FilterWheelStates");
+                });
+
+            modelBuilder.Entity("RACI.Data.FocuserState", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Connected");
+
+                    b.Property<bool>("Link");
+
+                    b.Property<bool>("TempComp");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FocuserStates");
                 });
 
             modelBuilder.Entity("RACI.Data.ProfileNode", b =>
@@ -220,6 +226,61 @@ namespace EFTool.Migrations
                     b.ToTable("ProfileValues");
                 });
 
+            modelBuilder.Entity("RACI.Data.RaciUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
+
+                    b.Property<int?>("UserSettingsId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex");
+
+                    b.HasIndex("UserSettingsId")
+                        .IsUnique();
+
+                    b.ToTable("AspNetUsers");
+                });
+
             modelBuilder.Entity("RACI.Data.AscomDeviceNode", b =>
                 {
                     b.HasBaseType("RACI.Data.ProfileNode");
@@ -228,16 +289,6 @@ namespace EFTool.Migrations
                     b.ToTable("AscomDeviceNode");
 
                     b.HasDiscriminator().HasValue("AscomDeviceNode");
-                });
-
-            modelBuilder.Entity("RACI.Data.AscomDriverNode", b =>
-                {
-                    b.HasBaseType("RACI.Data.ProfileNode");
-
-
-                    b.ToTable("AscomDriverNode");
-
-                    b.HasDiscriminator().HasValue("AscomDriverNode");
                 });
 
             modelBuilder.Entity("RACI.Data.AscomPlatformNode", b =>
@@ -258,6 +309,47 @@ namespace EFTool.Migrations
                     b.ToTable("AscomSettingsNode");
 
                     b.HasDiscriminator().HasValue("AscomSettingsNode");
+                });
+
+            modelBuilder.Entity("RACI.Data.DriverTypeNode", b =>
+                {
+                    b.HasBaseType("RACI.Data.ProfileNode");
+
+
+                    b.ToTable("DriverTypeNode");
+
+                    b.HasDiscriminator().HasValue("DriverTypeNode");
+                });
+
+            modelBuilder.Entity("RACI.Data.RaciEndpoint", b =>
+                {
+                    b.HasBaseType("RACI.Data.ProfileNode");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<DateTime>("LastAccess");
+
+                    b.Property<DateTime>("LastUpdate");
+
+                    b.Property<string>("ServiceRoot");
+
+                    b.HasIndex("ServiceRoot")
+                        .IsUnique();
+
+                    b.ToTable("RaciEndpoint");
+
+                    b.HasDiscriminator().HasValue("RaciEndpoint");
+                });
+
+            modelBuilder.Entity("RACI.Data.RaciEndpointDriver", b =>
+                {
+                    b.HasBaseType("RACI.Data.ProfileNode");
+
+                    b.Property<string>("DriverType");
+
+                    b.ToTable("RaciEndpointDriver");
+
+                    b.HasDiscriminator().HasValue("RaciEndpointDriver");
                 });
 
             modelBuilder.Entity("RACI.Data.RaciSettings", b =>
@@ -287,13 +379,9 @@ namespace EFTool.Migrations
 
                     b.Property<string>("HomeDir");
 
-                    b.Property<int>("IdentityId");
-
-                    b.Property<string>("IdentityId1");
+                    b.Property<string>("IdentityId");
 
                     b.Property<string>("UserId");
-
-                    b.HasIndex("IdentityId1");
 
                     b.ToTable("UserSettings");
 
@@ -310,7 +398,7 @@ namespace EFTool.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("RACI.Data.ApplicationUser")
+                    b.HasOne("RACI.Data.RaciUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -318,7 +406,7 @@ namespace EFTool.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("RACI.Data.ApplicationUser")
+                    b.HasOne("RACI.Data.RaciUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -331,7 +419,7 @@ namespace EFTool.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("RACI.Data.ApplicationUser")
+                    b.HasOne("RACI.Data.RaciUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -339,7 +427,7 @@ namespace EFTool.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("RACI.Data.ApplicationUser")
+                    b.HasOne("RACI.Data.RaciUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -361,11 +449,11 @@ namespace EFTool.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("RACI.Data.UserSettings", b =>
+            modelBuilder.Entity("RACI.Data.RaciUser", b =>
                 {
-                    b.HasOne("RACI.Data.ApplicationUser", "Identity")
-                        .WithMany()
-                        .HasForeignKey("IdentityId1");
+                    b.HasOne("RACI.Data.UserSettings", "UserSettings")
+                        .WithOne("Identity")
+                        .HasForeignKey("RACI.Data.RaciUser", "UserSettingsId");
                 });
 #pragma warning restore 612, 618
         }

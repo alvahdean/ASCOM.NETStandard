@@ -11,506 +11,275 @@ using System.Collections;
 
 namespace ASCOM.DriverAccess
 {
-  public class Camera : AscomDriver, ICameraV2
-  {
-    private readonly MemberFactory _memberFactory;
-    private readonly short _driverInterfaceVersion;
-
-    public short BinX
+    public class Camera : AscomDriver<ICameraV2>, ICameraV2
     {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "BinX", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "BinX", new Type[0], (object) value);
-      }
-    }
+        private readonly short _driverInterfaceVersion;
 
-    public short BinY
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "BinY", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "BinY", new Type[0], (object) value);
-      }
-    }
+        public Camera(string cameraId) : base(cameraId)
+        {
+        }
 
-    public double CCDTemperature
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "CCDTemperature", new Type[0]));
-      }
-    }
+        public short BinX
+        {
+            get => Impl.BinX;
+            set
+            {
+                if (BinX != value)
+                {
+                    Impl.BinX = value;
+                    profile.SetValue(nameof(BinX), Impl.BinX.ToString());
+                    RaisePropertyChanged(nameof(BinX));
+                }
+            }
+        }
 
-    public CameraStates CameraState
-    {
-      get
-      {
-        return (CameraStates) this._memberFactory.CallMember(1, "CameraState", new Type[0]);
-      }
-    }
+        public short BinY
+        {
+            get => Impl.BinY;
+            set
+            {
+                if (BinY != value)
+                {
+                    Impl.BinY = value;
+                    profile.SetValue(nameof(BinY), Impl.BinY.ToString());
+                    RaisePropertyChanged(nameof(BinY));
+                }
+            }
+        }
 
-    public int CameraXSize
-    {
-      get
-      {
-        return Convert.ToInt32(this._memberFactory.CallMember(1, "CameraXSize", new Type[0]));
-      }
-    }
+        public double CCDTemperature { get => Impl.CCDTemperature; }
 
-    public int CameraYSize
-    {
-      get
-      {
-        return Convert.ToInt32(this._memberFactory.CallMember(1, "CameraYSize", new Type[0]));
-      }
-    }
+        public CameraStates CameraState { get => Impl.CameraState; }
 
-    public bool CanAbortExposure
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "CanAbortExposure", new Type[0]));
-      }
-    }
+        public int CameraXSize { get => Impl.CameraXSize; }
 
-    public bool CanAsymmetricBin
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "CanAsymmetricBin", new Type[0]));
-      }
-    }
+        public int CameraYSize { get => Impl.CameraYSize; }
 
-    public bool CanGetCoolerPower
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "CanGetCoolerPower", new Type[0]));
-      }
-    }
+        public bool CanAbortExposure { get => Impl.CanAbortExposure; }
 
-    public bool CanPulseGuide
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "CanPulseGuide", new Type[0]));
-      }
-    }
+        public bool CanAsymmetricBin { get => Impl.CanAsymmetricBin; }
 
-    public bool CanSetCCDTemperature
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "CanSetCCDTemperature", new Type[0]));
-      }
-    }
+        public bool CanGetCoolerPower { get => Impl.CanGetCoolerPower; }
 
-    public bool CanStopExposure
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "CanStopExposure", new Type[0]));
-      }
-    }
+        public bool CanPulseGuide { get => Impl.CanPulseGuide; }
 
-    public bool CoolerOn
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "CoolerOn", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "CoolerOn", new Type[0], (object) value);
-      }
-    }
+        public bool CanSetCCDTemperature { get => Impl.CanSetCCDTemperature; }
 
-    public double CoolerPower
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "CoolerPower", new Type[0]));
-      }
-    }
+        public bool CanStopExposure { get => Impl.CanStopExposure; }
 
-    public double ElectronsPerADU
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "ElectronsPerADU", new Type[0]));
-      }
-    }
+        public bool CoolerOn
+        {
+            get => Impl.CoolerOn;
+            set
+            {
+                if (CoolerOn != value)
+                {
+                    Impl.CoolerOn = value;
+                    profile.SetValue(nameof(CoolerOn), Impl.CoolerOn.ToString());
+                    RaisePropertyChanged(nameof(CoolerOn));
+                }
+            }
+        }
 
-    public double FullWellCapacity
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "FullWellCapacity", new Type[0]));
-      }
-    }
+        //TODO: return not implemented if !CanGetCoolerPower
+        public double CoolerPower { get => Impl.CoolerPower; }
 
-    public bool HasShutter
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "HasShutter", new Type[0]));
-      }
-    }
+        public double ElectronsPerADU { get => Impl.ElectronsPerADU; }
 
-    public double HeatSinkTemperature
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "HeatSinkTemperature", new Type[0]));
-      }
-    }
+        public double FullWellCapacity { get => Impl.FullWellCapacity; }
 
-    public object ImageArray
-    {
-      get
-      {
-        return this._memberFactory.CallMember(1, "ImageArray", new Type[0]);
-      }
-    }
+        public bool HasShutter { get => Impl.HasShutter; }
 
-    public object ImageArrayVariant
-    {
-      get
-      {
-        return this._memberFactory.CallMember(1, "ImageArrayVariant", new Type[0]);
-      }
-    }
+        public double HeatSinkTemperature { get => Impl.HeatSinkTemperature; }
 
-    public bool ImageReady
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "ImageReady", new Type[0]));
-      }
-    }
+        public object ImageArray { get => Impl.ImageArray; }
 
-    public bool IsPulseGuiding
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "IsPulseGuiding", new Type[0]));
-      }
-    }
+        public object ImageArrayVariant { get => Impl.ImageArrayVariant; }
 
-    public double LastExposureDuration
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "LastExposureDuration", new Type[0]));
-      }
-    }
+        public bool ImageReady { get => Impl.ImageReady; }
 
-    public string LastExposureStartTime
-    {
-      get
-      {
-        return Convert.ToString(this._memberFactory.CallMember(1, "LastExposureStartTime", new Type[0]));
-      }
-    }
+        public bool IsPulseGuiding { get => Impl.IsPulseGuiding; }
 
-    public int MaxADU
-    {
-      get
-      {
-        return Convert.ToInt32(this._memberFactory.CallMember(1, "MaxADU", new Type[0]));
-      }
-    }
+        public double LastExposureDuration { get => Impl.LastExposureDuration; }
 
-    public short MaxBinX
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "MaxBinX", new Type[0]));
-      }
-    }
+        public string LastExposureStartTime { get => Impl.LastExposureStartTime; }
+  
+        public int MaxADU { get => Impl.MaxADU; }
 
-    public short MaxBinY
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "MaxBinY", new Type[0]));
-      }
-    }
+        public short MaxBinX { get => Impl.MaxBinX; }
 
-    public int NumX
-    {
-      get
-      {
-        return Convert.ToInt32(this._memberFactory.CallMember(1, "NumX", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "NumX", new Type[0], (object) value);
-      }
-    }
+        public short MaxBinY { get => Impl.MaxBinY; }
 
-    public int NumY
-    {
-      get
-      {
-        return Convert.ToInt32(this._memberFactory.CallMember(1, "NumY", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "NumY", new Type[0], (object) value);
-      }
-    }
+        public int NumX
+        {
+            get => Impl.NumX;
+            set
+            {
+                if (NumX != value)
+                {
+                    Impl.NumX = value;
+                    profile.SetValue(nameof(NumX), Impl.NumX.ToString());
+                    RaisePropertyChanged(nameof(NumX));
+                }
+            }
+        }
 
-    public double PixelSizeX
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "PixelSizeX", new Type[0]));
-      }
-    }
 
-    public double PixelSizeY
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "PixelSizeY", new Type[0]));
-      }
-    }
+        public int NumY
+        {
+            get => Impl.NumY;
+            set
+            {
+                if (NumY != value)
+                {
+                    Impl.NumY = value;
+                    profile.SetValue(nameof(NumY), Impl.NumY.ToString());
+                    RaisePropertyChanged(nameof(NumY));
+                }
+            }
+        }
 
-    public double SetCCDTemperature
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "SetCCDTemperature", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "SetCCDTemperature", new Type[0], (object) value);
-      }
-    }
+        public double PixelSizeX { get => Impl.PixelSizeX; }
 
-    public int StartX
-    {
-      get
-      {
-        return Convert.ToInt32(this._memberFactory.CallMember(1, "StartX", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "StartX", new Type[0], (object) value);
-      }
-    }
+        public double PixelSizeY { get => Impl.PixelSizeY; }
 
-    public int StartY
-    {
-      get
-      {
-        return Convert.ToInt32(this._memberFactory.CallMember(1, "StartY", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "StartY", new Type[0], (object) value);
-      }
-    }
+        public double SetCCDTemperature
+        {
+            get => Impl.SetCCDTemperature;
+            set
+            {
+                if (SetCCDTemperature != value)
+                {
+                    Impl.SetCCDTemperature = value;
+                    profile.SetValue(nameof(SetCCDTemperature), Impl.SetCCDTemperature.ToString());
+                    RaisePropertyChanged(nameof(SetCCDTemperature));
+                }
+            }
+        }
 
-    public short BayerOffsetX
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "BayerOffsetX", new Type[0]));
-      }
-    }
+        public int StartX
+        {
+            get => Impl.StartX;
+            set
+            {
+                if (StartX != value)
+                {
+                    Impl.StartX = value;
+                    profile.SetValue(nameof(StartX), Impl.StartX.ToString());
+                    RaisePropertyChanged(nameof(StartX));
+                }
+            }
+        }
 
-    public short BayerOffsetY
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "BayerOffsetY", new Type[0]));
-      }
-    }
+        public int StartY
+        {
+            get => Impl.StartY;
+            set
+            {
+                if (StartY != value)
+                {
+                    Impl.StartY = value;
+                    profile.SetValue(nameof(StartY), Impl.StartY.ToString());
+                    RaisePropertyChanged(nameof(StartY));
+                }
+            }
+        }
 
-    public bool CanFastReadout
-    {
-      get
-      {
-        if ((int) this._driverInterfaceVersion > 1)
-          return Convert.ToBoolean(this._memberFactory.CallMember(1, "CanFastReadout", new Type[0]));
-        return false;
-      }
-    }
+        public short BayerOffsetX { get => Impl.BayerOffsetX; }
 
-    public double ExposureMax
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "ExposureMax", new Type[0]));
-      }
-    }
+        public short BayerOffsetY { get => Impl.BayerOffsetY; }
 
-    public double ExposureMin
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "ExposureMin", new Type[0]));
-      }
-    }
+        public bool CanFastReadout { get => Impl.CanFastReadout; }
 
-    public double ExposureResolution
-    {
-      get
-      {
-        return Convert.ToDouble(this._memberFactory.CallMember(1, "ExposureResolution", new Type[0]));
-      }
-    }
+        public double ExposureMax { get => Impl.ExposureMax; }
 
-    public bool FastReadout
-    {
-      get
-      {
-        return Convert.ToBoolean(this._memberFactory.CallMember(1, "FastReadout", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "FastReadout", new Type[0], (object) value);
-      }
-    }
+        public double ExposureMin { get => Impl.ExposureMin; }
 
-    public short Gain
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "Gain", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "Gain", new Type[0], (object) value);
-      }
-    }
+        public double ExposureResolution { get => Impl.ExposureResolution; }
+        
+        public bool FastReadout
+        {
+            get => Impl.FastReadout;
+            set
+            {
+                if (FastReadout != value)
+                {
+                    Impl.FastReadout = value;
+                    profile.SetValue(nameof(FastReadout), Impl.FastReadout.ToString());
+                    RaisePropertyChanged(nameof(FastReadout));
+                }
+            }
+        }
 
-    public short GainMax
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "GainMax", new Type[0]));
-      }
-    }
+        public short Gain
+        {
+            get => Impl.Gain;
+            set
+            {
+                if (Gain != value)
+                {
+                    Impl.Gain = value;
+                    profile.SetValue(nameof(Gain), Impl.Gain.ToString());
+                    RaisePropertyChanged(nameof(Gain));
+                }
+            }
+        }
 
-    public short GainMin
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "GainMin", new Type[0]));
-      }
-    }
+        public short GainMax { get => Impl.GainMax; }
 
-    public ArrayList Gains
-    {
-      get
-      {
-        return (ArrayList) this._memberFactory.CallMember(1, "Gains", new Type[0]);
-      }
-    }
+        public short GainMin { get => Impl.GainMin; }
 
-    public short PercentCompleted
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "PercentCompleted", new Type[0]));
-      }
-    }
+        public ArrayList Gains { get => Impl.Gains; }
 
-    public short ReadoutMode
-    {
-      get
-      {
-        return Convert.ToInt16(this._memberFactory.CallMember(1, "ReadoutMode", new Type[0]));
-      }
-      set
-      {
-        this._memberFactory.CallMember(2, "ReadoutMode", new Type[0], (object) value);
-      }
-    }
+        public short PercentCompleted { get => Impl.PercentCompleted; }
 
-    public ArrayList ReadoutModes
-    {
-      get
-      {
-        return (ArrayList) this._memberFactory.CallMember(1, "ReadoutModes", new Type[0]);
-      }
-    }
+        public short ReadoutMode
+        {
+            get => Impl.ReadoutMode;
+            set
+            {
+                if (ReadoutMode != value)
+                {
+                    Impl.ReadoutMode = value;
+                    profile.SetValue(nameof(ReadoutMode), Impl.ReadoutMode.ToString());
+                    RaisePropertyChanged(nameof(ReadoutMode));
+                }
+            }
+        }
 
-    public string SensorName
-    {
-      get
-      {
-        return Convert.ToString(this._memberFactory.CallMember(1, "SensorName", new Type[0]));
-      }
-    }
+        public ArrayList ReadoutModes { get => Impl.ReadoutModes; }
 
-    public SensorType SensorType
-    {
-      get
-      {
-        return (SensorType) this._memberFactory.CallMember(1, "SensorType", new Type[0]);
-      }
-    }
+        public string SensorName { get => Impl.SensorName; }
 
-    public Camera(string cameraId)
-      : base(cameraId)
-    {
-      this._memberFactory = this.MemberFactory;
-      try
-      {
-        this._driverInterfaceVersion = this.InterfaceVersion;
-      }
-      catch (PropertyNotImplementedException ex)
-      {
-        this._driverInterfaceVersion = (short) 1;
-      }
-    }
+        public SensorType SensorType { get => Impl.SensorType; }
 
-    public static string Choose(string cameraId)
-    {
-      using (Chooser chooser = new Chooser())
-      {
-        chooser.DeviceType = "Camera";
-        return chooser.Choose(cameraId);
-      }
-    }
+        public void AbortExposure()
+        {
+            TL.LogMessage($"Begin {nameof(AbortExposure)}()", $"");
+            Impl.AbortExposure();
+            TL.LogMessage($"End {nameof(AbortExposure)}", $"Result: ");
+        }
 
-    public void AbortExposure()
-    {
-      this._memberFactory.CallMember(3, "AbortExposure", new Type[0]);
-    }
+        public void PulseGuide(GuideDirections Direction, int Duration)
+        {
+            TL.LogMessage($"Begin {nameof(PulseGuide)}({Direction},{Duration})", $"");
+            Impl.PulseGuide(Direction,Duration);
+            TL.LogMessage($"End {nameof(PulseGuide)}", $"Result: ");
+        }
 
-    public void PulseGuide(GuideDirections Direction, int Duration)
-    {
-      this._memberFactory.CallMember(3, "PulseGuide", new Type[2]
-      {
-        typeof (GuideDirections),
-        typeof (int)
-      }, (object) Direction, (object) Duration);
-    }
+        public void StartExposure(double Duration, bool Light)
+        {
+            TL.LogMessage($"Begin {nameof(StartExposure)}({Duration},{Light})", $"");
+            Impl.StartExposure(Duration,Light);
+            TL.LogMessage($"End {nameof(StartExposure)}", $"Result: ");
 
-    public void StartExposure(double Duration, bool Light)
-    {
-      this._memberFactory.CallMember(3, "StartExposure", new Type[2]
-      {
-        typeof (double),
-        typeof (bool)
-      }, (object) Duration, (object) Light);
-    }
+        }
 
-    public void StopExposure()
-    {
-      this._memberFactory.CallMember(3, "StopExposure", new Type[0]);
+        public void StopExposure()
+        {
+            TL.LogMessage($"Begin {nameof(StopExposure)}()", $"");
+            Impl.StopExposure();
+            TL.LogMessage($"End {nameof(StopExposure)}", $"Result: ");
+        }
     }
-  }
 }

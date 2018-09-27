@@ -7,674 +7,498 @@
 using ASCOM.DeviceInterface;
 using ASCOM.Utilities;
 using System;
+using System.Linq;
 
 namespace ASCOM.DriverAccess
 {
-  public class Telescope : AscomDriver, ITelescopeV3
-  {
-    private MemberFactory memberFactory;
-    private bool isPlatform6Telescope;
-    private bool isPlatform5Telescope;
-
-    public ASCOM.DeviceInterface.AlignmentModes AlignmentMode
+    public class Telescope : AscomDriver<ITelescopeV3>, ITelescopeV3
     {
-      get
-      {
-        return (ASCOM.DeviceInterface.AlignmentModes) this.memberFactory.CallMember(1, "AlignmentMode", new Type[0]);
-      }
-    }
+        private MemberFactory memberFactory;
+        private readonly bool isPlatform6Telescope;
+        private bool isPlatform5Telescope;
 
-    public double Altitude
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "Altitude", new Type[0]));
-      }
-    }
-
-    public double ApertureArea
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "ApertureArea", new Type[0]));
-      }
-    }
-
-    public double ApertureDiameter
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "ApertureDiameter", new Type[0]));
-      }
-    }
-
-    public bool AtHome
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "AtHome", new Type[0]);
-      }
-    }
-
-    public bool AtPark
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "AtPark", new Type[0]);
-      }
-    }
-
-    public double Azimuth
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "Azimuth", new Type[0]));
-      }
-    }
-
-    public bool CanFindHome
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanFindHome", new Type[0]);
-      }
-    }
-
-    public bool CanPark
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanPark", new Type[0]);
-      }
-    }
-
-    public bool CanPulseGuide
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanPulseGuide", new Type[0]);
-      }
-    }
-
-    public bool CanSetDeclinationRate
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSetDeclinationRate", new Type[0]);
-      }
-    }
-
-    public bool CanSetGuideRates
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSetGuideRates", new Type[0]);
-      }
-    }
-
-    public bool CanSetPark
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSetPark", new Type[0]);
-      }
-    }
-
-    public bool CanSetPierSide
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSetPierSide", new Type[0]);
-      }
-    }
-
-    public bool CanSetRightAscensionRate
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSetRightAscensionRate", new Type[0]);
-      }
-    }
-
-    public bool CanSetTracking
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSetTracking", new Type[0]);
-      }
-    }
-
-    public bool CanSlew
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSlew", new Type[0]);
-      }
-    }
-
-    public bool CanSlewAltAz
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSlewAltAz", new Type[0]);
-      }
-    }
-
-    public bool CanSlewAltAzAsync
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSlewAltAzAsync", new Type[0]);
-      }
-    }
-
-    public bool CanSlewAsync
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSlewAsync", new Type[0]);
-      }
-    }
-
-    public bool CanSync
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSync", new Type[0]);
-      }
-    }
-
-    public bool CanSyncAltAz
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanSyncAltAz", new Type[0]);
-      }
-    }
-
-    public bool CanUnpark
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanUnpark", new Type[0]);
-      }
-    }
-
-    public double Declination
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "Declination", new Type[0]));
-      }
-    }
-
-    public double DeclinationRate
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "DeclinationRate", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "DeclinationRate", new Type[0], (object) value);
-      }
-    }
-
-    public bool DoesRefraction
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "DoesRefraction", new Type[0]);
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "DoesRefraction", new Type[0], (object) value);
-      }
-    }
-
-    public ASCOM.DeviceInterface.EquatorialCoordinateType EquatorialSystem
-    {
-      get
-      {
-        return (ASCOM.DeviceInterface.EquatorialCoordinateType) this.memberFactory.CallMember(1, "EquatorialSystem", new Type[0]);
-      }
-    }
-
-    public double FocalLength
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "FocalLength", new Type[0]));
-      }
-    }
-
-    public double GuideRateDeclination
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "GuideRateDeclination", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "GuideRateDeclination", new Type[0], (object) value);
-      }
-    }
-
-    public double GuideRateRightAscension
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "GuideRateRightAscension", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "GuideRateRightAscension", new Type[0], (object) value);
-      }
-    }
-
-    public bool IsPulseGuiding
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "IsPulseGuiding", new Type[0]);
-      }
-    }
-
-    public double RightAscension
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "RightAscension", new Type[0]));
-      }
-    }
-
-    public double RightAscensionRate
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "RightAscensionRate", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "RightAscensionRate", new Type[0], (object) value);
-      }
-    }
-
-    public ASCOM.DeviceInterface.PierSide SideOfPier
-    {
-      get
-      {
-        return (ASCOM.DeviceInterface.PierSide) this.memberFactory.CallMember(1, "SideOfPier", new Type[0]);
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "SideOfPier", new Type[0], (object) value);
-      }
-    }
-
-    public double SiderealTime
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "SiderealTime", new Type[0]));
-      }
-    }
-
-    public double SiteElevation
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "SiteElevation", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "SiteElevation", new Type[0], (object) value);
-      }
-    }
-
-    public double SiteLatitude
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "SiteLatitude", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "SiteLatitude", new Type[0], (object) value);
-      }
-    }
-
-    public double SiteLongitude
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "SiteLongitude", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "SiteLongitude", new Type[0], (object) value);
-      }
-    }
-
-    public short SlewSettleTime
-    {
-      get
-      {
-        return Convert.ToInt16(this.memberFactory.CallMember(1, "SlewSettleTime", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "SlewSettleTime", new Type[0], (object) value);
-      }
-    }
-
-    public bool Slewing
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "Slewing", new Type[0]);
-      }
-    }
-
-    public double TargetDeclination
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "TargetDeclination", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "TargetDeclination", new Type[0], (object) value);
-      }
-    }
-
-    public double TargetRightAscension
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "TargetRightAscension", new Type[0]));
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "TargetRightAscension", new Type[0], (object) value);
-      }
-    }
-
-    public bool Tracking
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "Tracking", new Type[0]);
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "Tracking", new Type[0], (object) value);
-      }
-    }
-
-    public ASCOM.DeviceInterface.DriveRates TrackingRate
-    {
-      get
-      {
-        return (ASCOM.DeviceInterface.DriveRates) this.memberFactory.CallMember(1, "TrackingRate", new Type[0]);
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "TrackingRate", new Type[0], (object) value);
-      }
-    }
-
-    public ASCOM.DeviceInterface.ITrackingRates TrackingRates
-    {
-      get
-      {
-        this.TL.LogMessage("TrackingRates", "");
-        this.TL.LogMessage("TrackingRates", "Creating TrackingRates object");
-        ASCOM.DriverAccess.TrackingRates trackingRates = new ASCOM.DriverAccess.TrackingRates(this.memberFactory.GetObjType, this.memberFactory.GetLateBoundObject, this.TL);
-        this.TL.LogMessage("TrackingRates", "Returning TrackingRates object");
-        return (ASCOM.DeviceInterface.ITrackingRates) trackingRates;
-      }
-    }
-
-    public DateTime UTCDate
-    {
-      get
-      {
-        return (DateTime) this.memberFactory.CallMember(1, "UTCDate", new Type[0]);
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "UTCDate", new Type[0], (object) value);
-      }
-    }
-
-    public Telescope(string telescopeId)
-      : base(telescopeId)
-    {
-      this.memberFactory = this.MemberFactory;
-      foreach (Type getInterface in this.memberFactory.GetInterfaces)
-      {
-        this.TL.LogMessage("Telescope", "Found interface name: " + getInterface.Name);
-        if (getInterface.Equals(typeof (ITelescopeV3)))
-          this.isPlatform6Telescope = true;
-        //if (getInterface.Equals(typeof (ITelescope)))
-        //  this.isPlatform5Telescope = true;
-      }
-      this.TL.LogMessage("Telescope", "Platform 5 Telescope: " + this.isPlatform5Telescope.ToString() + " Platform 6 Telescope: " + this.isPlatform6Telescope.ToString());
-    }
-
-    public static string Choose(string telescopeId)
-    {
-      using (Chooser chooser = new Chooser())
-      {
-        chooser.DeviceType = "Telescope";
-        return chooser.Choose(telescopeId);
-      }
-    }
-
-    public void AbortSlew()
-    {
-      this.TL.LogMessage("AbortSlew", "Calling method");
-      this.memberFactory.CallMember(3, "AbortSlew", new Type[0]);
-      this.TL.LogMessage("AbortSlew", "Finished");
-    }
-
-    public ASCOM.DeviceInterface.IAxisRates AxisRates(ASCOM.DeviceInterface.TelescopeAxes Axis)
-    {
-      this.TL.LogMessage("AxisRates", "");
-      this.TL.LogMessage("AxisRates", Axis.ToString());
-      if (!this.memberFactory.IsComObject)
-      {
-        if (this.isPlatform6Telescope)
+        public Telescope(string telescopeId) : base(telescopeId)
         {
-          this.TL.LogMessage("AxisRates", "Platform 6 .NET Telescope");
-          object obj = this.memberFactory.CallMember(3, "AxisRates", new Type[1]
-          {
-            typeof (ASCOM.DeviceInterface.TelescopeAxes)
-          }, (object) Axis);
-          try
-          {
-            ASCOM.DeviceInterface.IAxisRates axisRates = (ASCOM.DeviceInterface.IAxisRates) obj;
-            this.TL.LogMessage("AxisRates", "Number of returned AxisRates: " + (object) axisRates.Count);
-            if (axisRates.Count > 0)
+            if (DriverLoader.AscomInterfaces(Impl.GetType()).Contains(typeof(ITelescopeV3)))
+                isPlatform6Telescope = true;
+            TL.LogMessage("Telescope", "Platform 5 Telescope: " + isPlatform5Telescope.ToString() + " Platform 6 Telescope: " + isPlatform6Telescope.ToString());
+        }
+
+        public ASCOM.DeviceInterface.AlignmentModes AlignmentMode { get => Impl.AlignmentMode; }
+
+        public double Altitude { get => Impl.Altitude; }
+
+        public double ApertureArea { get => Impl.ApertureArea; }
+
+        public double ApertureDiameter { get => Impl.ApertureDiameter; }
+
+        public bool AtHome { get => Impl.AtHome; }
+
+        public bool AtPark { get => Impl.AtPark; }
+
+        public double Azimuth { get => Impl.Azimuth; }
+
+        public bool CanFindHome { get => Impl.CanFindHome; }
+
+        public bool CanPark { get => Impl.CanPark; }
+
+        public bool CanPulseGuide { get => Impl.CanPulseGuide; }
+
+        public bool CanSetDeclinationRate { get => Impl.CanSetDeclinationRate; }
+
+        public bool CanSetGuideRates { get => Impl.CanSetGuideRates; }
+
+        public bool CanSetPark { get => Impl.CanSetPark; }
+
+        public bool CanSetPierSide { get => Impl.CanSetPierSide; }
+
+        public bool CanSetRightAscensionRate { get => Impl.CanSetRightAscensionRate; }
+
+        public bool CanSetTracking { get => Impl.CanSetTracking; }
+
+        public bool CanSlew { get => Impl.CanSlew; }
+
+        public bool CanSlewAltAz { get => Impl.CanSlewAltAz; }
+
+        public bool CanSlewAltAzAsync { get => Impl.CanSlewAltAzAsync; }
+
+        public bool CanSlewAsync { get => Impl.CanSlewAsync; }
+
+        public bool CanSync { get => Impl.CanSync; }
+
+        public bool CanSyncAltAz { get => Impl.CanSyncAltAz; }
+
+        public bool CanUnpark { get => Impl.CanUnpark; }
+
+        public double Declination { get => Impl.Declination; }
+
+        public double DeclinationRate
+        {
+            get => Impl.DeclinationRate;
+            set
             {
-              for (int index = 1; index <= axisRates.Count; ++index)
-                this.TL.LogMessage("AxisRates", "Found Minimim: " + (object) axisRates[index].Minimum + ", Maximum: " + (object) axisRates[index].Maximum);
+                if (DeclinationRate != value)
+                {
+                    Impl.DeclinationRate = value;
+                    profile.SetValue(nameof(DeclinationRate), Impl.DeclinationRate.ToString());
+                    RaisePropertyChanged(nameof(DeclinationRate));
+                }
             }
-          }
-          catch (Exception ex)
-          {
-            this.TL.LogMessageCrLf("AxisRates", ex.ToString());
-          }
-          return (ASCOM.DeviceInterface.IAxisRates) obj;
         }
-        if (this.isPlatform5Telescope)
+
+        public bool DoesRefraction
         {
-          this.TL.LogMessage("AxisRates", "Platform 5 .NET Telescope");
-          object obj = this.memberFactory.CallMember(3, "AxisRates", new Type[1]
-          {
-            typeof (ASCOM.DeviceInterface.TelescopeAxes)
-          }, (object) Axis);
-          ASCOM.DeviceInterface.IAxisRates axisRates = (IAxisRates) new AxisRates();
-          try
-          {
-            IAxisRates AxisRates = (IAxisRates) obj;
-            axisRates = (IAxisRates) new AxisRates(AxisRates, this.TL);
-            this.TL.LogMessage("AxisRates", "Number of returned AxisRates: " + (object) AxisRates.Count);
-            if (AxisRates.Count > 0)
+            get => Impl.DoesRefraction;
+            set
             {
-              for (int index = 1; index <= AxisRates.Count; ++index)
-                this.TL.LogMessage("AxisRates", "Found Minimim: " + (object) AxisRates[index].Minimum + ", Maximum: " + (object) AxisRates[index].Maximum);
+                if (DoesRefraction != value)
+                {
+                    Impl.DoesRefraction = value;
+                    profile.SetValue(nameof(DoesRefraction), Impl.DoesRefraction.ToString());
+                    RaisePropertyChanged(nameof(DoesRefraction));
+                }
             }
-          }
-          catch (Exception ex)
-          {
-            this.TL.LogMessageCrLf("AxisRates", ex.ToString());
-          }
-          return axisRates;
         }
-        this.TL.LogMessage("AxisRates", "Neither Platform 5 nor Platform 6 .NET Telescope");
-        return (ASCOM.DeviceInterface.IAxisRates) new AxisRates();
-      }
-      this.TL.LogMessage("AxisRates", "Platform 5/6 COM Telescope");
-      _AxisRates axisRates1 = new _AxisRates(Axis, this.memberFactory.GetObjType, this.memberFactory.GetLateBoundObject, this.TL);
-      try
-      {
-        if (axisRates1.Count > 0)
+
+        public EquatorialCoordinateType EquatorialSystem { get => Impl.EquatorialSystem; }
+
+        public double FocalLength { get => Impl.FocalLength; }
+
+        public double GuideRateDeclination
         {
-          for (int index = 1; index <= axisRates1.Count; ++index)
-            this.TL.LogMessage("AxisRates", "Found Minimim: " + (object) axisRates1[index].Minimum + ", Maximum: " + (object) axisRates1[index].Maximum);
+            get => Impl.GuideRateDeclination;
+            set
+            {
+                if (GuideRateDeclination != value)
+                {
+                    Impl.GuideRateDeclination = value;
+                    profile.SetValue(nameof(GuideRateDeclination), Impl.GuideRateDeclination.ToString());
+                    RaisePropertyChanged(nameof(GuideRateDeclination));
+                }
+            }
         }
-      }
-      catch (Exception ex)
-      {
-        this.TL.LogMessageCrLf("AxisRates", ex.ToString());
-      }
-      return (ASCOM.DeviceInterface.IAxisRates) axisRates1;
-    }
 
-    public bool CanMoveAxis(ASCOM.DeviceInterface.TelescopeAxes Axis)
-    {
-      return (bool) this.memberFactory.CallMember(3, "CanMoveAxis", new Type[1]
-      {
-        typeof (ASCOM.DeviceInterface.TelescopeAxes)
-      }, (object) Axis);
-    }
+        public double GuideRateRightAscension
+        {
+            get => Impl.GuideRateRightAscension;
+            set
+            {
+                if (GuideRateRightAscension != value)
+                {
+                    Impl.GuideRateRightAscension = value;
+                    profile.SetValue(nameof(GuideRateRightAscension), Impl.GuideRateRightAscension.ToString());
+                    RaisePropertyChanged(nameof(GuideRateRightAscension));
+                }
+            }
+        }
 
-    public ASCOM.DeviceInterface.PierSide DestinationSideOfPier(double RightAscension, double Declination)
-    {
-      return (ASCOM.DeviceInterface.PierSide) this.memberFactory.CallMember(3, "DestinationSideOfPier", new Type[2]
-      {
-        typeof (double),
-        typeof (double)
-      }, (object) RightAscension, (object) Declination);
-    }
+        public bool IsPulseGuiding { get => Impl.IsPulseGuiding; }
 
-    public void FindHome()
-    {
-      this.memberFactory.CallMember(3, "FindHome", new Type[0]);
-    }
+        public double RightAscension { get => Impl.RightAscension; }
 
-    public void MoveAxis(ASCOM.DeviceInterface.TelescopeAxes Axis, double Rate)
-    {
-      this.memberFactory.CallMember(3, "MoveAxis", new Type[2]
-      {
-        typeof (ASCOM.DeviceInterface.TelescopeAxes),
-        typeof (double)
-      }, (object) Axis, (object) Rate);
-    }
+        public double RightAscensionRate
+        {
+            get => Impl.RightAscensionRate;
+            set
+            {
+                if (RightAscensionRate != value)
+                {
+                    Impl.RightAscensionRate = value;
+                    profile.SetValue(nameof(RightAscensionRate), Impl.RightAscensionRate.ToString());
+                    RaisePropertyChanged(nameof(RightAscensionRate));
+                }
+            }
+        }
 
-    public void Park()
-    {
-      this.memberFactory.CallMember(3, "Park", new Type[0]);
-    }
+        public PierSide SideOfPier
+        {
+            get => Impl.SideOfPier;
+            set
+            {
+                if (SideOfPier != value)
+                {
+                    Impl.SideOfPier = value;
+                    profile.SetValue(nameof(SideOfPier), Impl.SideOfPier.ToString());
+                    RaisePropertyChanged(nameof(SideOfPier));
+                }
+            }
+        }
 
-    public void PulseGuide(ASCOM.DeviceInterface.GuideDirections Direction, int Duration)
-    {
-      this.memberFactory.CallMember(3, "PulseGuide", new Type[2]
-      {
-        typeof (ASCOM.DeviceInterface.GuideDirections),
-        typeof (int)
-      }, (object) Direction, (object) Duration);
-    }
+        public double SiderealTime { get => Impl.SiderealTime; }
 
-    public void SetPark()
-    {
-      this.memberFactory.CallMember(3, "SetPark", new Type[0]);
-    }
+        public double SiteElevation
+        {
+            get => Impl.SiteElevation;
+            set
+            {
+                if (SiteElevation != value)
+                {
+                    Impl.SiteElevation = value;
+                    profile.SetValue(nameof(SiteElevation), Impl.SiteElevation.ToString());
+                    RaisePropertyChanged(nameof(SiteElevation));
+                }
+            }
+        }
 
-    public void SlewToAltAz(double Azimuth, double Altitude)
-    {
-      this.memberFactory.CallMember(3, "SlewToAltAz", new Type[2]
-      {
-        typeof (double),
-        typeof (double)
-      }, (object) Azimuth, (object) Altitude);
-    }
+        public double SiteLatitude
+        {
+            get => Impl.SiteLatitude;
+            set
+            {
+                if (SiteLatitude != value)
+                {
+                    Impl.SiteLatitude = value;
+                    profile.SetValue(nameof(SiteLatitude), Impl.SiteLatitude.ToString());
+                    RaisePropertyChanged(nameof(SiteLatitude));
+                }
+            }
+        }
 
-    public void SlewToAltAzAsync(double Azimuth, double Altitude)
-    {
-      this.memberFactory.CallMember(3, "SlewToAltAzAsync", new Type[2]
-      {
-        typeof (double),
-        typeof (double)
-      }, (object) Azimuth, (object) Altitude);
-    }
+        public double SiteLongitude
+        {
+            get => Impl.SiteLongitude;
+            set
+            {
+                if (SiteLongitude != value)
+                {
+                    Impl.SiteLongitude = value;
+                    profile.SetValue(nameof(SiteLongitude), Impl.SiteLongitude.ToString());
+                    RaisePropertyChanged(nameof(SiteLongitude));
+                }
+            }
+        }
 
-    public void SlewToCoordinates(double RightAscension, double Declination)
-    {
-      this.memberFactory.CallMember(3, "SlewToCoordinates", new Type[2]
-      {
-        typeof (double),
-        typeof (double)
-      }, (object) RightAscension, (object) Declination);
-    }
+        public short SlewSettleTime
+        {
+            get => Impl.SlewSettleTime;
+            set
+            {
+                if (SlewSettleTime != value)
+                {
+                    Impl.SlewSettleTime = value;
+                    profile.SetValue(nameof(SlewSettleTime), Impl.SlewSettleTime.ToString());
+                    RaisePropertyChanged(nameof(SlewSettleTime));
+                }
+            }
+        }
 
-    public void SlewToCoordinatesAsync(double RightAscension, double Declination)
-    {
-      this.memberFactory.CallMember(3, "SlewToCoordinatesAsync", new Type[2]
-      {
-        typeof (double),
-        typeof (double)
-      }, (object) RightAscension, (object) Declination);
-    }
+        public bool Slewing { get => Impl.Slewing; }
 
-    public void SlewToTarget()
-    {
-      this.memberFactory.CallMember(3, "SlewToTarget", new Type[0]);
-    }
+        public double TargetDeclination
+        {
+            get => Impl.TargetDeclination;
+            set
+            {
+                if (TargetDeclination != value)
+                {
+                    Impl.TargetDeclination = value;
+                    profile.SetValue(nameof(TargetDeclination), Impl.TargetDeclination.ToString());
+                    RaisePropertyChanged(nameof(TargetDeclination));
+                }
+            }
+        }
 
-    public void SlewToTargetAsync()
-    {
-      this.memberFactory.CallMember(3, "SlewToTargetAsync", new Type[0]);
-    }
+        public double TargetRightAscension
+        {
+            get => Impl.TargetRightAscension;
+            set
+            {
+                if (TargetRightAscension != value)
+                {
+                    Impl.TargetRightAscension = value;
+                    profile.SetValue(nameof(TargetRightAscension), Impl.TargetRightAscension.ToString());
+                    RaisePropertyChanged(nameof(TargetRightAscension));
+                }
+            }
+        }
 
-    public void SyncToAltAz(double Azimuth, double Altitude)
-    {
-      this.memberFactory.CallMember(3, "SyncToAltAz", new Type[2]
-      {
-        typeof (double),
-        typeof (double)
-      }, (object) Azimuth, (object) Altitude);
-    }
+        public bool Tracking
+        {
+            get => Impl.Tracking;
+            set
+            {
+                if (Tracking != value)
+                {
+                    Impl.Tracking = value;
+                    profile.SetValue(nameof(Tracking), Impl.Tracking.ToString());
+                    RaisePropertyChanged(nameof(Tracking));
+                }
+            }
+        }
 
-    public void SyncToCoordinates(double RightAscension, double Declination)
-    {
-      this.memberFactory.CallMember(3, "SyncToCoordinates", new Type[2]
-      {
-        typeof (double),
-        typeof (double)
-      }, (object) RightAscension, (object) Declination);
-    }
+        public DriveRates TrackingRate
+        {
+            get => Impl.TrackingRate;
+            set
+            {
+                if (TrackingRate != value)
+                {
+                    Impl.TrackingRate = value;
+                    profile.SetValue(nameof(TrackingRate), Impl.TrackingRate.ToString());
+                    RaisePropertyChanged(nameof(TrackingRate));
+                }
+            }
+        }
 
-    public void SyncToTarget()
-    {
-      this.memberFactory.CallMember(3, "SyncToTarget", new Type[0]);
-    }
+        public ASCOM.DeviceInterface.ITrackingRates TrackingRates
+        {
+            get => new ASCOM.DriverAccess.TrackingRates(Impl.GetType(), Impl, TL);
+        }
 
-    public void Unpark()
-    {
-      this.memberFactory.CallMember(3, "Unpark", new Type[0]);
+        public DateTime UTCDate
+        {
+            get => Impl.UTCDate;
+            set
+            {
+                if (UTCDate != value)
+                {
+                    Impl.UTCDate = value;
+                    profile.SetValue(nameof(UTCDate), Impl.UTCDate.ToString());
+                    RaisePropertyChanged(nameof(UTCDate));
+                }
+            }
+        }
+
+        public void AbortSlew()
+        {
+            TL.LogMessage($"Begin {nameof(Unpark)}()", $"");
+            Impl.Unpark();
+            TL.LogMessage($"End {nameof(Unpark)}", $"Result: ");
+        }
+
+        public ASCOM.DeviceInterface.IAxisRates AxisRates(ASCOM.DeviceInterface.TelescopeAxes Axis)
+        {
+            TL.LogMessage("AxisRates", "");
+            TL.LogMessage("AxisRates", Axis.ToString());
+            if (!memberFactory.IsComObject)
+            {
+                if (isPlatform6Telescope)
+                {
+                    TL.LogMessage("AxisRates", "Platform 6 .NET Telescope");
+                    object obj = memberFactory.CallMember(3, "AxisRates", new Type[1]
+                    {
+            typeof (ASCOM.DeviceInterface.TelescopeAxes)
+                    }, (object)Axis);
+                    try
+                    {
+                        ASCOM.DeviceInterface.IAxisRates axisRates = (ASCOM.DeviceInterface.IAxisRates)obj;
+                        TL.LogMessage("AxisRates", "Number of returned AxisRates: " + (object)axisRates.Count);
+                        if (axisRates.Count > 0)
+                        {
+                            for (int index = 1; index <= axisRates.Count; ++index)
+                                TL.LogMessage("AxisRates", "Found Minimim: " + (object)axisRates[index].Minimum + ", Maximum: " + (object)axisRates[index].Maximum);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        TL.LogMessageCrLf("AxisRates", ex.ToString());
+                    }
+                    return (ASCOM.DeviceInterface.IAxisRates)obj;
+                }
+                if (isPlatform5Telescope)
+                {
+                    TL.LogMessage("AxisRates", "Platform 5 .NET Telescope");
+                    object obj = memberFactory.CallMember(3, "AxisRates", new Type[1]
+                    {
+            typeof (ASCOM.DeviceInterface.TelescopeAxes)
+                    }, (object)Axis);
+                    ASCOM.DeviceInterface.IAxisRates axisRates = (IAxisRates)new AxisRates();
+                    try
+                    {
+                        IAxisRates AxisRates = (IAxisRates)obj;
+                        axisRates = (IAxisRates)new AxisRates(AxisRates, TL);
+                        TL.LogMessage("AxisRates", "Number of returned AxisRates: " + (object)AxisRates.Count);
+                        if (AxisRates.Count > 0)
+                        {
+                            for (int index = 1; index <= AxisRates.Count; ++index)
+                                TL.LogMessage("AxisRates", "Found Minimim: " + (object)AxisRates[index].Minimum + ", Maximum: " + (object)AxisRates[index].Maximum);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        TL.LogMessageCrLf("AxisRates", ex.ToString());
+                    }
+                    return axisRates;
+                }
+                TL.LogMessage("AxisRates", "Neither Platform 5 nor Platform 6 .NET Telescope");
+                return (ASCOM.DeviceInterface.IAxisRates)new AxisRates();
+            }
+            TL.LogMessage("AxisRates", "Platform 5/6 COM Telescope");
+            _AxisRates axisRates1 = new _AxisRates(Axis, memberFactory.GetObjType, memberFactory.GetLateBoundObject, TL);
+            try
+            {
+                if (axisRates1.Count > 0)
+                {
+                    for (int index = 1; index <= axisRates1.Count; ++index)
+                        TL.LogMessage("AxisRates", "Found Minimim: " + (object)axisRates1[index].Minimum + ", Maximum: " + (object)axisRates1[index].Maximum);
+                }
+            }
+            catch (Exception ex)
+            {
+                TL.LogMessageCrLf("AxisRates", ex.ToString());
+            }
+            return (ASCOM.DeviceInterface.IAxisRates)axisRates1;
+        }
+
+        public bool CanMoveAxis(ASCOM.DeviceInterface.TelescopeAxes Axis)
+        {
+            TL.LogMessage($"Begin {nameof(CanMoveAxis)}({Axis})", $"");
+            var result = Impl.CanMoveAxis(Axis);
+            TL.LogMessage($"End {nameof(CanMoveAxis)}", $"Result: { result}");
+            return result;
+        }
+
+        public PierSide DestinationSideOfPier(double RightAscension, double Declination)
+        {
+            TL.LogMessage($"Begin {nameof(DestinationSideOfPier)}({RightAscension}),{Declination}", $"");
+            var result = Impl.DestinationSideOfPier(RightAscension,Declination);
+            TL.LogMessage($"End {nameof(DestinationSideOfPier)}", $"Result: { result}");
+            return result;
+        }
+
+        public void FindHome()
+        {
+            TL.LogMessage($"Begin {nameof(FindHome)}()", $"");
+            Impl.FindHome();
+            TL.LogMessage($"End {nameof(FindHome)}", $"Result: ");
+        }
+
+        public void MoveAxis(ASCOM.DeviceInterface.TelescopeAxes Axis, double Rate)
+        {
+            TL.LogMessage($"Begin {nameof(MoveAxis)}({Axis},{Rate})", $"");
+            Impl.MoveAxis(Axis,Rate);
+            TL.LogMessage($"End {nameof(MoveAxis)}", $"Result: ");
+        }
+
+        public void Park()
+        {
+            TL.LogMessage($"Begin {nameof(Unpark)}()", $"");
+            Impl.Unpark();
+            TL.LogMessage($"End {nameof(Unpark)}", $"Result: ");
+        }
+
+        public void PulseGuide(ASCOM.DeviceInterface.GuideDirections Direction, int Duration)
+        {
+            TL.LogMessage($"Begin {nameof(PulseGuide)}({Direction},{Duration})", $"");
+            Impl.PulseGuide(Direction, Duration);
+            TL.LogMessage($"End {nameof(PulseGuide)}", $"Result: ");
+        }
+
+        public void SetPark()
+        {
+            TL.LogMessage($"Begin {nameof(SetPark)}()", $"");
+            Impl.SetPark();
+            TL.LogMessage($"End {nameof(SetPark)}", $"Result: ");
+        }
+
+        public void SlewToAltAz(double Azimuth, double Altitude)
+        {
+            TL.LogMessage($"Begin {nameof(SlewToAltAz)}({Azimuth},{Altitude})", $"");
+            Impl.SlewToAltAz(Azimuth, Altitude);
+            TL.LogMessage($"End {nameof(SlewToAltAz)}", $"Result: ");
+        }
+
+        public void SlewToAltAzAsync(double Azimuth, double Altitude)
+        {
+            TL.LogMessage($"Begin {nameof(SlewToAltAzAsync)}({Azimuth},{Altitude})", $"");
+            Impl.SlewToAltAzAsync(Azimuth, Altitude);
+            TL.LogMessage($"End {nameof(SlewToAltAzAsync)}", $"Result: ");
+        }
+
+        public void SlewToCoordinates(double RightAscension, double Declination)
+        {
+            TL.LogMessage($"Begin {nameof(SlewToCoordinates)}({RightAscension}, {Declination})", $"");
+            Impl.SlewToCoordinates(RightAscension, Declination);
+            TL.LogMessage($"End {nameof(SlewToCoordinates)}", $"Result: ");
+        }
+
+        public void SlewToCoordinatesAsync(double RightAscension, double Declination)
+        {
+            TL.LogMessage($"Begin {nameof(SlewToCoordinatesAsync)}({RightAscension}, {Declination})", $"");
+            Impl.SlewToCoordinatesAsync(RightAscension, Declination);
+            TL.LogMessage($"End {nameof(SlewToCoordinatesAsync)}", $"Result: ");
+        }
+
+        public void SlewToTarget()
+        {
+            TL.LogMessage($"Begin {nameof(SlewToTarget)}()", $"");
+            Impl.SlewToTarget();
+            TL.LogMessage($"End {nameof(SlewToTarget)}", $"Result: ");
+        }
+
+        public void SlewToTargetAsync()
+        {
+            TL.LogMessage($"Begin {nameof(SlewToTargetAsync)}()", $"");
+            Impl.SlewToTargetAsync();
+            TL.LogMessage($"End {nameof(SlewToTargetAsync)}", $"Result: ");
+        }
+
+        public void SyncToAltAz(double Azimuth, double Altitude)
+        {
+            TL.LogMessage($"Begin {nameof(SyncToAltAz)}({Azimuth},{Altitude})", $"");
+            Impl.SyncToAltAz(Azimuth, Altitude);
+            TL.LogMessage($"End {nameof(SyncToAltAz)}", $"Result: ");
+        }
+
+        public void SyncToCoordinates(double RightAscension, double Declination)
+        {
+            TL.LogMessage($"Begin {nameof(SyncToCoordinates)}({RightAscension},{Declination})", $"");
+            Impl.SyncToCoordinates(RightAscension,Declination);
+            TL.LogMessage($"End {nameof(SyncToCoordinates)}", $"Result: ");
+        }
+
+        public void SyncToTarget()
+        {
+            TL.LogMessage($"Begin {nameof(SyncToTarget)}()", $"");
+            Impl.SyncToTarget();
+            TL.LogMessage($"End {nameof(SyncToTarget)}", $"Result: ");
+        }
+
+        public void Unpark()
+        {
+            TL.LogMessage($"Begin {nameof(Unpark)}()", $"");
+            Impl.Unpark();
+            TL.LogMessage($"End {nameof(Unpark)}", $"Result: ");
+        }
     }
-  }
 }

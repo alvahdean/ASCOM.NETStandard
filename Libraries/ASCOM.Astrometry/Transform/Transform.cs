@@ -18,7 +18,7 @@ namespace ASCOM.Astrometry.Transform
 {
   //[Guid("779CD957-5502-4939-A661-EBEE9E1F485E")]
   //[ComVisible(true)]
-  [ClassInterface(ClassInterfaceType.None)]
+  //[ClassInterface(ClassInterfaceType.None)]
   public class Transform : ITransform, IDisposable
   {
     private bool disposedValue;

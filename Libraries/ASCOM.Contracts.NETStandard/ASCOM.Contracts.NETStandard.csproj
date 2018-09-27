@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\Shared\ASCOM.Contracts.Shared\ASCOM.Contracts.Shared.projitems" Label="Shared" />
+
   <Import Project="..\ASCOM.NETStandard\ASCOM.NETStandard.csproj" />
 
   <PropertyGroup>
@@ -8,5 +10,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>ASCOM.Utilities.Interfaces</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RACI\RACI.Data.NETStandard\RACI.Data.NETStandard.csproj" />
+  </ItemGroup>
 
 </Project>

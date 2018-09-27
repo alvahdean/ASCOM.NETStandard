@@ -6,8 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ASCOM.Havla
 {
@@ -15,18 +13,10 @@ namespace ASCOM.Havla
     public class TcpConnection : IpStreamConnection
     {
         private TcpClient conn;
-        public TcpConnection() : this("{ }")
+
+        public TcpConnection() : this(null) { }
+        public TcpConnection(IConfiguration settings) : base(ConnectionType.Tcp, settings)
         {
-
-        }
-
-        public TcpConnection(string jsonSettings)
-                    : this(JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonSettings)) { }
-
-        public TcpConnection(IDictionary<string, string> settings) : base(ConnectionType.Tcp, settings)
-        {
-            Address = null;
-            Port = 0;
             conn = null;
         }
 

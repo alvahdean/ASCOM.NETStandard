@@ -12,7 +12,7 @@ namespace ASCOM.DriverAccess
 {
     public class Focuser : AscomDriver<IFocuserV2>, IFocuserV2
     {
-        protected Focuser() : base() { }
+        //protected Focuser() : base() { }
         public Focuser(string deviceProgId) : base(deviceProgId) { }
 
         public bool IsMoving { get => Impl.IsMoving; }
@@ -25,16 +25,8 @@ namespace ASCOM.DriverAccess
 
         public bool Link
         {
-            get => Impl.Link;
-            set
-            {
-                if (Link != value)
-                {
-                    Impl.Link = value;
-                    profile.SetValue(nameof(Link), Impl.Link.ToString());
-                    RaisePropertyChanged(nameof(Link));
-                }
-            }
+            get => Impl.Connected;
+            set => Impl.Connected = value;
         }
 
         public int MaxIncrement { get => Impl.MaxIncrement; }
@@ -61,16 +53,17 @@ namespace ASCOM.DriverAccess
 
         public void Halt()
         {
-            TL.LogMessage($"Begin Halt", $"Halt()");
+            TL.LogMessage($"Halt", $"Begin");
             Impl.Halt();
-            TL.LogMessage($"End Halt", $"Result: void");
+            TL.LogMessage($"Halt", "End");
         }
 
-        public void Move(int Position)
+        public void Move(int position)
         {
-            TL.LogMessage($"Begin Move", $"Move(Position={Position})");
-            Impl.Move(Position);
-            TL.LogMessage($"End Move", $"Result: void");
+            TL.LogMessage($"Move", $"Begin: {Position} => {position}");
+            Impl.Move(position);
+            TL.LogMessage($"Move", "End");
         }
+
     }
 }

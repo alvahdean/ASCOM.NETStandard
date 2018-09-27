@@ -19,7 +19,6 @@ namespace ASCOM.DriverAccess
     {
         protected AscomDriver() : base() { }
         public AscomDriver(string deviceProgId) : base(deviceProgId) { }
-
     }
 
     public class AscomDriver<TDriver> : IAscomDriver, INotifyPropertyChanged
@@ -28,11 +27,12 @@ namespace ASCOM.DriverAccess
         protected TDriver Impl { get; private set; }
         protected static string deviceType { get; private set; }
         internal IASCOMProfile profile;
-        internal MemberFactory MemberFactory { get; private set; }
+        private SystemHelper sys = new SystemHelper();
+        private AscomDeviceNode _devNode;
+//        internal MemberFactory MemberFactory { get; private set; }
         static AscomDriver()
         {
             deviceType = DriverLoader.ApiTypeFor(typeof(TDriver))?.Name.ToUpper() ?? "";
-           
         }
         protected AscomDriver()
         {
@@ -41,7 +41,6 @@ namespace ASCOM.DriverAccess
         }
         public AscomDriver(string deviceProgId) :this()
         {
-            
             TL = new TraceLogger("", "DriverAccess");
             TL.Enabled = false;
             TL.Enabled = RegistryCommonCode.GetBool("Trace DriverAccess", false);
@@ -56,9 +55,10 @@ namespace ASCOM.DriverAccess
                 Profile pu = new Profile() { DeviceType = GetType().Name };
                 profile = pu.GetProfile(deviceProgId) ?? throw new AscomException($"Unable to get profile for driver '{pu.DeviceType}:{deviceProgId}'");
             }
+            //this._memberFactory = this.MemberFactory;
 
             //TODO: Remove MemberFactory once all api driver classes are convertered
-            MemberFactory = new MemberFactory(deviceProgId, TL);
+            //MemberFactory = new MemberFactory(deviceProgId, TL);
         }
         
         public bool Connected
@@ -77,7 +77,15 @@ namespace ASCOM.DriverAccess
         public string Description { get => Impl.Description; }
         public string DriverInfo { get => Impl.DriverInfo; }
         public string DriverVersion { get => Impl.DriverVersion; }
-        public short InterfaceVersion { get => Impl.InterfaceVersion; }
+        public short InterfaceVersion
+        {
+            get
+            {
+                //TODO: Just return Impl.InterfaceVersion, check not needed for templated version
+                try { return Impl.InterfaceVersion; } catch { }
+                return 1;
+            }
+        }
         public string Name { get => Impl.Name; }
         public ArrayList SupportedActions { get => Impl.SupportedActions; }
 
@@ -130,6 +138,24 @@ namespace ASCOM.DriverAccess
             TL.LogMessage("PropertyChanged", $"Property value '{propName}' changed");
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+        #endregion
+
+        #region Convenience Members
+        /// <summary>
+        /// Brings up the ASCOM Chooser Dialog to choose a Focuser
+        /// </summary>
+        /// <param name="focuserId">Focuser Prog ID for default or null for None</param>
+        /// <returns>Prog ID for chosen focuser or null for none</returns>
+        public static string Choose(string deviceId)
+        {
+            using (Chooser chooser = new Chooser())
+            {
+                
+                chooser.DeviceType = DriverLoader.ApiTypeFor(typeof(TDriver))?.Name ?? "";
+                return chooser.Choose(deviceId);
+            }
+        }
+
         #endregion
 
     }

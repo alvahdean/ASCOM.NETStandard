@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\ASCOM.Internal.Extensions.Shared\ASCOM.Internal.Extensions.Shared.projitems" Label="Shared" />
+
   <Import Project="..\ASCOM.NETStandard\ASCOM.NETStandard.csproj" />
 
   <PropertyGroup>

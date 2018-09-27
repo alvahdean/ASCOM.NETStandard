@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>b9463d71-c67b-4f97-9aea-15bd092f376a</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ASCOM.Utilities.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory).NetCore Porting\ASCOM\Utilities\ChooserForm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory).NetCore Porting\ASCOM\Utilities\PerformanceCounter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory).NetCore Porting\System\Diagnostics\EventLog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory).NetCore Porting\System\Diagnostics\OverflowAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory).NetCore Porting\System\Windows\Forms\Timer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AllUsersFileSystemProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ASCOMProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AscomSharedCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Chooser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\EntityStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\RegistryAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\RegistryCommonCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\UserCommonCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\WindowsRegistryAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\WindowsRegistryCommonCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EventLogCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KeyValuePair.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Profile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Serial.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TraceLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TraceLogProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UtilitiesSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VB6COMErrors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBSupport\CompilerServices\Conversions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBSupport\CompilerServices\Versioned.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBSupport\Conversion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBSupport\DateAndTime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBSupport\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBSupport\Interaction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBSupport\Operators.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VBSupport\Strings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VersionCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XMLAccess.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Exceptions - Moved to ASCOM.Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Deprecated - Not Compiled\PEReader.cs" />
+    <None Include="$(MSBuildThisFileDirectory)Deprecated - Not Compiled\Timer.cs" />
+  </ItemGroup>
+</Project>

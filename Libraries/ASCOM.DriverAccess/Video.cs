@@ -11,269 +11,120 @@ using System.Collections;
 
 namespace ASCOM.DriverAccess
 {
-  public class Video : AscomDriver, IVideo
-  {
-    private MemberFactory memberFactory;
-
-    public string VideoCaptureDeviceName
+    public class Video : AscomDriver<IVideo>, IVideo
     {
-      get
-      {
-        return (string) this.memberFactory.CallMember(1, "VideoCaptureDeviceName", new Type[0]);
-      }
-    }
+        public Video(string videoId) : base(videoId) { }
 
-    public double ExposureMax
-    {
-      get
-      {
-        return (double) this.memberFactory.CallMember(1, "ExposureMax", new Type[0]);
-      }
-    }
+        public string VideoCaptureDeviceName { get => Impl.VideoCaptureDeviceName; }
 
-    public double ExposureMin
-    {
-      get
-      {
-        return (double) this.memberFactory.CallMember(1, "ExposureMin", new Type[0]);
-      }
-    }
+        public double ExposureMax { get => Impl.ExposureMax; }
 
-    public VideoCameraFrameRate FrameRate
-    {
-      get
-      {
-        return (VideoCameraFrameRate) this.memberFactory.CallMember(1, "FrameRate", new Type[0]);
-      }
-    }
+        public double ExposureMin { get => Impl.ExposureMin; }
 
-    public ArrayList SupportedIntegrationRates
-    {
-      get
-      {
-        return (ArrayList) this.memberFactory.CallMember(1, "SupportedIntegrationRates", new Type[0]);
-      }
-    }
+        public VideoCameraFrameRate FrameRate { get => Impl.FrameRate; }
 
-    public int IntegrationRate
-    {
-      get
-      {
-        return (int) this.memberFactory.CallMember(1, "IntegrationRate", new Type[0]);
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "IntegrationRate", new Type[0], (object) value);
-      }
-    }
+        public ArrayList SupportedIntegrationRates { get => Impl.SupportedIntegrationRates; }
 
-    public IVideoFrame LastVideoFrame
-    {
-      get
-      {
-        return (IVideoFrame) this.memberFactory.CallMember(1, "LastVideoFrame", new Type[0]);
-      }
-    }
+        public int IntegrationRate
+        {
+            get => Impl.IntegrationRate;
+            set
+            {
+                if (IntegrationRate != value)
+                {
+                    Impl.IntegrationRate = value;
+                    profile.SetValue(nameof(IntegrationRate), Impl.IntegrationRate.ToString());
+                    RaisePropertyChanged(nameof(IntegrationRate));
+                }
+            }
+        }
 
-    public string SensorName
-    {
-      get
-      {
-        return (string) this.memberFactory.CallMember(1, "SensorName", new Type[0]);
-      }
-    }
+        public IVideoFrame LastVideoFrame { get => Impl.LastVideoFrame; }
 
-    public SensorType SensorType
-    {
-      get
-      {
-        return (SensorType) this.memberFactory.CallMember(1, "SensorType", new Type[0]);
-      }
-    }
+        public string SensorName { get => Impl.SensorName; }
 
-    public int Width
-    {
-      get
-      {
-        return (int) this.memberFactory.CallMember(1, "Width", new Type[0]);
-      }
-    }
+        public SensorType SensorType { get => Impl.SensorType; }
 
-    public int Height
-    {
-      get
-      {
-        return (int) this.memberFactory.CallMember(1, "Height", new Type[0]);
-      }
-    }
+        public int Width { get => Impl.Width; }
 
-    public double PixelSizeX
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "PixelSizeX", new Type[0]));
-      }
-    }
+        public int Height { get => Impl.Height; }
 
-    public double PixelSizeY
-    {
-      get
-      {
-        return Convert.ToDouble(this.memberFactory.CallMember(1, "PixelSizeY", new Type[0]));
-      }
-    }
+        public double PixelSizeX { get => Impl.PixelSizeX; }
 
-    public int BitDepth
-    {
-      get
-      {
-        return (int) this.memberFactory.CallMember(1, "BitDepth", new Type[0]);
-      }
-    }
+        public double PixelSizeY { get => Impl.PixelSizeY; }
 
-    public string VideoCodec
-    {
-      get
-      {
-        return (string) this.memberFactory.CallMember(1, "VideoCodec", new Type[0]);
-      }
-    }
+        public int BitDepth { get => Impl.BitDepth; }
 
-    public string VideoFileFormat
-    {
-      get
-      {
-        return (string) this.memberFactory.CallMember(1, "VideoFileFormat", new Type[0]);
-      }
-    }
+        public string VideoCodec { get => Impl.VideoCodec; }
 
-    public int VideoFramesBufferSize
-    {
-      get
-      {
-        return (int) this.memberFactory.CallMember(1, "VideoFramesBufferSize", new Type[0]);
-      }
-    }
+        public string VideoFileFormat { get => Impl.VideoFileFormat; }
 
-    public VideoCameraState CameraState
-    {
-      get
-      {
-        return (VideoCameraState) this.memberFactory.CallMember(1, "CameraState", new Type[0]);
-      }
-    }
+        public int VideoFramesBufferSize { get => Impl.VideoFramesBufferSize; }
 
-    public short GainMax
-    {
-      get
-      {
-        return (short) this.memberFactory.CallMember(1, "GainMax", new Type[0]);
-      }
-    }
+        public VideoCameraState CameraState { get => Impl.CameraState; }
 
-    public short GainMin
-    {
-      get
-      {
-        return (short) this.memberFactory.CallMember(1, "GainMin", new Type[0]);
-      }
-    }
+        public short GainMax { get => Impl.GainMax; }
 
-    public short Gain
-    {
-      get
-      {
-        return (short) this.memberFactory.CallMember(1, "Gain", new Type[0]);
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "Gain", new Type[0], (object) value);
-      }
-    }
+        public short GainMin { get => Impl.GainMin; }
 
-    public ArrayList Gains
-    {
-      get
-      {
-        return (ArrayList) this.memberFactory.CallMember(1, "Gains", new Type[0]);
-      }
-    }
+        public short Gain
+        {
+            get => Impl.Gain;
+            set
+            {
+                if (Gain != value)
+                {
+                    Impl.Gain = value;
+                    profile.SetValue(nameof(Gain), Impl.Gain.ToString());
+                    RaisePropertyChanged(nameof(Gain));
+                }
+            }
+        }
 
-    public short GammaMax
-    {
-      get
-      {
-        return (short) this.memberFactory.CallMember(1, "GammaMax", new Type[0]);
-      }
-    }
+        public ArrayList Gains { get => Impl.Gains; }
 
-    public short GammaMin
-    {
-      get
-      {
-        return (short) this.memberFactory.CallMember(1, "GammaMin", new Type[0]);
-      }
-    }
+        public short GammaMax { get => Impl.GammaMax; }
 
-    public short Gamma
-    {
-      get
-      {
-        return (short) this.memberFactory.CallMember(1, "Gamma", new Type[0]);
-      }
-      set
-      {
-        this.memberFactory.CallMember(2, "Gamma", new Type[0], (object) value);
-      }
-    }
+        public short GammaMin { get => Impl.GammaMin; }
 
-    public ArrayList Gammas
-    {
-      get
-      {
-        return (ArrayList) this.memberFactory.CallMember(1, "Gammas", new Type[0]);
-      }
-    }
+        public short Gamma
+        {
+            get => Impl.Gamma;
+            set
+            {
+                if (Gamma != value)
+                {
+                    Impl.Gamma = value;
+                    profile.SetValue(nameof(Gamma), Impl.Gamma.ToString());
+                    RaisePropertyChanged(nameof(Gamma));
+                }
+            }
+        }
 
-    public bool CanConfigureDeviceProperties
-    {
-      get
-      {
-        return (bool) this.memberFactory.CallMember(1, "CanConfigureDeviceProperties", new Type[0]);
-      }
-    }
+        public ArrayList Gammas { get => Impl.Gammas; }
 
-    public Video(string videoId)
-      : base(videoId)
-    {
-      this.memberFactory = this.MemberFactory;
-    }
+        public bool CanConfigureDeviceProperties { get => Impl.CanConfigureDeviceProperties; }
 
-    public static string Choose(string videoId)
-    {
-      using (Chooser chooser = new Chooser())
-      {
-        chooser.DeviceType = "Video";
-        return chooser.Choose(videoId);
-      }
-    }
+        public string StartRecordingVideoFile(string PreferredFileName)
+        {
+            TL.LogMessage($"Begin StartRecordingVideoFile(azimuth={PreferredFileName})", $"");
+            var result = Impl.StartRecordingVideoFile(PreferredFileName);
+            TL.LogMessage($"End StartRecordingVideoFile", $"Result: { result}");
+            return result;
+        }
 
-    public string StartRecordingVideoFile(string PreferredFileName)
-    {
-      return (string) this.memberFactory.CallMember(3, "StartRecordingVideoFile", new Type[1]
-      {
-        typeof (string)
-      }, (object) PreferredFileName);
-    }
+        public void StopRecordingVideoFile()
+        {
+            TL.LogMessage($"Begin StopRecordingVideoFile()", $"");
+            Impl.StopRecordingVideoFile();
+            TL.LogMessage($"End StopRecordingVideoFile", $"");
+        }
 
-    public void StopRecordingVideoFile()
-    {
-      this.memberFactory.CallMember(3, "StopRecordingVideoFile", new Type[0]);
+        public void ConfigureDeviceProperties()
+        {
+            TL.LogMessage($"Begin ConfigureDeviceProperties()", $"");
+            Impl.ConfigureDeviceProperties();
+            TL.LogMessage($"End ConfigureDeviceProperties", $"");
+        }
     }
-
-    public void ConfigureDeviceProperties()
-    {
-      this.memberFactory.CallMember(3, "ConfigureDeviceProperties", new Type[0]);
-    }
-  }
 }

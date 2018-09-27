@@ -17,9 +17,9 @@ namespace MSTest.ASCOMTests.Utilities
         {
             Console.WriteLine($"TEST: {nameof(PlatformSettings)}");
             SystemHelper sys = new SystemHelper();
-            ProfileNode ascom = sys.Ascom;
+            AscomPlatformNode ascom = sys.Ascom;
             Assert.IsNotNull(ascom, "ASCOM node is null");
-            ProfileNode platform = sys.SubNode(ascom, "Platform",true);
+            IProfileNode platform = sys.SubNode(ascom, "Platform",true);
             Assert.IsNotNull(platform, "ASCOM Platform settings not found");
             IEnumerable<string> skeys = sys.SubKeys(platform.ProfileNodeId);
             Assert.IsTrue((skeys?.Count()??0)>0,"No ASCOM platform settings found");
@@ -37,7 +37,7 @@ namespace MSTest.ASCOMTests.Utilities
             Console.WriteLine($"TEST: {nameof(ConvertPlatformDate)}");
             string skey = "Platform Installation Date";
             SystemHelper sys = new SystemHelper();
-            ProfileNode platform = sys.SubNode(sys.Ascom,"Platform",true);            
+            AscomPlatformNode platform = sys.SubNode<AscomPlatformNode>(sys.Ascom,"Platform",true);            
             Assert.IsNotNull(platform, "ASCOM Platform settings not found");
             bool hasKey=sys.HasValue(platform.ProfileNodeId, skey);
             Assert.IsTrue(hasKey, $"ASCOM Platform setting not found: '{skey}'");

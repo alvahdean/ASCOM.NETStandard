@@ -13,13 +13,18 @@ namespace ASCOM.DriverAccess
     public class Rotator : AscomDriver<IRotatorV2>, IRotatorV2
     {
 
-        protected Rotator() : base() { }
+        //protected Rotator() : base() { }
         public Rotator(string deviceProgId) : base(deviceProgId) { }
+
         public bool CanReverse { get => Impl.CanReverse; }
 
         public bool IsMoving { get => Impl.IsMoving; }
 
         public float Position { get => Impl.Position; }
+
+        public float StepSize { get => Impl.StepSize; }
+
+        public float TargetPosition { get => Impl.TargetPosition; }
 
         public bool Reverse
         {
@@ -35,39 +40,26 @@ namespace ASCOM.DriverAccess
             }
         }
 
-        public float StepSize { get => Impl.StepSize; }
-
-        public float TargetPosition { get => Impl.TargetPosition; }
-
-
-        public static string Choose(string deviceId)
-        {
-            using (Chooser chooser = new Chooser())
-            {
-                chooser.DeviceType = deviceType;
-                return chooser.Choose(deviceId);
-            }
-        }
-
         public void Halt()
         {
-            TL.LogMessage($"Begin Halt", $"Halt()");
+            TL.LogMessage($"Begin Halt()", $"");
             Impl.Halt();
-            TL.LogMessage($"End Halt", $"Result: void");
+            TL.LogMessage($"End Halt", $"");
         }
 
-        public void Move(float Position)
+        public void Move(float position)
         {
-            TL.LogMessage($"Begin Move", $"Move(Position={Position})");
-            Impl.Move(Position);
-            TL.LogMessage($"End Move", $"Result: void");
+            TL.LogMessage($"Begin Move(Position={position})", $"");
+            Impl.Move(position);
+            TL.LogMessage($"End Move", $"");
         }
 
         public void MoveAbsolute(float Position)
         {
-            TL.LogMessage($"Begin MoveAbsolute", $"MoveAbsolute(Position={Position})");
+            TL.LogMessage($"Begin MoveAbsolute(Position ={ Position})", $"");
             Impl.MoveAbsolute(Position);
-            TL.LogMessage($"End MoveAbsolute", $"Result: void");
+            TL.LogMessage($"End MoveAbsolute", $"");
         }
+
     }
 }

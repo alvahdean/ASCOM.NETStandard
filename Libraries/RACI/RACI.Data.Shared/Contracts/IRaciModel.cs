@@ -9,7 +9,7 @@ namespace RACI.Data
         DbSet<ProfileValue> ProfileValues { get; set; }
         DbSet<ProfileNode> ProfileNodes { get; set; }
         DbSet<AscomDeviceNode> DeviceRoots { get; set; }
-        DbSet<AscomDriverNode> DriverTypes { get; set; }
+        DbSet<DriverTypeNode> DriverTypes { get; set; }
         DbSet<AscomPlatformNode> AscomPlatforms { get; set; }
         DbSet<RaciSettings> SystemSettings { get; set; }
         DbSet<RaciSystem> Systems { get; set; }

@@ -74,10 +74,10 @@ namespace RACI.Data
     }
     public class RaciUnitOfWork : UnitOfWork<RaciModel>
     {
-        public IGenericRepository<ProfileNode> Nodes => Repo<ProfileNode>();
-        public IGenericRepository<ProfileValue> Values => Repo<ProfileValue>();
-        public IGenericRepository<RaciSystem> Systems => NodesOfType<RaciSystem>();
-        public IGenericRepository<TNode> NodesOfType<TNode>() where TNode : ProfileNode, new() => Repo<TNode>();
+        public IGenericRepository<ProfileNode> Nodes => Repo<ProfileNode>();// as IGenericRepository<IProfileNode>;
+        public IGenericRepository<ProfileValue> Values => Repo<ProfileValue>();// as IGenericRepository<IProfileValue>;
+        public IGenericRepository<RaciSystem> Systems => NodesOfType<RaciSystem>();// as IGenericRepository<RaciSystem>;
+        public IGenericRepository<TNode> NodesOfType<TNode>() where TNode : class, IProfileNode, new() => Repo<TNode>();
 
     }
 }

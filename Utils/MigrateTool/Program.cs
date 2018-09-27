@@ -58,10 +58,10 @@ namespace RACI.Data
 
             Console.WriteLine($"Loading ASCOM Platform Settings");
             RegistryKey regKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\ASCOM");
-            ProfileNode ascomRoot = sysHlp.Ascom;
+            AscomPlatformNode ascomRoot = sysHlp.Ascom;
             RegistryToProfileNode(regKey, ascomRoot, false);
-            IEnumerable<string> driverTypes = regKey.GetSubKeyNames().Where(t => t.EndsWith(" Drivers"));
-            IEnumerable<string> ascomSettings = regKey.GetSubKeyNames().Except(driverTypes);
+            IEnumerable<string> driverTypes = regKey?.GetSubKeyNames().Where(t => t.EndsWith(" Drivers"))?? new string[] { };
+            IEnumerable<string> ascomSettings = regKey?.GetSubKeyNames().Except(driverTypes) ?? new string[] { };
 
             foreach (string subkey in ascomSettings)
             {
@@ -69,7 +69,7 @@ namespace RACI.Data
                 RegistryKey regSubkey = regKey.OpenSubKey(subkey);
                 if (regSubkey == null)
                     throw new Exception($"Failed to open registry subkey[{subkey}] in {regKey.Name}");
-                ProfileNode dbNode = sysHlp.SubNode(ascomRoot, subkey, true);
+                IProfileNode dbNode = sysHlp.SubNode(ascomRoot, subkey, true);
                 if (dbNode == null)
                     throw new Exception($"Failed to make subnode[{subkey}] in ASCOM Root");
 
@@ -83,7 +83,7 @@ namespace RACI.Data
                 RegistryKey drvKey = regKey.OpenSubKey(drvName);
                 if (drvKey == null)
                     throw new Exception($"Failed to open registry Driver[{drvName}] in {regKey.Name}");
-                AscomDriverNode drvNode = sysHlp.SubNode<AscomDriverNode>(ascomRoot, drvName, true);
+                DriverTypeNode drvNode = sysHlp.SubNode<DriverTypeNode>(ascomRoot, drvName, true);
                 if (drvNode == null)
                     throw new Exception($"Failed to make Driver Node [{drvName}] in ASCOM Root");
                 RegistryToProfileNode(drvKey, drvNode, false);
@@ -105,12 +105,12 @@ namespace RACI.Data
             Console.WriteLine($"ASCOM LocalSystem load complete.");
         }
 
-        static bool RegistryToProfileNode(RegistryKey regKey, ProfileNode node,bool recurse=true)
+        static bool RegistryToProfileNode(RegistryKey regKey, IProfileNode node,bool recurse=true)
         {
-            if (regKey == null)
-                throw new ArgumentNullException("Argument 'regKey' cannot be null");
             if (node == null)
                 throw new ArgumentNullException("Argument 'node' cannot be null");
+            if (regKey == null)
+                return true;
 
             Console.WriteLine($"Converting Registry [{regKey.Name}] => {node.GetType().Name}");
             if (String.IsNullOrWhiteSpace(node.Name))
@@ -118,7 +118,7 @@ namespace RACI.Data
             foreach (string key in regKey.GetValueNames())
             {
                 string value = regKey.GetValue(key)?.ToString() ?? "";
-                ProfileValue pv = sysHlp.SetValueByName(node.ProfileNodeId, key, value);
+                IProfileValue pv = sysHlp.SetValueByName(node.ProfileNodeId, key, value);
             }
             if (recurse)
             {
@@ -129,7 +129,7 @@ namespace RACI.Data
                         continue;
                     RegistryKey subKey = regKey.OpenSubKey(nodeKey);
                     String nodeName = RegKeyToNodeName(subKey);
-                    ProfileNode subNode = sysHlp.SubNode(node, nodeName, true);
+                    IProfileNode subNode = sysHlp.SubNode(node, nodeName, true);
 
                     if (!RegistryToProfileNode(subKey, subNode, recurse))
                         throw new Exception($"Error loading RegistryKey[{regKey.Name}][{subKey.Name}]");

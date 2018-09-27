@@ -10,30 +10,45 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\IGenericRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IProfileNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IProfileValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IRaciModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IIdentityUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IRaciUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IRascomResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Contracts\IValidatedEntry.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataStore\ApplicationUser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\AppSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\Drivers\States\Focuser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\Drivers\States\DomeState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\Drivers\States\FilterWheelState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciEndpointDriver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciEndpoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\RaciSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomPlatformNode.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomDriverNode.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomDeviceNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\Drivers\DriverTypeNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\Drivers\AscomDeviceNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\AscomSettingsNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\ProfileNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\ProfileValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\UserSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStore\SimpleValue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IRaciModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ValidationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\EnumExt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ProfileNodeExt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\KeyComparers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\RaciUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\RaciModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Contracts\IRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\GenericRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\PathUtil.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Repository\UnitOfWork.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Repository\SystemHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RestObjects\Rascom\RascomDevice.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)RestObjects\Rascom\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\SystemHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestObjects\Rascom\DriverProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestObjects\Rascom\DriverMetadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore\Drivers\States\DriverState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestObjects\Rascom\RascomResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)..\..\..\Shared\appsettings.json" />

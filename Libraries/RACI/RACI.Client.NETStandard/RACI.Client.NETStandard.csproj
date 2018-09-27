@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>RACI.Client</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="RestSharp" Version="106.3.0" />
+    <PackageReference Include="RestSharp.Newtonsoft.Json" Version="1.4.0" />
+    <PackageReference Include="SharpZipLib.NETStandard" Version="1.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ASCOM.DeviceInterfaces\ASCOM.DeviceInterface.NETStandard.csproj" />
+    <ProjectReference Include="..\..\ASCOM.DriverAccess\ASCOM.DriverAccess.NETStandard.csproj" />
+    <ProjectReference Include="..\..\ASCOM.Exceptions.NETStandard\ASCOM.Exceptions.NETStandard.csproj" />
+    <ProjectReference Include="..\RACI.Data.NETStandard\RACI.Data.NETStandard.csproj" />
+    <ProjectReference Include="..\RACI.Logging.NETStandard\RACI.Logging.NETStandard.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\..\Drivers\RACI.Client.Shared\RACI.Client.Shared.projitems" Label="Shared" />
+
+</Project>

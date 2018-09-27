@@ -10,158 +10,121 @@ using System;
 
 namespace ASCOM.DriverAccess
 {
-  public class Switch : AscomDriver, ISwitchV2
-  {
-    private MemberFactory memberFactory;
-
-    public short MaxSwitch
+    public class Switch : AscomDriver<ISwitchV2>, ISwitchV2
     {
-      get
-      {
-        return Convert.ToInt16(this.memberFactory.CallMember(1, "MaxSwitch", new Type[0]));
-      }
-    }
 
-    public Switch(string switchId)
-      : base(switchId)
-    {
-      this.memberFactory = this.MemberFactory;
-    }
+        public Switch(string switchId) : base(switchId) { }
 
-    public static string Choose(string switchId)
-    {
-      using (Chooser chooser = new Chooser())
-      {
-        chooser.DeviceType = "Switch";
-        return chooser.Choose(switchId);
-      }
-    }
+        public short MaxSwitch { get => Impl.MaxSwitch; }
 
-    public string GetSwitchName(short id)
-    {
-      return (string) this.memberFactory.CallMember(3, "GetSwitchName", new Type[1]
-      {
-        typeof (short)
-      }, (object) id);
-    }
-
-    public void SetSwitchName(short id, string name)
-    {
-      this.memberFactory.CallMember(3, "SetSwitchName", new Type[2]
-      {
-        typeof (short),
-        typeof (string)
-      }, (object) id, (object) name);
-    }
-
-    public string GetSwitchDescription(short id)
-    {
-      return (string) this.memberFactory.CallMember(3, "GetSwitchDescription", new Type[1]
-      {
-        typeof (short)
-      }, (object) id);
-    }
-
-    public bool CanWrite(short id)
-    {
-      return (bool) this.memberFactory.CallMember(3, "CanWrite", new Type[1]
-      {
-        typeof (short)
-      }, (object) id);
-    }
-
-    public bool GetSwitch(short id)
-    {
-      return (bool) this.memberFactory.CallMember(3, "GetSwitch", new Type[1]
-      {
-        typeof (short)
-      }, (object) id);
-    }
-
-    public void SetSwitch(short id, bool state)
-    {
-      this.memberFactory.CallMember(3, "SetSwitch", new Type[2]
-      {
-        typeof (short),
-        typeof (bool)
-      }, (object) id, (object) state);
-    }
-
-    public double MaxSwitchValue(short id)
-    {
-      try
-      {
-        return (double) this.memberFactory.CallMember(3, "MaxSwitchValue", new Type[1]
+        public string GetSwitchName(short id)
         {
-          typeof (short)
-        }, (object) id);
-      }
-      catch (System.NotImplementedException ex)
-      {
-        return 1.0;
-      }
-    }
+            TL.LogMessage($"Begin {nameof(GetSwitchName)}({id})", $"");
+            var result = Impl.GetSwitchName(id);
+            TL.LogMessage($"End {nameof(GetSwitchName)}", $"Result: { result}");
+            return result;
+        }
 
-    public double MinSwitchValue(short id)
-    {
-      try
-      {
-        return (double) this.memberFactory.CallMember(3, "MinSwitchValue", new Type[1]
+        public void SetSwitchName(short id, string name)
         {
-          typeof (short)
-        }, (object) id);
-      }
-      catch (System.NotImplementedException ex)
-      {
-        return 0.0;
-      }
-    }
+            TL.LogMessage($"Begin {nameof(SetSwitchName)}({id},{name})", $"");
+            Impl.SetSwitchName(id, name);
+            TL.LogMessage($"End {nameof(SetSwitchName)}", $"");
+        }
+        public string GetSwitchDescription(short id)
+        {
+            TL.LogMessage($"Begin {nameof(GetSwitchDescription)}({id})", $"");
+            var result = Impl.GetSwitchDescription(id);
+            TL.LogMessage($"End {nameof(GetSwitchDescription)}", $"Result: { result}");
+            return result;
+        }
 
-    public double SwitchStep(short id)
-    {
-      try
-      {
-        return (double) this.memberFactory.CallMember(3, "SwitchStep", new Type[1]
+        public bool CanWrite(short id)
         {
-          typeof (short)
-        }, (object) id);
-      }
-      catch (System.NotImplementedException ex)
-      {
-        return 1.0;
-      }
-    }
+            TL.LogMessage($"Begin {nameof(CanWrite)}({id})", $"");
+            var result = Impl.CanWrite(id);
+            TL.LogMessage($"End {nameof(CanWrite)}", $"Result: { result}");
+            return result;
+        }
 
-    public double GetSwitchValue(short id)
-    {
-      try
-      {
-        return (double) this.memberFactory.CallMember(3, "GetSwitchValue", new Type[1]
+        public bool GetSwitch(short id)
         {
-          typeof (short)
-        }, (object) id);
-      }
-      catch (System.NotImplementedException ex)
-      {
-        return this.GetSwitch(id) ? 1.0 : 0.0;
-      }
-    }
+            TL.LogMessage($"Begin {nameof(GetSwitch)}({id})", $"");
+            var result = Impl.GetSwitch(id);
+            TL.LogMessage($"End {nameof(GetSwitch)}", $"Result: { result}");
+            return result;
+        }
 
-    public void SetSwitchValue(short id, double value)
-    {
-      try
-      {
-        this.memberFactory.CallMember(3, "SetSwitchValue", new Type[2]
+        public void SetSwitch(short id, bool state)
         {
-          typeof (short),
-          typeof (double)
-        }, (object) id, (object) value);
-      }
-      catch (System.NotImplementedException ex)
-      {
-        bool state = value >= 0.5;
-        this.SetSwitch(id, state);
-      }
+            TL.LogMessage($"Begin {nameof(SetSwitch)}({id},{state})", $"");
+            Impl.SetSwitch(id, state);
+            TL.LogMessage($"End {nameof(SetSwitch)}", $"");
+        }
+
+        public double MaxSwitchValue(short id)
+        {
+            TL.LogMessage($"Begin {nameof(MaxSwitchValue)}({id})", $"");
+            var result = Impl.MaxSwitchValue(id);
+            TL.LogMessage($"End {nameof(MaxSwitchValue)}", $"Result: { result}");
+            return result;
+        }
+
+        public double MinSwitchValue(short id)
+        {
+            var result = 0.0;
+            try
+            {
+                TL.LogMessage($"Begin {nameof(MinSwitchValue)}({id})", $"");
+                result = Impl.MinSwitchValue(id);
+            }
+            catch (System.NotImplementedException) { }
+            TL.LogMessage($"End {nameof(MinSwitchValue)}", $"Result: { result}");
+            return result;
+        }
+
+        public double SwitchStep(short id)
+        {
+            var result = 0.0;
+            try
+            {
+                TL.LogMessage($"Begin {nameof(SwitchStep)}({id})", $"");
+                result = Impl.SwitchStep(id);
+            }
+            catch (System.NotImplementedException) { }
+            TL.LogMessage($"End {nameof(SwitchStep)}", $"Result: { result}");
+            return result;
+        }
+
+        public double GetSwitchValue(short id)
+        {
+            var result = 0.0;
+            try
+            {
+                TL.LogMessage($"Begin {nameof(SwitchStep)}({id})", $"");
+                result = Impl.SwitchStep(id);
+            }
+            catch (System.NotImplementedException)
+            {
+                result = GetSwitch(id) ? 1.0 : 0.0;
+            }
+            TL.LogMessage($"End {nameof(SwitchStep)}", $"Result: { result}");
+            return result;
+        }
+
+        public void SetSwitchValue(short id, double value)
+        {
+            try
+            {
+                TL.LogMessage($"Begin {nameof(SetSwitchValue)}({id})", $"");
+                Impl.SetSwitchValue(id, value);
+            }
+            catch (System.NotImplementedException)
+            {
+                bool state = value >= 0.5;
+                SetSwitch(id, state);
+            }
+            TL.LogMessage($"End {nameof(SetSwitchValue)}", $"");
+        }
     }
-  }
 }
